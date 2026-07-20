@@ -1,0 +1,51 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/binarly-openapi-original.yml
+docs: https://docs.binarly.io/api-reference/authentication/generate-token
+summary:
+  types:
+  - http
+  - openIdConnect
+  bearer_format: JWT
+  identity_provider: Keycloak (realm BinarlyRealm)
+  oauth2_flows:
+  - clientCredentials
+  - password
+schemes:
+- name: auth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: >-
+    All API requests present a Keycloak-issued JWT access token in the
+    Authorization: Bearer <token> header. Tokens expire after 30 minutes
+    (expires_in 1800); automation should refresh before each job or on 401.
+  sources:
+  - openapi/binarly-openapi-original.yml
+oidc:
+  provider: Keycloak
+  realm: BinarlyRealm
+  token_endpoint: https://auth-{slug}.binarly.cloud/realms/BinarlyRealm/protocol/openid-connect/token
+  admin_console: https://<keycloak-host>/admin
+  notes: SaaS auth host is auth-{slug}.binarly.cloud; on-prem customers run their own Keycloak.
+flows:
+- flow: clientCredentials
+  audience: machine-to-machine (CI/CD, automation)
+  grant_type: client_credentials
+  client_id: per-tenant service-account client (e.g. BinarlyClient)
+  scope: openid
+  provisioning: >-
+    SaaS customers request client_id/client_secret from support@binarly.io;
+    on-prem customers create the client directly in Keycloak (service accounts roles).
+- flow: password
+  audience: interactive user / ad-hoc scripts
+  grant_type: password
+  client_id: BinarlyClient
+  scope: openid
+  notes: >-
+    Ties API usage to an individual BTP user and respects RBAC. Does NOT work with
+    SSO (SAML / OIDC federation) — requires a dedicated Keycloak username/password.
+rbac:
+  model: role-based access control with per-operation permissions
+  source: x-permission on OpenAPI operations (e.g. products.view, products.create)
+  docs: https://docs.binarly.io/user-guides/rbac/roles
