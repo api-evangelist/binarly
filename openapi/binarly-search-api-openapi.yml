@@ -1,0 +1,304 @@
+openapi: 3.0.3
+info:
+  title: Binarly Assistant Search API
+  version: 4.275.2
+security:
+- auth: []
+tags:
+- name: Search
+paths:
+  /api/v4/search:
+    get:
+      summary: Search
+      operationId: GetSearch
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Search
+      parameters:
+      - name: query
+        required: true
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/QuerySkip'
+      - $ref: '#/components/parameters/QuerySize'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResults'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/searchTokens:
+    get:
+      summary: SearchTokens
+      operationId: GetSearchTokens
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Search
+      parameters:
+      - name: query
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: size
+        required: false
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+          default: 10
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTokensResults'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    SearchResults:
+      allOf:
+      - $ref: '#/components/schemas/WithSearchResults'
+      - $ref: '#/components/schemas/WithTotals'
+    Resource:
+      allOf:
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+      - $ref: '#/components/schemas/WithResourceName'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithOptionalImageId'
+    WithResourceHierarchy:
+      type: object
+      required:
+      - resourceHierarchy
+      properties:
+        resourceHierarchy:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+    WithFieldName:
+      type: object
+      required:
+      - fieldName
+      properties:
+        fieldName:
+          type: string
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    WithTotals:
+      type: object
+      required:
+      - total
+      properties:
+        total:
+          type: integer
+    WithOptionalImageId:
+      type: object
+      properties:
+        imageId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    SearchResult:
+      allOf:
+      - $ref: '#/components/schemas/WithResourceHierarchy'
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithFieldName'
+      - $ref: '#/components/schemas/WithHeadline'
+    WithSearchTokensResults:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            type: string
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithResourceName:
+      type: object
+      required:
+      - resourceName
+      properties:
+        resourceName:
+          type: string
+    WithSearchResults:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+    SearchTokensResults:
+      allOf:
+      - $ref: '#/components/schemas/WithSearchTokensResults'
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    WithId:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithHeadline:
+      type: object
+      required:
+      - headline
+      properties:
+        headline:
+          type: string
+  parameters:
+    QuerySkip:
+      name: skip
+      required: false
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    QuerySize:
+      name: size
+      required: false
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 1000
+        default: 30
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

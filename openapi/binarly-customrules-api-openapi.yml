@@ -1,0 +1,458 @@
+openapi: 3.0.3
+info:
+  title: Binarly Assistant CustomRules API
+  version: 4.275.2
+security:
+- auth: []
+tags:
+- name: CustomRules
+paths:
+  /api/v4/customRules:updateRules:
+    post:
+      summary: Update Rules
+      operationId: UpdateRules
+      x-permission: customRules.update
+      tags:
+      - CustomRules
+      parameters:
+      - name: dryRun
+        in: query
+        description: Validate only, don't save rules
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RulesUpload'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatedRules'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/UnprocessableRules'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/customRules:bulkDisable:
+    post:
+      summary: Bulk Disable Rules
+      operationId: BulkDisableRules
+      x-permission: customRules.update
+      tags:
+      - CustomRules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkNames'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkNames'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/customRules:bulkEnable:
+    post:
+      summary: Bulk Enable Rules
+      operationId: BulkEnableRules
+      x-permission: customRules.update
+      tags:
+      - CustomRules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkNames'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkNames'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/customRules/rules/{ruleName}:
+    get:
+      summary: Get Rule by Name
+      operationId: GetRule
+      x-permission: customRules.list
+      tags:
+      - CustomRules
+      parameters:
+      - name: ruleName
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Name'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnprocessableRules:
+      description: Unprocessable Custom Rules
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/UnprocessableContentResponse'
+            - $ref: '#/components/schemas/UnprocessableRulesResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    WithUpdateTime:
+      type: object
+      required:
+      - updateTime
+      properties:
+        updateTime:
+          type: string
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    RulesUpload:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+    WithNames:
+      type: object
+      required:
+      - names
+      properties:
+        names:
+          type: array
+          items:
+            $ref: '#/components/schemas/Name'
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    WithSeverity:
+      type: object
+      required:
+      - severity
+      properties:
+        severity:
+          type: string
+          enum:
+          - unspecified
+          - low
+          - medium
+          - high
+          - critical
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    Name:
+      type: string
+    RulesLintResultDetails:
+      type: object
+      properties:
+        name:
+          type: string
+        meta: {}
+        warnings:
+          type: array
+          items:
+            type: string
+        errors:
+          type: array
+          items:
+            type: string
+    WithAuthor:
+      type: object
+      required:
+      - author
+      properties:
+        author:
+          $ref: '#/components/schemas/User'
+    UnprocessableRulesResponse:
+      type: object
+      required:
+      - errors
+      properties:
+        errors:
+          $ref: '#/components/schemas/RulesFiles'
+    Rule:
+      allOf:
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithOptionalTitle'
+      - $ref: '#/components/schemas/WithOptionalDescription'
+      - $ref: '#/components/schemas/WithSeverity'
+      - $ref: '#/components/schemas/WithIsEnabled'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithUpdateTime'
+      - $ref: '#/components/schemas/WithBody'
+    RulesFile:
+      type: object
+      required:
+      - filename
+      - lintResults
+      properties:
+        filename:
+          type: string
+        name:
+          type: string
+        lintResults:
+          $ref: '#/components/schemas/RulesLintResults'
+    WithIsEnabled:
+      type: object
+      required:
+      - isEnabled
+      properties:
+        isEnabled:
+          type: boolean
+    RulesLintResults:
+      type: object
+      required:
+      - status
+      - details
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+          - error
+        details:
+          $ref: '#/components/schemas/RulesLintResultDetails'
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    BulkNames:
+      $ref: '#/components/schemas/WithNames'
+    UpdatedRules:
+      allOf:
+      - $ref: '#/components/schemas/WithRulesVersion'
+    RulesVersion:
+      type: object
+      required:
+      - id
+      - rules
+      properties:
+        id:
+          $ref: '#/components/schemas/ULID'
+        rules:
+          $ref: '#/components/schemas/RulesFiles'
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    WithRulesVersion:
+      type: object
+      required:
+      - version
+      properties:
+        version:
+          $ref: '#/components/schemas/RulesVersion'
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    WithBody:
+      type: object
+      required:
+      - body
+      properties:
+        body:
+          type: string
+    RulesFiles:
+      type: array
+      items:
+        $ref: '#/components/schemas/RulesFile'
+    UnprocessableContentResponse:
+      type: object
+      required:
+      - message
+      - errors
+      properties:
+        message:
+          type: string
+        errors: {}
+    WithOptionalDescription:
+      type: object
+      properties:
+        description:
+          type: string
+    WithOptionalCreateTime:
+      type: object
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithOptionalTitle:
+      type: object
+      properties:
+        title:
+          type: string
+    WithUserId:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

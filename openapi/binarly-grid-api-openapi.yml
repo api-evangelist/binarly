@@ -1,0 +1,2354 @@
+openapi: 3.0.3
+info:
+  title: Binarly Assistant Grid API
+  version: 4.275.2
+security:
+- auth: []
+tags:
+- name: Grid
+paths:
+  /api/v4/grids/products:gridList:
+    post:
+      summary: Grid List Products
+      operationId: GridListProducts
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridProducts'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/grids/images:gridList:
+    post:
+      summary: Grid List Images
+      operationId: GridListImages
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridImagesQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridImages'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/grids/scans:gridList:
+    post:
+      summary: Grid List Scans
+      operationId: GridListScans
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridScans'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/grids/files:gridList:
+    post:
+      summary: Grid List Files
+      operationId: GridListFiles
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridFiles'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/grids/findings:gridList:
+    post:
+      summary: Grid List Findings
+      operationId: GridListFindings
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Grid
+      parameters:
+      - $ref: '#/components/parameters/QueryOptionalContentType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridFindingsQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridFindings'
+            text/csv:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/grids/dependencies:gridList:
+    post:
+      summary: Grid List Dependencies
+      operationId: GridListDependencies
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridDependencies'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/grids/components:gridList:
+    post:
+      summary: Grid List Components
+      operationId: GridListComponents
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridComponents'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/grids/cryptographicAssets:gridList:
+    post:
+      summary: Grid List Cryptographic Assets
+      operationId: GridListCryptographicAssets
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridCryptographicAssets'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/grids/customRules:gridList:
+    post:
+      summary: Grid List Custom Rules
+      operationId: GridListRules
+      x-permission: customRules.list
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridRules'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/grids/users:gridList:
+    post:
+      summary: Grid List Users
+      operationId: GridListUsers
+      x-permission: users.list
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridUsers'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/grids/groups:gridList:
+    post:
+      summary: Grid List Groups
+      operationId: GridListGroups
+      x-permission: groups.list
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridGroups'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/grids/groupMembers:gridList:
+    post:
+      summary: Grid List Group Members
+      operationId: GridListGroupMembers
+      x-permission: ''
+      tags:
+      - Grid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GridQuery'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridGroupMembers'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    WithUpdateTime:
+      type: object
+      required:
+      - updateTime
+      properties:
+        updateTime:
+          type: string
+    WithOptionalModuleGuid:
+      type: object
+      properties:
+        moduleGuid:
+          $ref: '#/components/schemas/UUID'
+    ImageCounts:
+      allOf:
+      - $ref: '#/components/schemas/WithNewEscalationsCount'
+      - $ref: '#/components/schemas/WithDependenciesCount'
+      - $ref: '#/components/schemas/WithCryptographicAssetsCount'
+      - $ref: '#/components/schemas/WithFindingTypeCounts'
+      - $ref: '#/components/schemas/WithKevCount'
+      - $ref: '#/components/schemas/WithExpiredCertificatesCount'
+      - $ref: '#/components/schemas/WithUnsafeFunctionsCount'
+    File:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithFilename'
+      - $ref: '#/components/schemas/WithIsAttachment'
+      - $ref: '#/components/schemas/WithDownloadUrl'
+      - $ref: '#/components/schemas/WithOptionalMetadata'
+    WithOptionalExploitabilityCounts:
+      type: object
+      properties:
+        exploitabilityCounts:
+          $ref: '#/components/schemas/ExploitabilityCounts'
+    WithProduct:
+      type: object
+      required:
+      - product
+      properties:
+        product:
+          type: string
+    RoleBinding:
+      type: object
+      required:
+      - id
+      - role
+      - identity
+      - resourceName
+      properties:
+        id:
+          $ref: '#/components/schemas/ULID'
+        role:
+          $ref: '#/components/schemas/Role'
+        identity:
+          oneOf:
+          - $ref: '#/components/schemas/User'
+          - $ref: '#/components/schemas/Group'
+        resourceName:
+          $ref: '#/components/schemas/ResourceName'
+    GridImages:
+      allOf:
+      - $ref: '#/components/schemas/WithGridImages'
+      - $ref: '#/components/schemas/WithTotals'
+    WithOptionalDependencyId:
+      type: object
+      properties:
+        dependencyId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    NISTIR8547HashAndXOFSecurity:
+      type: object
+      properties:
+        hashAndXOF:
+          $ref: '#/components/schemas/NISTIR8547HashAndXOF'
+      required:
+      - hashAndXOF
+    WithOptionalComponentId:
+      type: object
+      properties:
+        componentId:
+          type: string
+    WithSeveritiesCritical:
+      type: object
+      required:
+      - severitiesCritical
+      properties:
+        severitiesCritical:
+          type: integer
+    WithSeverity:
+      type: object
+      required:
+      - severity
+      properties:
+        severity:
+          type: string
+          enum:
+          - unspecified
+          - low
+          - medium
+          - high
+          - critical
+    WithOptionalIsReachable:
+      type: object
+      properties:
+        isReachable:
+          type: boolean
+    Role:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithPermissions'
+      - $ref: '#/components/schemas/WithBoundResourceTypes'
+    NISTIR8547BlockCipher:
+      type: object
+      properties:
+        securityStrength:
+          type: string
+        securityCategory:
+          type: integer
+      required:
+      - securityStrength
+      - securityCategory
+    WithOptionalOrgRoleBindings:
+      type: object
+      properties:
+        orgRoleBindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleBinding'
+    WithGridCryptographicAssets:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridCryptographicAsset'
+    WithProductId:
+      type: object
+      required:
+      - productId
+      properties:
+        productId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    Dependency:
+      allOf:
+      - $ref: '#/components/schemas/WithVendor'
+      - $ref: '#/components/schemas/WithProduct'
+      - $ref: '#/components/schemas/WithVersion'
+      - $ref: '#/components/schemas/WithLicense'
+      - $ref: '#/components/schemas/WithLinkage'
+    WithSeveritiesUnspecified:
+      type: object
+      required:
+      - severitiesUnspecified
+      properties:
+        severitiesUnspecified:
+          type: integer
+    WithOptionalDisplayName:
+      type: object
+      properties:
+        displayName:
+          type: string
+    GridFindings:
+      allOf:
+      - $ref: '#/components/schemas/WithGridFindings'
+      - $ref: '#/components/schemas/WithTotals'
+    GridProductScanState:
+      allOf:
+      - $ref: '#/components/schemas/WithScanStateType'
+      - $ref: '#/components/schemas/WithCreateTime'
+    WithOptionalProductId:
+      type: object
+      properties:
+        productId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithTotals:
+      type: object
+      required:
+      - total
+      properties:
+        total:
+          type: integer
+    WithGridComponents:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridComponent'
+    WithOptionalImageId:
+      type: object
+      properties:
+        imageId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithSeveritiesLow:
+      type: object
+      required:
+      - severitiesLow
+      properties:
+        severitiesLow:
+          type: integer
+    WithOptionalGroupRoleNames:
+      type: object
+      properties:
+        groupRoleNames:
+          type: array
+          items:
+            type: string
+    FindingClassification:
+      type: object
+      properties:
+        cwe:
+          type: string
+        attck:
+          type: string
+        mbc:
+          type: string
+    WithFindingsWithKnownFixAll:
+      type: object
+      required:
+      - findingsWithKnownFixAll
+      properties:
+        findingsWithKnownFixAll:
+          type: integer
+    FilterItem:
+      type: object
+      required:
+      - field
+      - value
+      properties:
+        field:
+          type: string
+        comparator:
+          type: string
+          enum:
+          - equals
+          - contains
+          - between
+          - in
+          - notContains
+          - overlaps
+        value: {}
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalIsLatest:
+      type: object
+      properties:
+        isLatest:
+          type: boolean
+    WithOptionalSource:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/ULID'
+    Group:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithResourceType'
+    NISTIR8547SecurityProfile:
+      type: object
+      properties:
+        security:
+          $ref: '#/components/schemas/NISTIR8547Security'
+    WithOptionalImageCounts:
+      type: object
+      properties:
+        counts:
+          $ref: '#/components/schemas/ImageCounts'
+    WithOptionalIsKev:
+      type: object
+      properties:
+        isKev:
+          type: boolean
+    WithGridUsers:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridUser'
+    GridComponents:
+      allOf:
+      - $ref: '#/components/schemas/WithGridComponents'
+      - $ref: '#/components/schemas/WithTotals'
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    WithSeveritiesMedium:
+      type: object
+      required:
+      - severitiesMedium
+      properties:
+        severitiesMedium:
+          type: integer
+    WithGridRules:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridRule'
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithOptionalArchivedBy:
+      type: object
+      properties:
+        archivedBy:
+          $ref: '#/components/schemas/User'
+    WithRansomware:
+      type: object
+      required:
+      - ransomware
+      properties:
+        ransomware:
+          type: integer
+    WithProductName:
+      type: object
+      required:
+      - productName
+      properties:
+        productName:
+          type: string
+    WithGridProducts:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridProduct'
+    GridFiles:
+      allOf:
+      - $ref: '#/components/schemas/WithGridFiles'
+      - $ref: '#/components/schemas/WithTotals'
+    WithGridGroups:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridGroup'
+    WithOptionalCryptoAlgorithmName:
+      type: object
+      properties:
+        cryptoAlgorithmName:
+          type: string
+    WithOptionalComponentsCount:
+      type: object
+      properties:
+        componentsCount:
+          type: integer
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    WithOptionalFindingSubtype:
+      type: object
+      properties:
+        subtype:
+          type: string
+          enum:
+          - algorithm
+          - certificate
+          - protocol
+          - key
+    WithId:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithVersion:
+      type: object
+      required:
+      - version
+      properties:
+        version:
+          type: string
+    WithIsLatest:
+      type: object
+      required:
+      - isLatest
+      properties:
+        isLatest:
+          type: boolean
+    WithComponent:
+      type: object
+      required:
+      - component
+      properties:
+        component:
+          $ref: '#/components/schemas/Component'
+    NISTIR8547DigitalSignatureSecurity:
+      type: object
+      properties:
+        digitalSignature:
+          $ref: '#/components/schemas/NISTIR8547DigitalSignature'
+      required:
+      - digitalSignature
+    WithOptionalTitle:
+      type: object
+      properties:
+        title:
+          type: string
+    WithIsVulnerable:
+      type: object
+      required:
+      - isVulnerable
+      properties:
+        isVulnerable:
+          type: boolean
+    Secret:
+      type: object
+      properties:
+        rule:
+          type: string
+        secret:
+          type: string
+        entropy:
+          type: number
+          format: double
+        description:
+          type: string
+        kind:
+          type: string
+        validity:
+          type: string
+          enum:
+          - Valid
+          - Invalid
+          - Undetermined
+          - Filtered
+    WithOptionalName:
+      type: object
+      properties:
+        name:
+          type: string
+    WithOptionalKnownFixedVersion:
+      type: object
+      properties:
+        knownFixedVersion:
+          type: string
+    WithOptionalDuration:
+      description: Duration in milliseconds
+      type: object
+      properties:
+        duration:
+          type: integer
+          format: int64
+          minimum: 0
+    WithOptionalProductName:
+      type: object
+      properties:
+        productName:
+          type: string
+    WithIsAttachment:
+      type: object
+      required:
+      - isAttachment
+      properties:
+        isAttachment:
+          type: boolean
+          default: false
+          readOnly: true
+    UUID:
+      type: string
+      format: uuid
+    WithOptionalExploitabilityPredicates:
+      type: object
+      properties:
+        exploitabilityPredicates:
+          type: array
+          items:
+            type: string
+            enum:
+            - kev
+            - ransomware
+            - weaponizedExploit
+            - verifiedExploit
+            - publicExploit
+            - publicPoc
+    WithOptionalScans:
+      type: object
+      properties:
+        scans:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+    Scan:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithOptionalLatestScanState'
+    WithGridScans:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridScan'
+    WithOptionalFindingStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - new
+          - in progress
+          - rejected
+          - remediated
+    GridFindingsQuery:
+      allOf:
+      - $ref: '#/components/schemas/GridQuery'
+      - $ref: '#/components/schemas/WithGridFindingsFields'
+    FindingIdentifier:
+      type: object
+      properties:
+        brly:
+          type: string
+        cve:
+          type: string
+        ghsa:
+          type: string
+        gsd:
+          type: string
+        osv:
+          type: string
+    WithOptionalImages:
+      type: object
+      properties:
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+    WithOptionalCryptoProtocolName:
+      type: object
+      properties:
+        cryptoProtocolName:
+          type: string
+    WithOptionalHasKnownFix:
+      type: object
+      properties:
+        hasKnownFix:
+          type: boolean
+    GridUser:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+      - $ref: '#/components/schemas/WithOptionalOrgRoleBindings'
+      - $ref: '#/components/schemas/WithOptionalOrgRoleNames'
+    WithDependenciesCount:
+      type: object
+      required:
+      - dependenciesCount
+      properties:
+        dependenciesCount:
+          type: integer
+    Image:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithVersion'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithOptionalFiles'
+      - $ref: '#/components/schemas/WithOptionalScans'
+      - $ref: '#/components/schemas/WithOptionalLatestScan'
+      - $ref: '#/components/schemas/WithOptionalIsArchived'
+      - $ref: '#/components/schemas/WithOptionalImageCounts'
+    WithOptionalLatestScan:
+      type: object
+      properties:
+        latestScan:
+          $ref: '#/components/schemas/Scan'
+    WithOptionalToolName:
+      type: object
+      properties:
+        toolName:
+          type: string
+    WithOptionalLatestScanState:
+      type: object
+      properties:
+        latestScanState:
+          $ref: '#/components/schemas/ScanState'
+    WithNewEscalationsCount:
+      type: object
+      required:
+      - newEscalationsCount
+      properties:
+        newEscalationsCount:
+          type: integer
+    GridProducts:
+      allOf:
+      - $ref: '#/components/schemas/WithGridProducts'
+      - $ref: '#/components/schemas/WithTotals'
+    WithOptionalComponentName:
+      type: object
+      properties:
+        componentName:
+          type: string
+    WithPlatformId:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+    WithPublicPoc:
+      type: object
+      required:
+      - publicPoc
+      properties:
+        publicPoc:
+          type: integer
+    CountBySeverity:
+      type: object
+      readOnly: true
+      properties:
+        critical:
+          type: integer
+        high:
+          type: integer
+        medium:
+          type: integer
+        low:
+          type: integer
+        unspecified:
+          type: integer
+        total:
+          type: integer
+    WithOptionalFileId:
+      type: object
+      properties:
+        fileId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalSha256:
+      type: object
+      properties:
+        sha256:
+          type: string
+    WithOptionalKind:
+      type: object
+      properties:
+        kind:
+          type: string
+    WithSeveritiesHigh:
+      type: object
+      required:
+      - severitiesHigh
+      properties:
+        severitiesHigh:
+          type: integer
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    WithOptionalIsEstimatedEpss:
+      type: object
+      properties:
+        isEstimatedEpss:
+          type: boolean
+    WithOptionalLatestGridProductScanState:
+      type: object
+      properties:
+        latestScanState:
+          $ref: '#/components/schemas/GridProductScanState'
+    GridFinding:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithOptionalProductId'
+      - $ref: '#/components/schemas/WithOptionalProductName'
+      - $ref: '#/components/schemas/WithOptionalImages'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalName'
+      - $ref: '#/components/schemas/WithOptionalToolName'
+      - $ref: '#/components/schemas/WithOptionalFindingType'
+      - $ref: '#/components/schemas/WithOptionalFindingSubtype'
+      - $ref: '#/components/schemas/WithOptionalIdentifiers'
+      - $ref: '#/components/schemas/WithOptionalClassifications'
+      - $ref: '#/components/schemas/WithOptionalReferences'
+      - $ref: '#/components/schemas/WithOptionalComponent'
+      - $ref: '#/components/schemas/WithOptionalSeverity'
+      - $ref: '#/components/schemas/WithOptionalDescription'
+      - $ref: '#/components/schemas/WithOptionalIsEstimatedEpss'
+      - $ref: '#/components/schemas/WithOptionalIsReachable'
+      - $ref: '#/components/schemas/WithOptionalHasJiraTicket'
+      - $ref: '#/components/schemas/WithOptionalFindingStatus'
+      - $ref: '#/components/schemas/WithOptionalComponentName'
+      - $ref: '#/components/schemas/WithOptionalComponentId'
+      - $ref: '#/components/schemas/WithOptionalDisplayName'
+      - $ref: '#/components/schemas/WithOptionalComponentNames'
+      - $ref: '#/components/schemas/WithOptionalIsSsvcParanoidDecision'
+      - $ref: '#/components/schemas/WithOptionalHasKnownFix'
+      - $ref: '#/components/schemas/WithOptionalKnownFixedVersion'
+      - $ref: '#/components/schemas/WithOptionalIsKev'
+      - $ref: '#/components/schemas/WithOptionalIsKnownRansomwareUse'
+      - $ref: '#/components/schemas/WithOptionalDependencyComponentsCount'
+      - $ref: '#/components/schemas/WithOptionalImageId'
+      - $ref: '#/components/schemas/WithOptionalScanId'
+      - $ref: '#/components/schemas/WithOptionalDependencyId'
+      - $ref: '#/components/schemas/WithOptionalReferencedArtefactId'
+      - $ref: '#/components/schemas/WithOptionalCvssLatestBaseScore'
+      - $ref: '#/components/schemas/WithOptionalEpssProbability'
+      - $ref: '#/components/schemas/WithOptionalSecret'
+      - $ref: '#/components/schemas/WithOptionalSsvcDecision'
+      - $ref: '#/components/schemas/WithOptionalCryptoAlgorithmName'
+      - $ref: '#/components/schemas/WithOptionalCryptoAlgorithmPrimitive'
+      - $ref: '#/components/schemas/WithOptionalDependency'
+      - $ref: '#/components/schemas/WithOptionalIsNistIR8547Compliant'
+      - $ref: '#/components/schemas/WithOptionalCryptoProtocolName'
+      - $ref: '#/components/schemas/WithOptionalCompareLeftImageId'
+      - $ref: '#/components/schemas/WithOptionalCompareRightImageId'
+      - $ref: '#/components/schemas/WithOptionalCompareSide'
+      - $ref: '#/components/schemas/WithOptionalCompliance'
+      - $ref: '#/components/schemas/WithOptionalExploitabilityPredicates'
+      - $ref: '#/components/schemas/WithOptionalEmsScore'
+      - $ref: '#/components/schemas/WithOptionalConfidence'
+      - $ref: '#/components/schemas/WithOptionalExploitabilityCounts'
+    WithOptionalContainerPath:
+      type: object
+      properties:
+        containerPath:
+          type: string
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+    GridScans:
+      allOf:
+      - $ref: '#/components/schemas/WithGridScans'
+      - $ref: '#/components/schemas/WithTotals'
+    WithOptionalIsArchived:
+      type: object
+      properties:
+        isArchived:
+          type: boolean
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithVendor:
+      type: object
+      required:
+      - vendor
+      properties:
+        vendor:
+          type: string
+    WithOptionalCompareSide:
+      type: object
+      properties:
+        compareSide:
+          type: string
+          description: 'Indicates in which image the finding is present: "left"  – found only in the image compareLeftImageId, "right" – found only in the image compareRightImageId, "both"  – found in both images.
+
+            '
+          enum:
+          - left
+          - right
+          - both
+    WithOptionalReferences:
+      type: object
+      properties:
+        references:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingReference'
+    WithOptionalCryptoAlgorithmPrimitive:
+      type: object
+      properties:
+        cryptoAlgorithmPrimitive:
+          type: string
+    WithOptionalArchiveTime:
+      type: object
+      properties:
+        archiveTime:
+          type: string
+          readOnly: true
+    Component:
+      allOf:
+      - $ref: '#/components/schemas/WithPlatformId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithPath'
+      - $ref: '#/components/schemas/WithOptionalContainerPath'
+      - $ref: '#/components/schemas/WithOptionalAttributes'
+      - $ref: '#/components/schemas/WithOptionalKind'
+      - $ref: '#/components/schemas/WithOptionalMd5'
+      - $ref: '#/components/schemas/WithOptionalSha1'
+      - $ref: '#/components/schemas/WithOptionalSha256'
+    WithOptionalSecret:
+      type: object
+      properties:
+        secret:
+          $ref: '#/components/schemas/Secret'
+    WithOptionalEmsScore:
+      type: object
+      properties:
+        emsScore:
+          type: number
+          format: float
+    NISTIR8547Security:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/NISTIR8547DigitalSignatureSecurity'
+      - $ref: '#/components/schemas/NISTIR8547KeyEstablishmentSecurity'
+      - $ref: '#/components/schemas/NISTIR8547BlockCipherSecurity'
+      - $ref: '#/components/schemas/NISTIR8547HashAndXOFSecurity'
+    GridImagesQuery:
+      allOf:
+      - $ref: '#/components/schemas/GridQuery'
+      - $ref: '#/components/schemas/WithGridImagesFields'
+    GridScan:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithOptionalProductId'
+      - $ref: '#/components/schemas/WithOptionalImageId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithIsLatest'
+      - $ref: '#/components/schemas/WithProductName'
+      - $ref: '#/components/schemas/WithImageName'
+      - $ref: '#/components/schemas/WithOptionalLatestGridProductScanState'
+      - $ref: '#/components/schemas/WithOptionalDuration'
+    WithOptionalFindingType:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - knownVulnerability
+          - unknownVulnerability
+          - maliciousCode
+          - suspiciousCode
+          - dependencyVulnerability
+          - cryptographicAsset
+          - mitigation
+          - weakness
+          - supplyChainFailure
+          - secret
+          - leakedSecret
+          - uncategorized
+    WithOptionalEpssProbability:
+      type: object
+      properties:
+        epssProbability:
+          type: number
+          format: float
+    WithCount:
+      type: object
+      required:
+      - count
+      properties:
+        count:
+          type: integer
+    WithOptionalIsNistIR8547Compliant:
+      type: object
+      properties:
+        isNistIR8547Compliant:
+          type: boolean
+    WithProductFindingId:
+      type: object
+      required:
+      - productFindingId
+      properties:
+        productFindingId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalDownloadUrl:
+      type: object
+      properties:
+        downloadUrl:
+          type: string
+          readOnly: true
+    WithOptionalIdentifiers:
+      type: object
+      properties:
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingIdentifier'
+    WithLinkage:
+      type: object
+      required:
+      - linkage
+      properties:
+        linkage:
+          type: string
+          enum:
+          - unspecified
+          - embedded
+          - external
+          - project
+          - build
+          - derived
+          - vendored
+          - direct
+    WithOptionalMetadata:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    WithOptionalDependencyComponentsCount:
+      type: object
+      properties:
+        dependencyComponentsCount:
+          type: integer
+    WithPath:
+      type: object
+      required:
+      - path
+      properties:
+        path:
+          type: string
+    WithGridFiles:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridFile'
+    GridRule:
+      allOf:
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithOptionalTitle'
+      - $ref: '#/components/schemas/WithOptionalDescription'
+      - $ref: '#/components/schemas/WithSeverity'
+      - $ref: '#/components/schemas/WithIsEnabled'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithUpdateTime'
+    WithHasKnownFix:
+      type: object
+      required:
+      - hasKnownFix
+      properties:
+        hasKnownFix:
+          type: boolean
+    WithGridGroupMembers:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridGroupMember'
+    WithOptionalCvssLatestBaseScore:
+      type: object
+      properties:
+        cvssLatestBaseScore:
+          type: number
+          format: float
+    WithOptionalIsKnownRansomwareUse:
+      type: object
+      properties:
+        isKnownRansomwareUse:
+          type: boolean
+    GridCryptographicAssets:
+      allOf:
+      - $ref: '#/components/schemas/WithGridCryptographicAssets'
+      - $ref: '#/components/schemas/WithTotals'
+    WithSeveritiesAll:
+      type: object
+      required:
+      - severitiesAll
+      properties:
+        severitiesAll:
+          type: integer
+    WithGroupId:
+      type: object
+      required:
+      - groupId
+      properties:
+        groupId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    FindingTypeCount:
+      allOf:
+      - $ref: '#/components/schemas/WithFindingType'
+      - $ref: '#/components/schemas/WithCount'
+    WithResourceType:
+      type: object
+      required:
+      - resourceType
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    WithPublicExploit:
+      type: object
+      required:
+      - publicExploit
+      properties:
+        publicExploit:
+          type: integer
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    WithImageName:
+      type: object
+      required:
+      - imageName
+      properties:
+        imageName:
+          type: string
+    WithOptionalAttachmentsCount:
+      type: object
+      properties:
+        attachmentsCount:
+          type: integer
+    GridQuery:
+      type: object
+      properties:
+        page:
+          type: object
+          properties:
+            num:
+              type: integer
+              minimum: 1
+              maximum: 10000
+              default: 0
+            size:
+              type: integer
+              minimum: 0
+              maximum: 100
+              default: 10
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterItem'
+        sortBy:
+          oneOf:
+          - type: object
+            properties:
+              field:
+                type: string
+              direction:
+                type: string
+                enum:
+                - ascend
+                - descend
+          - type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                direction:
+                  type: string
+                  enum:
+                  - ascend
+                  - descend
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    WithKevCount:
+      type: object
+      required:
+      - kev
+      properties:
+        kev:
+          type: integer
+    WithMembersCount:
+      type: object
+      required:
+      - membersCount
+      properties:
+        membersCount:
+          type: integer
+    ScanState:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithScanStateType'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalAuthor'
+      - $ref: '#/components/schemas/WithOptionalSource'
+    WithOptionalLatestGridProductScan:
+      type: object
+      properties:
+        latestScan:
+          $ref: '#/components/schemas/GridScan'
+    WithBoundResourceTypes:
+      type: object
+      required:
+      - boundResourceTypes
+      properties:
+        boundResourceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceType'
+    WithOptionalReferencedArtefactId:
+      type: object
+      properties:
+        referencedArtefactId:
+          type: string
+    GridFile:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithProductId'
+      - $ref: '#/components/schemas/WithImageId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithFilename'
+      - $ref: '#/components/schemas/WithIsAttachment'
+      - $ref: '#/components/schemas/WithDownloadUrl'
+      - $ref: '#/components/schemas/WithOptionalModuleGuid'
+    WithWeaponisedExploit:
+      type: object
+      required:
+      - weaponisedExploit
+      properties:
+        weaponisedExploit:
+          type: integer
+    GridComponent:
+      allOf:
+      - $ref: '#/components/schemas/WithComponent'
+      - $ref: '#/components/schemas/WithProductFindingId'
+    WithOptionalComponent:
+      type: object
+      properties:
+        component:
+          $ref: '#/components/schemas/Component'
+    WithOptionalProductIsArchived:
+      type: object
+      properties:
+        productIsArchived:
+          type: boolean
+    WithDownloadUrl:
+      type: object
+      required:
+      - downloadUrl
+      properties:
+        downloadUrl:
+          type: string
+          readOnly: true
+    WithIsEnabled:
+      type: object
+      required:
+      - isEnabled
+      properties:
+        isEnabled:
+          type: boolean
+    WithOptionalClassifications:
+      type: object
+      properties:
+        classifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingClassification'
+    NISTIR8547KeyEstablishmentSecurity:
+      type: object
+      properties:
+        keyEstablishment:
+          $ref: '#/components/schemas/NISTIR8547KeyEstablishment'
+      required:
+      - keyEstablishment
+    GridGroupMembers:
+      allOf:
+      - $ref: '#/components/schemas/WithGridGroupMembers'
+      - $ref: '#/components/schemas/WithTotals'
+    GridDependencies:
+      allOf:
+      - $ref: '#/components/schemas/WithGridDependencies'
+      - $ref: '#/components/schemas/WithTotals'
+    WithOptionalSeverity:
+      type: object
+      properties:
+        severity:
+          type: string
+          enum:
+          - unspecified
+          - low
+          - medium
+          - high
+          - critical
+    ExploitabilityCounts:
+      allOf:
+      - $ref: '#/components/schemas/WithRansomware'
+      - $ref: '#/components/schemas/WithKevCount'
+      - $ref: '#/components/schemas/WithPublicPoc'
+      - $ref: '#/components/schemas/WithPublicExploit'
+      - $ref: '#/components/schemas/WithWeaponisedExploit'
+    GridRules:
+      allOf:
+      - $ref: '#/components/schemas/WithGridRules'
+      - $ref: '#/components/schemas/WithTotals'
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    WithScanStateType:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - new
+          - running
+          - failed
+          - done
+          - cancelled
+    WithOptionalMd5:
+      type: object
+      properties:
+        md5:
+          type: string
+    WithOptionalCompliance:
+      type: object
+      properties:
+        compliance:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingCompliance'
+    WithFindingType:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - knownVulnerability
+          - unknownVulnerability
+          - maliciousCode
+          - suspiciousCode
+          - dependencyVulnerability
+          - cryptographicAsset
+          - mitigation
+          - weakness
+          - supplyChainFailure
+          - secret
+          - leakedSecret
+          - uncategorized
+    WithOptionalOrgRoleNames:
+      type: object
+      properties:
+        orgRoleNames:
+          type: array
+          items:
+            type: string
+    NISTIR8547Recommendation:
+      type: object
+      properties:
+        algorithm:
+          type: string
+        parameter:
+          type: string
+        security:
+          $ref: '#/components/schemas/NISTIR8547Security'
+    NISTIR8547KeyEstablishment:
+      type: object
+      properties:
+        securityStrength:
+          type: string
+        securityCategory:
+          type: integer
+      required:
+      - securityStrength
+      - securityCategory
+    WithPermissions:
+      type: object
+      required:
+      - permissions
+      properties:
+        permissions:
+          type: array
+          items:
+            type: string
+            example: users.create
+    WithGridFindings:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridFinding'
+    ResourceName:
+      type: string
+      example: products/{productId}
+    WithOptionalConfidence:
+      type: object
+      properties:
+        confidence:
+          type: number
+          format: float
+    FindingCompliance:
+      type: object
+      properties:
+        nistIr8547:
+          $ref: '#/components/schemas/NISTIR8547'
+    NISTIR8547Recommendations:
+      type: object
+      properties:
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/NISTIR8547Recommendation'
+    WithOptionalHealthTrend:
+      type: object
+      properties:
+        healthTrend:
+          readOnly: true
+          type: string
+          enum:
+          - noImageUploaded
+          - insufficientData
+          - downtrend
+          - noChange
+          - uptrend
+    WithProperty:
+      type: object
+      required:
+      - property
+      properties:
+        property: {}
+    WithOptionalIsSsvcParanoidDecision:
+      type: object
+      properties:
+        isSsvcParanoidDecision:
+          type: boolean
+    WithOptionalSha1:
+      type: object
+      properties:
+        sha1:
+          type: string
+    NISTIR8547HashAndXOF:
+      type: object
+      properties:
+        collisionSecurityStrength:
+          type: string
+        collisionSecurityCategory:
+          type: integer
+        preimageSecurityStrength:
+          type: string
+        preimageSecurityCategory:
+          type: integer
+      required:
+      - collisionSecurityStrength
+      - collisionSecurityCategory
+      - preimageSecurityStrength
+      - preimageSecurityCategory
+    WithExpiredCertificatesCount:
+      type: object
+      required:
+      - expiredCertificatesCount
+      properties:
+        expiredCertificatesCount:
+          type: integer
+    GridImage:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithOptionalProductId'
+      - $ref: '#/components/schemas/WithOptionalName'
+      - $ref: '#/components/schemas/WithOptionalVersion'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalAuthor'
+      - $ref: '#/components/schemas/WithOptionalIsArchived'
+      - $ref: '#/components/schemas/WithOptionalDownloadUrl'
+      - $ref: '#/components/schemas/WithOptionalArchiveTime'
+      - $ref: '#/components/schemas/WithOptionalArchivedBy'
+      - $ref: '#/components/schemas/WithOptionalProductIsArchived'
+      - $ref: '#/components/schemas/WithOptionalIsLatest'
+      - $ref: '#/components/schemas/WithOptionalAttachmentsCount'
+      - $ref: '#/components/schemas/WithOptionalLatestGridProductScan'
+      - $ref: '#/components/schemas/WithOptionalFileId'
+      - $ref: '#/components/schemas/WithOptionalFindingsBySeverity'
+      - $ref: '#/components/schemas/WithOptionalExploitabilityCounts'
+    WithScanId:
+      type: object
+      required:
+      - scanId
+      properties:
+        scanId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalCompareRightImageId:
+      type: object
+      properties:
+        compareRightImageId:
+          $ref: '#/components/schemas/ULID'
+    WithImageId:
+      type: object
+      required:
+      - imageId
+      properties:
+        imageId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalScanId:
+      type: object
+      properties:
+        scanId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalVersion:
+      type: object
+      properties:
+        version:
+          type: string
+    NISTIR8547BlockCipherSecurity:
+      type: object
+      properties:
+        blockCipher:
+          $ref: '#/components/schemas/NISTIR8547BlockCipher'
+      required:
+      - blockCipher
+    WithUnsafeFunctionsCount:
+      type: object
+      required:
+      - unsafeFunctionsCount
+      properties:
+        unsafeFunctionsCount:
+          type: integer
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    NISTIR8547:
+      type: object
+      properties:
+        algorithm:
+          type: string
+        parameter:
+          $ref: '#/components/schemas/NISTIR8547Parameter'
+        compliant:
+          $ref: '#/components/schemas/NISTIR8547SecurityProfile'
+        notCompliant:
+          $ref: '#/components/schemas/NISTIR8547Recommendations'
+    WithOptionalParent:
+      type: object
+      properties:
+        parent:
+          $ref: '#/components/schemas/Parent'
+    WithOptionalFindingsBySeverity:
+      type: object
+      properties:
+        findingsBySeverity:
+          $ref: '#/components/schemas/CountBySeverity'
+    WithOptionalHasJiraTicket:
+      type: object
+      properties:
+        hasJiraTicket:
+          type: boolean
+    WithGridFindingsFields:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            type: string
+            enum:
+            - id
+            - productId
+            - productName
+            - images
+            - createTime
+            - name
+            - toolName
+            - findingType
+            - findingSubtype
+            - identifiers
+            - classifications
+            - references
+            - component
+            - severity
+            - description
+            - isEstimatedEpss
+            - isReachable
+            - hasJiraTicket
+            - findingStatus
+            - componentName
+            - componentId
+            - displayName
+            - componentNames
+            - isSsvcParanoidDecision
+            - hasKnownFix
+            - knownFixedVersion
+            - isKev
+            - isKnownRansomwareUse
+            - dependencyComponentsCount
+            - imageId
+            - scanId
+            - dependencyId
+            - referencedArtefactId
+            - cvssLatestBaseScore
+            - epssProbability
+            - secret
+            - ssvcDecision
+            - cryptoAlgorithmName
+            - cryptoAlgorithmPrimitive
+            - dependency
+            - isNistIR8547Compliant
+            - cryptoProtocolName
+            - compareLeftImageId
+            - compareRightImageId
+            - compareSide
+            - compliance
+            - exploitabilityPredicates
+            - emsScore
+            - confidence
+            - exploitabilityCounts
+    NISTIR8547Transition:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/NISTIR8547ApprovalStatus'
+        year:
+          type: integer
+    NISTIR8547Parameter:
+      type: object
+      properties:
+        parameter:
+          type: string
+        transitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/NISTIR8547Transition'
+    NISTIR8547ApprovalStatus:
+      type: string
+      enum:
+      - UNSPECIFIED
+      - ACCEPTABLE
+      - DEPRECATED
+      - DISALLOWED
+      - LEGACY_USE
+    WithAuthor:
+      type: object
+      required:
+      - author
+      properties:
+        author:
+          $ref: '#/components/schemas/User'
+    WithGridDependencies:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridDependency'
+    WithOptionalSsvcDecision:
+      type: object
+      properties:
+        ssvcDecision:
+          type: string
+          enum:
+          - track
+          - trackStar
+          - attend
+          - act
+    GridUsers:
+      allOf:
+      - $ref: '#/components/schemas/WithGridUsers'
+      - $ref: '#/components/schemas/WithTotals'
+    WithFindingTypeCounts:
+      type: object
+      required:
+      - findingTypeCounts
+      properties:
+        findingTypeCounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingTypeCount'
+    WithGridImages:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridImage'
+    GridGroups:
+      allOf:
+      - $ref: '#/components/schemas/WithGridGroups'
+      - $ref: '#/components/schemas/WithTotals'
+    WithOptionalFiles:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+    WithOptionalDependency:
+      type: object
+      properties:
+        dependency:
+          $ref: '#/components/schemas/Dependency'
+    GridCryptographicAsset:
+      allOf:
+      - $ref: '#/components/schemas/WithCryptographicAssetType'
+      - $ref: '#/components/schemas/WithPath'
+      - $ref: '#/components/schemas/WithIsVulnerable'
+      - $ref: '#/components/schemas/WithComponent'
+      - $ref: '#/components/schemas/WithProperty'
+      - $ref: '#/components/schemas/WithDownloadUrl'
+    WithOptionalGroupRoleBindings:
+      type: object
+      properties:
+        groupRoleBindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleBinding'
+    FindingReference:
+      type: object
+      required:
+      - description
+      - url
+      properties:
+        description:
+          type: string
+        url:
+          type: string
+    WithEmail:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    WithLicense:
+      type: object
+      required:
+      - license
+      properties:
+        license:
+          type: string
+    NISTIR8547DigitalSignature:
+      type: object
+      properties:
+        securityStrength:
+          type: string
+        securityCategory:
+          type: integer
+      required:
+      - securityStrength
+      - securityCategory
+    GridProduct:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithOptionalDescription'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithIsArchived'
+      - $ref: '#/components/schemas/WithOptionalArchiveTime'
+      - $ref: '#/components/schemas/WithOptionalArchivedBy'
+      - $ref: '#/components/schemas/WithOptionalLatestGridProductImage'
+      - $ref: '#/components/schemas/WithOptionalHealthTrend'
+      - $ref: '#/components/schemas/WithOptionalFindingsBySeverity'
+    GridGroupMember:
+      allOf:
+      - $ref: '#/components/schemas/WithGroupId'
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+      - $ref: '#/components/schemas/WithOptionalGroupRoleBindings'
+      - $ref: '#/components/schemas/WithOptionalGroupRoleNames'
+    WithOptionalComponentNames:
+      type: object
+      properties:
+        componentNames:
+          type: array
+          items:
+            type: string
+    WithFilename:
+      type: object
+      required:
+      - filename
+      properties:
+        filename:
+          type: string
+    WithOptionalLatestGridProductImage:
+      type: object
+      properties:
+        latestImage:
+          $ref: '#/components/schemas/GridImage'
+    WithOptionalCompareLeftImageId:
+      type: object
+      properties:
+        compareLeftImageId:
+          $ref: '#/components/schemas/ULID'
+    WithOptionalAttributes:
+      type: object
+      properties:
+        attributes: {}
+    WithIsArchived:
+      type: object
+      required:
+      - isArchived
+      properties:
+        isArchived:
+          type: boolean
+    WithCryptographicAssetsCount:
+      type: object
+      required:
+      - cryptographicAssetsCount
+      properties:
+        cryptographicAssetsCount:
+          type: integer
+    WithGridImagesFields:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            type: string
+            enum:
+            - id
+            - productId
+            - name
+            - version
+            - createTime
+            - author
+            - isArchived
+            - downloadUrl
+            - archiveTime
+            - archivedBy
+            - productIsArchived
+            - isLatest
+            - attachmentsCount
+            - latestScan
+            - fileId
+            - findingsBySeverity
+            - exploitabilityCounts
+    WithCryptographicAssetType:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          x-go-type: string
+          enum:
+          - certificate
+          - pkcs7
+          - private-key
+          - public-key
+    GridDependency:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithScanId'
+      - $ref: '#/components/schemas/WithVendor'
+      - $ref: '#/components/schemas/WithProduct'
+      - $ref: '#/components/schemas/WithVersion'
+      - $ref: '#/components/schemas/WithLicense'
+      - $ref: '#/components/schemas/WithLinkage'
+      - $ref: '#/components/schemas/WithOptionalComponentsCount'
+      - $ref: '#/components/schemas/WithSeveritiesAll'
+      - $ref: '#/components/schemas/WithSeveritiesCritical'
+      - $ref: '#/components/schemas/WithSeveritiesHigh'
+      - $ref: '#/components/schemas/WithSeveritiesMedium'
+      - $ref: '#/components/schemas/WithSeveritiesLow'
+      - $ref: '#/components/schemas/WithSeveritiesUnspecified'
+      - $ref: '#/components/schemas/WithHasKnownFix'
+      - $ref: '#/components/schemas/WithFindingsWithKnownFixAll'
+    GridGroup:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithMembersCount'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    Parent:
+      type: string
+      format: path
+      description: URI path (path-noscheme) without the leading /
+      readOnly: true
+      x-go-type: string
+      x-go-type-skip-optional-pointer: true
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithOptionalDescription:
+      type: object
+      properties:
+        description:
+          type: string
+    WithOptionalAuthor:
+      type: object
+      properties:
+        author:
+          $ref: '#/components/schemas/User'
+    WithOptionalCreateTime:
+      type: object
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithUserId:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+  parameters:
+    QueryOptionalContentType:
+      name: contentType
+      in: query
+      description: Content Type
+      required: false
+      schema:
+        type: string
+        enum:
+        - pdf
+        - json
+        - xml
+        - csv
+        - md
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

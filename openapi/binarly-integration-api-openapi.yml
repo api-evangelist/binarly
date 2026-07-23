@@ -1,0 +1,767 @@
+openapi: 3.0.3
+info:
+  title: Binarly Assistant Integration API
+  version: 4.275.2
+security:
+- auth: []
+tags:
+- name: Integration
+paths:
+  /api/v4/providers:
+    get:
+      summary: Get a list of providers and their active integrations
+      operationId: ListProviders
+      x-permission: integrations.list
+      tags:
+      - Integration
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Providers'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/providers/{provider}/integrations:
+    post:
+      summary: Create integration entity
+      operationId: CreateIntegration
+      x-permission: integrations.create
+      tags:
+      - Integration
+      parameters:
+      - name: provider
+        in: path
+        description: Provider
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIntegrationPayload'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Integration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/providers/-/integrations/{integrationId}:
+    patch:
+      summary: Update integration data
+      operationId: UpdateIntegration
+      x-permission: integrations.update
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIntegrationPayload'
+      responses:
+        '204':
+          description: success
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/providers/-/integrations/{integrationId}/session:
+    get:
+      summary: Get session for an integration
+      operationId: GetIntegrationSession
+      x-permission: ''
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/providers/-/integrations/{integrationId}/jira/projects:
+    get:
+      summary: List Jira projects with related issue types
+      operationId: ListJiraProjects
+      x-permission: ''
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JiraProjects'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/providers/-/integrations/{integrationId}/jira/issues:
+    post:
+      summary: Create Jira issue for specified finding
+      operationId: CreateJiraIssue
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - name: findingId
+        in: query
+        description: Finding Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/ULID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJiraIssuePayload'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JiraBasicIssue'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+    get:
+      summary: Get Jira issue for specified finding
+      operationId: GetJiraIssue
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - name: findingId
+        in: query
+        description: Finding Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/ULID'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JiraIssue'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/providers/-/integrations/{integrationId}/jira/issues:attach:
+    post:
+      summary: Attach file to a Jira issue for specified finding
+      operationId: AttachToJiraIssue
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - name: findingId
+        in: query
+        description: Finding Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/ULID'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JiraAttachment'
+      responses:
+        '204':
+          description: success
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/providers/-/integrations/{integrationId}/jira/issues:check:
+    get:
+      summary: Check Jira issues
+      operationId: CheckJiraIssues
+      x-permission: ''
+      x-pass-resource-ids:
+        resourceType: Product
+        permission: products.view
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JiraBasicIssues'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/providers/-/integrations/{integrationId}/jira/webhook:
+    post:
+      summary: Create Jira webhook
+      operationId: CreateJiraWebhook
+      x-permission: integrations.update
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmptyBody'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationWebhook'
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationWebhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+    delete:
+      summary: Delete Jira webhook
+      operationId: DeleteJiraWebhook
+      x-permission: integrations.update
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationWebhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+  /api/v4/providers/-/integrations/{integrationId}/jira/webhook/failed:
+    get:
+      summary: Get failed Jira webhooks
+      operationId: GetFailedJiraWebhooks
+      x-permission: integrations.list
+      tags:
+      - Integration
+      parameters:
+      - name: integrationId
+        in: path
+        description: Integration Id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '204':
+          description: success
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    CreateJiraIssuePayload:
+      type: object
+      required:
+      - description
+      - title
+      - projectId
+      - issueTypeId
+      - isAdf
+      properties:
+        description:
+          type: string
+        title:
+          type: string
+        projectId:
+          type: string
+        issueTypeId:
+          type: string
+        isAdf:
+          type: boolean
+    Integration:
+      type: object
+      required:
+      - integrationId
+      - type
+      - ready
+      - callbackUrl
+      - serverUrl
+      properties:
+        integrationId:
+          $ref: '#/components/schemas/UUID'
+        type:
+          type: string
+        ready:
+          type: boolean
+        callbackUrl:
+          type: string
+          format: url
+        webhookUrl:
+          type: string
+          format: url
+        serverUrl:
+          type: string
+          format: url
+        redirectUrl:
+          type: string
+          format: url
+        consumerKey:
+          $ref: '#/components/schemas/UUID'
+        publicKey:
+          type: string
+    UUID:
+      type: string
+      format: uuid
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    JiraProject:
+      type: object
+      required:
+      - name
+      - id
+      - description
+      - issueTypes
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        issueTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JiraIssueType'
+    JiraBasicIssue:
+      type: object
+      required:
+      - id
+      - key
+      - url
+      - status
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        url:
+          type: string
+        status:
+          type: string
+    IntegrationWebhook:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+    EmptyBody:
+      type: object
+      nullable: true
+    JiraIssueType:
+      type: object
+      required:
+      - name
+      - id
+      - description
+      - subtask
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        subtask:
+          type: boolean
+    UpdateIntegrationPayload:
+      type: object
+      properties:
+        active:
+          type: boolean
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+    Provider:
+      type: object
+      required:
+      - providerId
+      - slug
+      - type
+      - name
+      - description
+      - integrations
+      properties:
+        providerId:
+          $ref: '#/components/schemas/UUID'
+        slug:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
+    CreateIntegrationPayload:
+      type: object
+      required:
+      - serverUrl
+      properties:
+        serverUrl:
+          type: string
+          format: url
+    JiraIssue:
+      type: object
+      required:
+      - id
+      - key
+      - url
+      - summary
+      - project
+      - issueType
+      - priority
+      - status
+      - statusCategoryKey
+      - statusCategoryName
+      - statusCategoryColor
+      - created
+      - updated
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        url:
+          type: string
+        summary:
+          type: string
+        project:
+          type: string
+        issueType:
+          type: string
+        priority:
+          type: string
+        status:
+          type: string
+        statusCategoryKey:
+          type: string
+        statusCategoryName:
+          type: string
+        statusCategoryColor:
+          type: string
+        created:
+          type: string
+        updated:
+          type: string
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    Providers:
+      type: object
+      required:
+      - providers
+      properties:
+        providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Provider'
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    JiraBasicIssues:
+      type: object
+      required:
+      - issues
+      properties:
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/JiraBasicIssue'
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    JiraProjects:
+      type: object
+      required:
+      - projects
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/JiraProject'
+    IntegrationSession:
+      type: object
+      required:
+      - authenticated
+      properties:
+        authenticated:
+          type: boolean
+        redirectUrl:
+          type: string
+          format: url
+    JiraAttachment:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

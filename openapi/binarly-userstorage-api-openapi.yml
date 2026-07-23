@@ -1,0 +1,278 @@
+openapi: 3.0.3
+info:
+  title: Binarly Assistant UserStorage API
+  version: 4.275.2
+security:
+- auth: []
+tags:
+- name: UserStorage
+paths:
+  /api/v4/userStorage:
+    post:
+      summary: Create user storage record
+      operationId: CreateUserStorageRecord
+      x-permission: ''
+      tags:
+      - UserStorage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserStorageRecordPayload'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStorageRecord'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/userStorage/{key}:
+    get:
+      summary: Get user storage record by its key
+      operationId: GetUserStorageRecord
+      x-permission: ''
+      tags:
+      - UserStorage
+      parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/UserStorageKey'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStorageRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      summary: Update user storage record by its key
+      operationId: UpdateUserStorageRecord
+      x-permission: ''
+      tags:
+      - UserStorage
+      parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/UserStorageKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserStorageRecordPayload'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStorageRecord'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      summary: Delete user storage record by its key
+      operationId: DeleteUserStorageRecord
+      x-permission: ''
+      tags:
+      - UserStorage
+      parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/UserStorageKey'
+      responses:
+        '204':
+          description: success
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    UserStorageKey:
+      type: string
+    UserStorageRecordPayload:
+      allOf:
+      - $ref: '#/components/schemas/WithOptionalUserStorageKey'
+      - $ref: '#/components/schemas/WithOptionalUserStorageValue'
+      - $ref: '#/components/schemas/WithOptionalUserStorageRecordTTL'
+    WithOptionalUserStorageRecordTTL:
+      type: object
+      properties:
+        ttl:
+          type: integer
+          format: int64
+          minimum: 0
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    WithUserStorageKey:
+      type: object
+      required:
+      - key
+      properties:
+        key:
+          $ref: '#/components/schemas/UserStorageKey'
+    WithOptionalUserStorageValue:
+      type: object
+      properties:
+        value:
+          type: object
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithOptionalUserStorageKey:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/UserStorageKey'
+    WithUserStorageRecordTTL:
+      type: object
+      required:
+      - ttl
+      properties:
+        ttl:
+          type: integer
+          format: int64
+          minimum: 0
+    WithUserStorageValue:
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: object
+    UserStorageRecord:
+      allOf:
+      - $ref: '#/components/schemas/WithUserStorageKey'
+      - $ref: '#/components/schemas/WithUserStorageValue'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithUserStorageRecordTTL'
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

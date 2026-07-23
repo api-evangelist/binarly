@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: Binarly Assistant Notification API
+  version: 4.275.2
+security:
+- auth: []
+tags:
+- name: Notification
+paths:
+  /api/v4/users/me/notificationSettings:
+    put:
+      summary: Set Notification Settings
+      operationId: SetNotificationSettings
+      x-permission: ''
+      tags:
+      - Notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationSettings'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSettings'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      summary: Get Notification Settings
+      operationId: GetNotificationSettings
+      x-permission: ''
+      tags:
+      - Notification
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSettings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    NotificationIntervalEnum:
+      type: string
+      enum:
+      - immediate
+      - daily
+      - weekly
+    WithOptionalSlackWebhookURL:
+      type: object
+      properties:
+        slackWebhookURL:
+          type: string
+    WithEmailEnabled:
+      type: object
+      required:
+      - emailEnabled
+      properties:
+        emailEnabled:
+          type: boolean
+    WithSlackInterval:
+      type: object
+      required:
+      - slackInterval
+      properties:
+        slackInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    NotificationSettings:
+      allOf:
+      - $ref: '#/components/schemas/WithEmailInterval'
+      - $ref: '#/components/schemas/WithSlackInterval'
+      - $ref: '#/components/schemas/WithEmailEnabled'
+      - $ref: '#/components/schemas/WithSlackEnabled'
+      - $ref: '#/components/schemas/WithOptionalSlackWebhookURL'
+    WithEmailInterval:
+      type: object
+      required:
+      - emailInterval
+      properties:
+        emailInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
+    WithSlackEnabled:
+      type: object
+      required:
+      - slackEnabled
+      properties:
+        slackEnabled:
+          type: boolean
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
