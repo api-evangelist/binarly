@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.binarly.io/release-notes/release-cadence
+scheme: semver + build date (MAJOR.MINOR.PATCH+YYYY.MM.DD)
+current_version: 3.59.0+2026.07.14
+cadence: rolling releases, automatic for SaaS tenants
+entries:
+- version: 3.59.0+2026.07.14
+  date: '2026-07-14'
+  highlights: Saved filters now use Code Reachability; severity column bug fix.
+- version: 3.57.3+2026.07.13
+  date: '2026-07-13'
+  highlights: Bug fixes for finding details, vulnerable code snippet retrieval, report formatting, reachability display.
+- version: 3.56.2+2026.07.09
+  date: '2026-07-09'
+  highlights: Risk score in the findings grid; Code and Environment Reachability columns; Alpine vulnerability advisory source.
+- version: 3.53.4+2026.07.01
+  date: '2026-07-01'
+  highlights: New UEFI detections for writable SPI flash and Secure Boot Setup Mode; VulHunt U-Boot coverage; apk package support.
+- version: 3.53.0+2026.06.23
+  date: '2026-06-23'
+  highlights: MCUboot bootloader and Zephyr firmware analysis support; CVEHunt dependency scanning for MCUboot, Zephyr, U-Boot.
+- version: 3.50.1+2026.06.17
+  date: '2026-06-17'
+  highlights: RPM dependency vulnerability detection for RockyLinux ISO images; debug symbol exclusion; dependencies grid fix.
+- version: 3.49.1+2026.06.10
+  date: '2026-06-10'
+  highlights: Logarithmic EMS score normalization; VulHunt detection for CVE-2026-45185 in Exim; RSA badkeys CryptoScan checks.
+- version: 3.47.1+2026.06.02
+  date: '2026-06-02'
+  highlights: Secret validity filtering GA; Mitigate detection for Insyde FDM misconfigurations; more finding identifier types.
+- version: 3.41.0+2026.05.26
+  date: '2026-05-26'
+  highlights: VulHunt detection for CVE-2026-33243 in U-Boot; KSPP ARM hardening check; CryptoScan key formats.
+- version: 3.38.1+2026.05.19
+  date: '2026-05-19'
+  highlights: Secret validity in reports; VulHunt detection for CVE-2022-37434 in zlib; git processing fix.
+- version: 3.35.1+2026.05.13
+  date: '2026-05-13'
+  highlights: Secret validity in the findings grid; standalone UEFI MM module analysis; U-Boot image support; CVE-2026-33243 detection.
+- version: 3.31.1+2026.05.06
+  date: '2026-05-06'
+  highlights: Redesigned findings page by default; SSVC scoring improvements; VulHunt detection for CVE-2024-25178.

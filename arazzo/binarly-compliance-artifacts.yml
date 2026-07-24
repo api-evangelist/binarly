@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: Generate supply-chain compliance artifacts with Binarly
+  version: 1.0.0
+  summary: >-
+    For a scanned image, export the full set of supply-chain assurance artifacts —
+    CycloneDX and SPDX SBOMs, an OpenVEX VEX, a CBOM, and a findings report — for
+    procurement and regulatory evidence.
+sourceDescriptions:
+- name: binarly
+  url: ../openapi/binarly-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: generateComplianceArtifacts
+  summary: Export SBOM, VEX, CBOM, and findings for an image.
+  inputs:
+    type: object
+    properties:
+      productId:
+        type: string
+      imageId:
+        type: string
+  steps:
+  - stepId: sbomCycloneDX
+    description: Export the CycloneDX SBOM for the image.
+    operationId: GetSbomReportCycloneDX
+    parameters:
+    - name: productId
+      in: path
+      value: $inputs.productId
+    - name: imageId
+      in: path
+      value: $inputs.imageId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: sbomSPDX
+    description: Export the SPDX SBOM for the image.
+    operationId: GetSbomReportSPDX
+    parameters:
+    - name: productId
+      in: path
+      value: $inputs.productId
+    - name: imageId
+      in: path
+      value: $inputs.imageId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: vexOpenVEX
+    description: Export the OpenVEX VEX document (exploitability status).
+    operationId: GetVexReportOpenVEX
+    parameters:
+    - name: productId
+      in: path
+      value: $inputs.productId
+    - name: imageId
+      in: path
+      value: $inputs.imageId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: cbom
+    description: Export the CycloneDX CBOM (cryptographic bill of materials).
+    operationId: GetCbomReport
+    parameters:
+    - name: productId
+      in: path
+      value: $inputs.productId
+    - name: imageId
+      in: path
+      value: $inputs.imageId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: findingsJson
+    description: Export the machine-readable findings report.
+    operationId: ImageFindingsReportJson
+    parameters:
+    - name: productId
+      in: path
+      value: $inputs.productId
+    - name: imageId
+      in: path
+      value: $inputs.imageId
+    successCriteria:
+    - condition: $statusCode == 200

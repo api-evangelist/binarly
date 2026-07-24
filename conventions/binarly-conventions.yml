@@ -1,0 +1,63 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/binarly-openapi-original.yml
+docs: https://docs.binarly.io/api-reference/introduction
+summary: >-
+  Cross-cutting request/response semantics for the Binarly Transparency Platform
+  API v4, derived from the OpenAPI and the published API reference.
+authentication:
+  style: Bearer JWT (Keycloak/OIDC)
+  header: 'Authorization: Bearer <access_token>'
+  token_ttl_seconds: 1800
+  see: authentication/binarly-authentication.yml
+base_url:
+  saas: https://dashboard-{slug}.binarly.cloud/api/v4
+  auth: https://auth-{slug}.binarly.cloud
+  on_prem: customer-hosted dashboard + Keycloak
+  note: Base URLs are tenant-scoped by organization slug.
+versioning:
+  scheme: uri-path
+  current: v4
+  path_prefix: /api/v4
+  api_version_string: 4.275.2
+  platform_release_versioning: semver + build date (e.g. 3.59.0+2026.07.14)
+  docs: https://docs.binarly.io/release-notes/release-cadence
+pagination:
+  style: offset
+  params:
+    skip: QuerySkip — number of records to skip.
+    size: QuerySize — page size (number of records to return).
+  note: List and grid endpoints use skip/size offset pagination.
+resource_ops:
+  bulk: >-
+    Bulk operations use the colon-verb form on collections
+    (e.g. :bulkArchive, :bulkUnarchive, :bulkDelete, :bulkDownload).
+  custom_verbs: >-
+    Non-CRUD actions use a trailing :verb (e.g. images:upload,
+    tempFiles:generateUploadUrl, grids/findings:gridList, charts/*:chartList).
+grid_and_chart:
+  grid: POST /api/v4/grids/<resource>:gridList — server-side filtered/sorted tabular list with column selection.
+  chart: POST /api/v4/charts/<resource>:chartList — aggregate/rollup data for dashboards.
+error_envelope:
+  media_type: application/json
+  shape: '{ message: string, details: [{ reason, field, service }] }'
+  forbidden_extra: [permission, resourceName]
+  format: custom-json (not RFC 9457)
+  see: errors/binarly-problem-types.yml
+authorization:
+  model: RBAC — every operation declares an x-permission (e.g. products.view, products.create)
+  docs: https://docs.binarly.io/user-guides/rbac/roles
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or idempotency contract is documented in the spec or docs.
+rate_limiting:
+  documented: false
+  note: No published rate-limit headers or quotas in the OpenAPI; usage quotas are managed per-tenant (see RBAC quotas).
+  quotas_docs: https://docs.binarly.io/user-guides/rbac/quotas
+file_upload:
+  pattern: >-
+    Image upload is a multi-step flow — generate a temporary upload URL
+    (GenerateTempFileUploadURL), upload the artifact, then register/scan it.
+reports:
+  formats: [CycloneDX SBOM, SPDX SBOM, OpenVEX, CycloneDX VEX, CBOM, PQC, findings JSON/PDF]
+  see: arazzo/binarly-compliance-artifacts.yml

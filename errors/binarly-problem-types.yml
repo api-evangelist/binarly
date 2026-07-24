@@ -1,0 +1,71 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/binarly-openapi-original.yml
+docs: https://docs.binarly.io/api-reference/troubleshooting
+format: custom-json
+envelope:
+  media_type: application/json
+  schema: ErrorResponse
+  fields:
+    message: Human-readable error message (required).
+    details: >-
+      Array of ErrorDetail objects, each with reason, field, and service to
+      localize the failure.
+  forbidden_variant:
+    schema: ForbiddenErrorResponse
+    extra_fields: [permission, resourceName]
+    note: 403 responses additionally name the missing RBAC permission and the resource.
+notes: >-
+  Binarly returns a custom JSON error envelope (message + details[]), not RFC 9457
+  problem+json. Derived from the shared component responses referenced by every
+  operation in the OpenAPI.
+problems:
+- status: 400
+  response: BadRequest
+  schema: ErrorResponse
+  title: Bad request
+  meaning: Malformed request, invalid parameters, or validation failure.
+  operations_using: 87
+- status: 401
+  response: Unauthorized
+  schema: ErrorResponse
+  title: Unauthorized
+  meaning: Missing, expired, or invalid bearer JWT. Refresh the Keycloak token (tokens expire after 30 minutes).
+  operations_using: 108
+- status: 403
+  response: Forbidden
+  schema: ForbiddenErrorResponse
+  title: Forbidden
+  meaning: Authenticated but the principal lacks the required RBAC permission for the resource.
+  remediation: Response names the missing permission and resourceName; grant it via a role binding.
+  operations_using: 107
+- status: 404
+  response: NotFound
+  schema: ErrorResponse
+  title: Not found
+  meaning: The product, image, scan, finding, or other resource id does not exist or is not visible.
+  operations_using: 57
+- status: 409
+  response: Conflict
+  schema: ErrorResponse
+  title: Conflict
+  meaning: State conflict — e.g. duplicate resource, or an operation invalid for the current resource state.
+  operations_using: 15
+- status: 422
+  response: Unprocessable / UnprocessableContent / UnprocessableRules
+  schema: ErrorResponse
+  title: Unprocessable content
+  meaning: Request understood but semantically invalid (e.g. report not ready, invalid custom rules).
+  operations_using: 5
+- status: 500
+  response: InternalServerError
+  schema: ErrorResponse
+  title: Internal server error
+  meaning: Unexpected server-side failure. Retry with backoff; contact support if persistent.
+  operations_using: 109
+- status: 502
+  response: BadGateway
+  schema: ErrorResponse
+  title: Bad gateway
+  meaning: Upstream analysis or integration service unavailable. Retry with backoff.
+  operations_using: 47

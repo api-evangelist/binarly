@@ -1,0 +1,337 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/binarly-openapi-original.yml
+note: No official Binarly MCP server was found. Candidate tool list derived one-per-operation from the Transparency Platform API v4 OpenAPI; not an authoritative provider offering.
+server:
+  name: binarly
+  transport: http
+  url: null
+tools:
+- name: ListProducts
+  description: List Products
+  source_operation: openapi/binarly-openapi-original.yml#ListProducts
+- name: CreateProduct
+  description: Create Product
+  source_operation: openapi/binarly-openapi-original.yml#CreateProduct
+- name: BulkArchiveProducts
+  description: Bulk Archive Products
+  source_operation: openapi/binarly-openapi-original.yml#BulkArchiveProducts
+- name: BulkUnarchiveProducts
+  description: Bulk Unarchive Products
+  source_operation: openapi/binarly-openapi-original.yml#BulkUnarchiveProducts
+- name: GetProduct
+  description: Get Product by ID
+  source_operation: openapi/binarly-openapi-original.yml#GetProduct
+- name: UpdateProduct
+  description: Update Product by ID
+  source_operation: openapi/binarly-openapi-original.yml#UpdateProduct
+- name: GenerateTempFileUploadURL
+  description: Generate Temporary File Upload URL
+  source_operation: openapi/binarly-openapi-original.yml#GenerateTempFileUploadURL
+- name: UploadImage
+  description: Upload Image
+  source_operation: openapi/binarly-openapi-original.yml#UploadImage
+- name: GetImage
+  description: Get Image by ID
+  source_operation: openapi/binarly-openapi-original.yml#GetImage
+- name: UpdateImage
+  description: Update Image by ID
+  source_operation: openapi/binarly-openapi-original.yml#UpdateImage
+- name: ListImages
+  description: List Images
+  source_operation: openapi/binarly-openapi-original.yml#ListImages
+- name: BulkArchiveImages
+  description: Bulk Archive Images
+  source_operation: openapi/binarly-openapi-original.yml#BulkArchiveImages
+- name: BulkUnarchiveImages
+  description: Bulk Unarchive Images
+  source_operation: openapi/binarly-openapi-original.yml#BulkUnarchiveImages
+- name: GetSbomReportCycloneDX
+  description: CycloneDX SBOM Report for an Image
+  source_operation: openapi/binarly-openapi-original.yml#GetSbomReportCycloneDX
+- name: GetSbomReportSPDX
+  description: SPDX SBOM Report for an Image
+  source_operation: openapi/binarly-openapi-original.yml#GetSbomReportSPDX
+- name: GetCbomReport
+  description: CBOM Report for an Image
+  source_operation: openapi/binarly-openapi-original.yml#GetCbomReport
+- name: GetVexReportOpenVEX
+  description: VEX Report for an Image in OpenVEX format
+  source_operation: openapi/binarly-openapi-original.yml#GetVexReportOpenVEX
+- name: GetVexReportCycloneDX
+  description: VEX Report for an Image in CycloneDX format
+  source_operation: openapi/binarly-openapi-original.yml#GetVexReportCycloneDX
+- name: ImageFindingsReportPdf
+  description: Image Findings PDF Report
+  source_operation: openapi/binarly-openapi-original.yml#ImageFindingsReportPdf
+- name: DownloadImageReport
+  description: Download Image Report
+  source_operation: openapi/binarly-openapi-original.yml#DownloadImageReport
+- name: CryptographicMaterialsReport
+  description: Download Cryptographic Materials Report
+  source_operation: openapi/binarly-openapi-original.yml#CryptographicMaterialsReport
+- name: AdvisoryReport
+  description: Advisory Report
+  source_operation: openapi/binarly-openapi-original.yml#AdvisoryReport
+- name: ImageFindingsReportJson
+  description: Image Findings JSON Report
+  source_operation: openapi/binarly-openapi-original.yml#ImageFindingsReportJson
+- name: ListScans
+  description: List Scans
+  source_operation: openapi/binarly-openapi-original.yml#ListScans
+- name: CreateScan
+  description: Create Scan
+  source_operation: openapi/binarly-openapi-original.yml#CreateScan
+- name: GetScan
+  description: Get Scan by ID
+  source_operation: openapi/binarly-openapi-original.yml#GetScan
+- name: CreateScanState
+  description: Create Scan State
+  source_operation: openapi/binarly-openapi-original.yml#CreateScanState
+- name: GetComponent
+  description: Get Component by ID
+  source_operation: openapi/binarly-openapi-original.yml#GetComponent
+- name: ListComponents
+  description: List Components
+  source_operation: openapi/binarly-openapi-original.yml#ListComponents
+- name: GetFile
+  description: Get File by ID
+  source_operation: openapi/binarly-openapi-original.yml#GetFile
+- name: ListFiles
+  description: List Files
+  source_operation: openapi/binarly-openapi-original.yml#ListFiles
+- name: CreateFile
+  description: Create File (Attachment)
+  source_operation: openapi/binarly-openapi-original.yml#CreateFile
+- name: BulkDownloadFiles
+  description: Bulk Download Files
+  source_operation: openapi/binarly-openapi-original.yml#BulkDownloadFiles
+- name: BulkDeleteFiles
+  description: Bulk Delete Files
+  source_operation: openapi/binarly-openapi-original.yml#BulkDeleteFiles
+- name: CreateFindingState
+  description: Create Finding State
+  source_operation: openapi/binarly-openapi-original.yml#CreateFindingState
+- name: FindingDetailReportPdf
+  description: Finding PDF Detail Report
+  source_operation: openapi/binarly-openapi-original.yml#FindingDetailReportPdf
+- name: GetFinding
+  description: Get Finding
+  source_operation: openapi/binarly-openapi-original.yml#GetFinding
+- name: FindingAdvisory
+  description: Finding Advisory
+  source_operation: openapi/binarly-openapi-original.yml#FindingAdvisory
+- name: ListChats
+  description: List Assistant chats
+  source_operation: openapi/binarly-openapi-original.yml#ListChats
+- name: CreateChat
+  description: Create Assistant chat
+  source_operation: openapi/binarly-openapi-original.yml#CreateChat
+- name: DeleteChat
+  description: Delete Assistant chat
+  source_operation: openapi/binarly-openapi-original.yml#DeleteChat
+- name: ListChatDialogs
+  description: Get Assistant chat history
+  source_operation: openapi/binarly-openapi-original.yml#ListChatDialogs
+- name: SendCommandToChat
+  description: Send Command to Chat
+  source_operation: openapi/binarly-openapi-original.yml#SendCommandToChat
+- name: ListSuggestions
+  description: Get Assistant suggestions for finding
+  source_operation: openapi/binarly-openapi-original.yml#ListSuggestions
+- name: GridListProducts
+  description: Grid List Products
+  source_operation: openapi/binarly-openapi-original.yml#GridListProducts
+- name: GridListImages
+  description: Grid List Images
+  source_operation: openapi/binarly-openapi-original.yml#GridListImages
+- name: GridListScans
+  description: Grid List Scans
+  source_operation: openapi/binarly-openapi-original.yml#GridListScans
+- name: GridListFiles
+  description: Grid List Files
+  source_operation: openapi/binarly-openapi-original.yml#GridListFiles
+- name: GridListFindings
+  description: Grid List Findings
+  source_operation: openapi/binarly-openapi-original.yml#GridListFindings
+- name: GridListDependencies
+  description: Grid List Dependencies
+  source_operation: openapi/binarly-openapi-original.yml#GridListDependencies
+- name: GridListComponents
+  description: Grid List Components
+  source_operation: openapi/binarly-openapi-original.yml#GridListComponents
+- name: GridListCryptographicAssets
+  description: Grid List Cryptographic Assets
+  source_operation: openapi/binarly-openapi-original.yml#GridListCryptographicAssets
+- name: GridListRules
+  description: Grid List Custom Rules
+  source_operation: openapi/binarly-openapi-original.yml#GridListRules
+- name: ChartListComponents
+  description: Chart List Components
+  source_operation: openapi/binarly-openapi-original.yml#ChartListComponents
+- name: ChartListDependencies
+  description: Chart List Dependencies
+  source_operation: openapi/binarly-openapi-original.yml#ChartListDependencies
+- name: ChartListFindings
+  description: Chart List Findings
+  source_operation: openapi/binarly-openapi-original.yml#ChartListFindings
+- name: ChartListFindingsTrend
+  description: Chart List Findings Trend
+  source_operation: openapi/binarly-openapi-original.yml#ChartListFindingsTrend
+- name: ChartListCryptographicAssets
+  description: Chart List Cryptographic Assets
+  source_operation: openapi/binarly-openapi-original.yml#ChartListCryptographicAssets
+- name: ChartListJiraIssues
+  description: Chart List Jira Issues
+  source_operation: openapi/binarly-openapi-original.yml#ChartListJiraIssues
+- name: ChartListProvenances
+  description: Chart List Provenances
+  source_operation: openapi/binarly-openapi-original.yml#ChartListProvenances
+- name: ListProviders
+  description: Get a list of providers and their active integrations
+  source_operation: openapi/binarly-openapi-original.yml#ListProviders
+- name: CreateIntegration
+  description: Create integration entity
+  source_operation: openapi/binarly-openapi-original.yml#CreateIntegration
+- name: UpdateIntegration
+  description: Update integration data
+  source_operation: openapi/binarly-openapi-original.yml#UpdateIntegration
+- name: GetIntegrationSession
+  description: Get session for an integration
+  source_operation: openapi/binarly-openapi-original.yml#GetIntegrationSession
+- name: ListJiraProjects
+  description: List Jira projects with related issue types
+  source_operation: openapi/binarly-openapi-original.yml#ListJiraProjects
+- name: CreateJiraIssue
+  description: Create Jira issue for specified finding
+  source_operation: openapi/binarly-openapi-original.yml#CreateJiraIssue
+- name: GetJiraIssue
+  description: Get Jira issue for specified finding
+  source_operation: openapi/binarly-openapi-original.yml#GetJiraIssue
+- name: AttachToJiraIssue
+  description: Attach file to a Jira issue for specified finding
+  source_operation: openapi/binarly-openapi-original.yml#AttachToJiraIssue
+- name: CheckJiraIssues
+  description: Check Jira issues
+  source_operation: openapi/binarly-openapi-original.yml#CheckJiraIssues
+- name: CreateJiraWebhook
+  description: Create Jira webhook
+  source_operation: openapi/binarly-openapi-original.yml#CreateJiraWebhook
+- name: DeleteJiraWebhook
+  description: Delete Jira webhook
+  source_operation: openapi/binarly-openapi-original.yml#DeleteJiraWebhook
+- name: GetFailedJiraWebhooks
+  description: Get failed Jira webhooks
+  source_operation: openapi/binarly-openapi-original.yml#GetFailedJiraWebhooks
+- name: UpdateRules
+  description: Update Rules
+  source_operation: openapi/binarly-openapi-original.yml#UpdateRules
+- name: BulkDisableRules
+  description: Bulk Disable Rules
+  source_operation: openapi/binarly-openapi-original.yml#BulkDisableRules
+- name: BulkEnableRules
+  description: Bulk Enable Rules
+  source_operation: openapi/binarly-openapi-original.yml#BulkEnableRules
+- name: GetRule
+  description: Get Rule by Name
+  source_operation: openapi/binarly-openapi-original.yml#GetRule
+- name: CreateUserStorageRecord
+  description: Create user storage record
+  source_operation: openapi/binarly-openapi-original.yml#CreateUserStorageRecord
+- name: GetUserStorageRecord
+  description: Get user storage record by its key
+  source_operation: openapi/binarly-openapi-original.yml#GetUserStorageRecord
+- name: UpdateUserStorageRecord
+  description: Update user storage record by its key
+  source_operation: openapi/binarly-openapi-original.yml#UpdateUserStorageRecord
+- name: DeleteUserStorageRecord
+  description: Delete user storage record by its key
+  source_operation: openapi/binarly-openapi-original.yml#DeleteUserStorageRecord
+- name: ListUsers
+  description: List Users
+  source_operation: openapi/binarly-openapi-original.yml#ListUsers
+- name: CreateUser
+  description: Create User
+  source_operation: openapi/binarly-openapi-original.yml#CreateUser
+- name: GridListUsers
+  description: Grid List Users
+  source_operation: openapi/binarly-openapi-original.yml#GridListUsers
+- name: BulkDeleteUsers
+  description: Bulk Delete Users
+  source_operation: openapi/binarly-openapi-original.yml#BulkDeleteUsers
+- name: GetCurrentUser
+  description: Get Current User
+  source_operation: openapi/binarly-openapi-original.yml#GetCurrentUser
+- name: ListRoles
+  description: List Roles
+  source_operation: openapi/binarly-openapi-original.yml#ListRoles
+- name: ListGroups
+  description: List Groups
+  source_operation: openapi/binarly-openapi-original.yml#ListGroups
+- name: CreateGroup
+  description: Create Group
+  source_operation: openapi/binarly-openapi-original.yml#CreateGroup
+- name: GridListGroups
+  description: Grid List Groups
+  source_operation: openapi/binarly-openapi-original.yml#GridListGroups
+- name: UpdateGroup
+  description: Update Group
+  source_operation: openapi/binarly-openapi-original.yml#UpdateGroup
+- name: BulkDeleteGroups
+  description: Bulk Delete Groups
+  source_operation: openapi/binarly-openapi-original.yml#BulkDeleteGroups
+- name: ListGroupMembers
+  description: List Group Members
+  source_operation: openapi/binarly-openapi-original.yml#ListGroupMembers
+- name: AddGroupMember
+  description: Add Group Member
+  source_operation: openapi/binarly-openapi-original.yml#AddGroupMember
+- name: GridListGroupMembers
+  description: Grid List Group Members
+  source_operation: openapi/binarly-openapi-original.yml#GridListGroupMembers
+- name: BulkDeleteGroupMembers
+  description: Bulk Delete Group Members
+  source_operation: openapi/binarly-openapi-original.yml#BulkDeleteGroupMembers
+- name: ListRoleBindings
+  description: List Role Bindings
+  source_operation: openapi/binarly-openapi-original.yml#ListRoleBindings
+- name: CreateRoleBinding
+  description: Create Role Binding
+  source_operation: openapi/binarly-openapi-original.yml#CreateRoleBinding
+- name: DeleteRoleBinding
+  description: Delete Role Binding
+  source_operation: openapi/binarly-openapi-original.yml#DeleteRoleBinding
+- name: UpdateRoleBinding
+  description: Update Role Binding
+  source_operation: openapi/binarly-openapi-original.yml#UpdateRoleBinding
+- name: GetSearch
+  description: Search
+  source_operation: openapi/binarly-openapi-original.yml#GetSearch
+- name: GetSearchTokens
+  description: SearchTokens
+  source_operation: openapi/binarly-openapi-original.yml#GetSearchTokens
+- name: ListVulnerabilities
+  description: List Vulnerabilities
+  source_operation: openapi/binarly-openapi-original.yml#ListVulnerabilities
+- name: GetVulnerability
+  description: Get Vulnerability
+  source_operation: openapi/binarly-openapi-original.yml#GetVulnerability
+- name: CreateSubscription
+  description: Create Subscription
+  source_operation: openapi/binarly-openapi-original.yml#CreateSubscription
+- name: ListSubscriptions
+  description: List Subscriptions
+  source_operation: openapi/binarly-openapi-original.yml#ListSubscriptions
+- name: DeleteSubscription
+  description: Delete Subscription
+  source_operation: openapi/binarly-openapi-original.yml#DeleteSubscription
+- name: SetNotificationSettings
+  description: Set Notification Settings
+  source_operation: openapi/binarly-openapi-original.yml#SetNotificationSettings
+- name: GetNotificationSettings
+  description: Get Notification Settings
+  source_operation: openapi/binarly-openapi-original.yml#GetNotificationSettings
+- name: ListProductFindingEscalations
+  description: List Product Finding Escalations
+  source_operation: openapi/binarly-openapi-original.yml#ListProductFindingEscalations

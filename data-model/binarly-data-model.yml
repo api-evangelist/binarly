@@ -1,0 +1,103 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/binarly-openapi-original.yml
+summary: >-
+  Entity-relationship graph derived from the Binarly Transparency Platform API v4
+  path hierarchy and schema references. Core scan lineage:
+  Product -> Image -> Scan -> (Component, Finding, File); vulnerabilities and
+  cryptographic assets attach to findings/components; access is governed by
+  Users, Groups, Roles, and RoleBindings.
+entities:
+- name: Product
+  description: Top-level unit representing a product line whose firmware/software images are tracked.
+  id_field: productId
+  key_operations: [ListProducts, CreateProduct, GetProduct, UpdateProduct]
+- name: Image
+  description: A scanned firmware, container, or binary artifact belonging to a product.
+  id_field: imageId
+  key_operations: [ListImages, UploadImage, GetImage, UpdateImage]
+- name: Scan
+  description: An analysis run over an image, producing components and findings.
+  id_field: scanId
+  key_operations: [ListScans, CreateScan, GetScan, ListComponents]
+- name: Component
+  description: A software/firmware component (dependency) discovered in a scan.
+  id_field: componentId
+  key_operations: [ListComponents, GetComponent]
+- name: Finding
+  description: A vulnerability, secret, crypto issue, or hardening weakness identified for a product.
+  id_field: findingId
+  key_operations: [GetFinding, CreateFindingState, FindingAdvisory]
+- name: File
+  description: A file attachment (e.g. debug symbols) associated with an image.
+  id_field: fileId
+  key_operations: [ListFiles, CreateFile, GetFile]
+- name: Vulnerability
+  description: A CVE/advisory entry in the platform vulnerability database.
+  id_field: vulnerabilityId
+  key_operations: [ListVulnerabilities, GetVulnerability]
+- name: User
+  description: A platform user principal.
+  id_field: userId
+  key_operations: [ListUsers, CreateUser, GetCurrentUser]
+- name: Group
+  description: A collection of users for access grouping.
+  id_field: groupId
+  key_operations: [ListGroups, CreateGroup, ListGroupMembers, AddGroupMember]
+- name: Role
+  description: A named RBAC role.
+  id_field: roleId
+  key_operations: [ListRoles]
+- name: RoleBinding
+  description: Binds a role to a principal over a resource scope.
+  id_field: roleBindingId
+  key_operations: [ListRoleBindings, CreateRoleBinding, UpdateRoleBinding, DeleteRoleBinding]
+- name: Integration
+  description: A third-party integration (e.g. Jira) configured per provider.
+  id_field: integrationId
+  key_operations: [ListProviders, CreateIntegration, UpdateIntegration, CreateJiraIssue]
+- name: CustomRule
+  description: A user-defined detection rule.
+  id_field: ruleName
+  key_operations: [GetRule, UpdateRules, BulkEnableRules, BulkDisableRules]
+relationships:
+- from: Image
+  to: Product
+  type: belongs_to
+  via: productId
+- from: Scan
+  to: Image
+  type: belongs_to
+  via: imageId
+- from: Component
+  to: Scan
+  type: belongs_to
+  via: scanId
+- from: File
+  to: Image
+  type: belongs_to
+  via: imageId
+- from: Finding
+  to: Product
+  type: belongs_to
+  via: productId
+- from: Product
+  to: Image
+  type: has_many
+  via: imageId
+- from: Image
+  to: Scan
+  type: has_many
+  via: scanId
+- from: Scan
+  to: Component
+  type: has_many
+  via: componentId
+- from: Group
+  to: User
+  type: has_many
+  via: userId
+- from: RoleBinding
+  to: Role
+  type: has_one
+  via: roleId

@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/binarly-openapi-original.yml
+skills:
+- file: binarly-scan-firmware-cicd.md
+  name: Scan firmware in a CI/CD pipeline
+  api: openapi/binarly-openapi-original.yml
+  operations: [CreateProduct, GenerateTempFileUploadURL, UploadImage, CreateScan, GetScan, GridListFindings]
+- file: binarly-generate-compliance-artifacts.md
+  name: Generate SBOM/VEX/CBOM compliance artifacts
+  api: openapi/binarly-openapi-original.yml
+  operations: [GetSbomReportCycloneDX, GetSbomReportSPDX, GetVexReportOpenVEX, GetCbomReport, ImageFindingsReportJson]
+- file: binarly-triage-findings.md
+  name: Triage and prioritize findings
+  api: openapi/binarly-openapi-original.yml
+  operations: [GridListFindings, GetFinding, FindingAdvisory, CreateFindingState, ListVulnerabilities]

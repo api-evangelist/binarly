@@ -1,22 +1,593 @@
 aid: binarly
 name: Binarly
-description: Binarly is a company surfaced as a portfolio company of canaan-partners and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Binarly is a firmware and software supply-chain security company whose Binarly
+  Transparency Platform performs binary-native analysis of compiled software,
+  firmware, and container images without requiring source code. It detects known
+  and unknown vulnerabilities, hardcoded secrets, cryptographic materials,
+  malicious code, and missing hardening mitigations across UEFI, bootloaders,
+  Linux packages, and application binaries, then generates SBOM, VEX, CBOM, and
+  PQC-compliance artifacts for supply-chain assurance. The platform exposes a
+  REST API (v4, Keycloak/OIDC-authenticated) so producers can automate firmware
+  scanning inside CI/CD pipelines and enterprise buyers can programmatically
+  assess vendor software. Binarly also maintains open firmware-research tooling
+  such as the FwHunt rule format and fwhunt-scan. The company was surfaced as a
+  portfolio company of Canaan Partners.
 url: https://raw.githubusercontent.com/api-evangelist/binarly/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - canaan-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profile
+x-tier-reason: has-public-api
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://www.binarly.io/logo.svg
 tags:
 - Company
-apis: []
+- Security
+- Firmware Security
+- Supply Chain Security
+- Vulnerability Management
+- SBOM
+- Binary Analysis
+- Post-Quantum Cryptography
+- UEFI
+- DevSecOps
+apis:
+- aid: binarly:binarly-assistant-api
+  name: Binarly Assistant API
+  description: The Assistant API from Binarly — 5 operation(s) for assistant.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Assistant
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-assistant-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-chart-api
+  name: Binarly Chart API
+  description: The Chart API from Binarly — 7 operation(s) for chart.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Chart
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-chart-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-customrules-api
+  name: Binarly CustomRules API
+  description: The CustomRules API from Binarly — 4 operation(s) for customrules.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - CustomRules
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-customrules-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-escalation-api
+  name: Binarly Escalation API
+  description: The Escalation API from Binarly — 1 operation(s) for escalation.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Escalation
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-escalation-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-file-api
+  name: Binarly File API
+  description: The File API from Binarly — 4 operation(s) for file.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - File
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-file-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-finding-api
+  name: Binarly Finding API
+  description: The Finding API from Binarly — 4 operation(s) for finding.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Finding
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-finding-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-grid-api
+  name: Binarly Grid API
+  description: The Grid API from Binarly — 12 operation(s) for grid.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Grid
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-grid-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-group-api
+  name: Binarly Group API
+  description: The Group API from Binarly — 5 operation(s) for group.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Group
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-group-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-image-api
+  name: Binarly Image API
+  description: The Image API from Binarly — 15 operation(s) for image.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Image
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-image-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-integration-api
+  name: Binarly Integration API
+  description: The Integration API from Binarly — 10 operation(s) for integration.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Integration
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-integration-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-notification-api
+  name: Binarly Notification API
+  description: The Notification API from Binarly — 1 operation(s) for notification.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Notification
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-notification-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-product-api
+  name: Binarly Product API
+  description: The Product API from Binarly — 4 operation(s) for product.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Product
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-product-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-rolebinding-api
+  name: Binarly RoleBinding API
+  description: The RoleBinding API from Binarly — 3 operation(s) for rolebinding.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - RoleBinding
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-rolebinding-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-scan-api
+  name: Binarly Scan API
+  description: The Scan API from Binarly — 5 operation(s) for scan.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Scan
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-scan-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-search-api
+  name: Binarly Search API
+  description: The Search API from Binarly — 2 operation(s) for search.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-search-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-subscription-api
+  name: Binarly Subscription API
+  description: The Subscription API from Binarly — 2 operation(s) for subscription.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-subscription-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-tempfile-api
+  name: Binarly TempFile API
+  description: The TempFile API from Binarly — 1 operation(s) for tempfile.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - TempFile
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-tempfile-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-user-api
+  name: Binarly User API
+  description: The User API from Binarly — 3 operation(s) for user.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-user-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-userstorage-api
+  name: Binarly UserStorage API
+  description: The UserStorage API from Binarly — 2 operation(s) for userstorage.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - UserStorage
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-userstorage-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-vulnerability-api
+  name: Binarly Vulnerability API
+  description: The Vulnerability API from Binarly — 2 operation(s) for vulnerability.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Vulnerability
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-vulnerability-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+common:
+- type: TrustCenter
+  url: security/binarly-trust-center.yml
+- type: DomainSecurity
+  url: security/binarly-domain-security.yml
+- type: DeveloperPortal
+  url: https://docs.binarly.io
+- type: Documentation
+  url: https://docs.binarly.io
+- type: APIReference
+  url: https://docs.binarly.io/api-reference/introduction
+- type: GettingStarted
+  url: https://docs.binarly.io/user-guides/get-started/first-scan
+- type: Authentication
+  url: authentication/binarly-authentication.yml
+- type: ChangeLog
+  url: changelog/binarly-changelog.yml
+- type: ChangeLog
+  url: https://docs.binarly.io/release-notes/release-cadence
+- type: Deprecation
+  url: https://docs.binarly.io/release-notes/release-cadence
+- type: LLMsTxt
+  url: llms/binarly-llms.txt
+- type: Blog
+  url: https://www.binarly.io/blog
+- type: Documentation
+  url: https://docs.binarly.io/resource-center/finding-classes
+- type: GitHubOrganization
+  url: https://github.com/binarly-io
+- type: Support
+  url: https://docs.binarly.io/user-guides/about/customer-support
+- type: Pricing
+  url: https://www.binarly.io/packages
+- type: SignUp
+  url: https://www.binarly.io/book-demo
+- type: Login
+  url: https://docs.binarly.io/user-guides/get-started/login
+- type: TermsOfService
+  url: https://www.binarly.io/legal-and-compliance
+- type: PrivacyPolicy
+  url: https://www.binarly.io/legal-and-compliance
+- type: Compliance
+  url: https://trust.binarly.io/
+- type: Packages
+  url: packages/binarly-packages.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Scan firmware in CI/CD
+  url: arazzo/binarly-scan-firmware.yml
+- type: Arazzo
+  name: Generate supply-chain compliance artifacts
+  url: arazzo/binarly-compliance-artifacts.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: derived
+source: arazzo/*.yml
+workflows:
+- file: binarly-scan-firmware.yml
+  workflowId: scanFirmwareInCICD
+  title: Scan firmware in CI/CD with Binarly
+  summary: Create a product, upload a firmware image, run a scan, poll to completion, and list findings.
+- file: binarly-compliance-artifacts.yml
+  workflowId: generateComplianceArtifacts
+  title: Generate supply-chain compliance artifacts with Binarly
+  summary: Export CycloneDX/SPDX SBOMs, an OpenVEX VEX, a CBOM, and a findings report for a scanned image.

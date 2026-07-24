@@ -1,0 +1,92 @@
+arazzo: 1.0.1
+info:
+  title: Scan firmware in CI/CD with Binarly
+  version: 1.0.0
+  summary: >-
+    Create (or reuse) a product, upload a firmware/binary image, run a scan, poll
+    until it completes, then list the findings and pull a PDF report — the core
+    CI/CD gate flow for the Binarly Transparency Platform.
+sourceDescriptions:
+- name: binarly
+  url: ../openapi/binarly-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: scanFirmwareInCICD
+  summary: Upload a firmware image, scan it, and retrieve findings.
+  inputs:
+    type: object
+    properties:
+      productName:
+        type: string
+      firmwareFile:
+        type: string
+        description: Path or reference to the firmware/binary artifact to scan.
+  steps:
+  - stepId: createProduct
+    description: Create a product to hold the image (skip if you already have a productId).
+    operationId: CreateProduct
+    requestBody:
+      payload:
+        name: $inputs.productName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      productId: $response.body#/id
+  - stepId: generateUploadUrl
+    description: Request a temporary upload URL for the image.
+    operationId: GenerateTempFileUploadURL
+    parameters:
+    - name: productId
+      in: path
+      value: $steps.createProduct.outputs.productId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: uploadImage
+    description: Register/upload the firmware image under the product.
+    operationId: UploadImage
+    parameters:
+    - name: productId
+      in: path
+      value: $steps.createProduct.outputs.productId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      imageId: $response.body#/id
+  - stepId: createScan
+    description: Launch a scan over the uploaded image.
+    operationId: CreateScan
+    parameters:
+    - name: productId
+      in: path
+      value: $steps.createProduct.outputs.productId
+    - name: imageId
+      in: path
+      value: $steps.uploadImage.outputs.imageId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      scanId: $response.body#/id
+  - stepId: getScan
+    description: Poll the scan until analysis completes.
+    operationId: GetScan
+    parameters:
+    - name: productId
+      in: path
+      value: $steps.createProduct.outputs.productId
+    - name: imageId
+      in: path
+      value: $steps.uploadImage.outputs.imageId
+    - name: scanId
+      in: path
+      value: $steps.createScan.outputs.scanId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: listFindings
+    description: Retrieve the findings grid to gate the build (fail on new criticals).
+    operationId: GridListFindings
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    productId: $steps.createProduct.outputs.productId
+    imageId: $steps.uploadImage.outputs.imageId
+    scanId: $steps.createScan.outputs.scanId

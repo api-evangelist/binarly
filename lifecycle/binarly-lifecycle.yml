@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.binarly.io/release-notes/release-cadence
+versioning:
+  scheme: uri-path
+  current: v4
+  api_version: 4.275.2
+  platform_versioning: semantic version + build date (e.g. 3.59.0+2026.07.14)
+  docs: https://docs.binarly.io/release-notes/release-cadence
+release_cadence:
+  description: >-
+    Binarly ships the Transparency Platform on a frequent rolling cadence;
+    SaaS updates are deployed automatically, on-prem customers pull tagged releases.
+  release_notes: https://docs.binarly.io/release-notes/release-cadence
+deprecation:
+  policy_url: https://docs.binarly.io/release-notes/release-cadence
+  documented: true
+  note: Versioning and change policy are described in the release-cadence page.
+sla:
+  note: SaaS offering advertises SLA-backed uptime guarantees.
+  source: https://docs.binarly.io/api-reference/deployment/saas-considerations
+status_page: null
+status_page_note: No public status page located as of this pass.
+deployment:
+  saas: fully managed, isolated tenants, automatic updates
+  on_prem: self-hosted (v2 and v3 install tracks) for air-gapped / regulated environments
+  docs: https://docs.binarly.io/user-guides/about/deployment-architectures/SaaS-vs-onprem
+deprecated_operations: []

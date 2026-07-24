@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/binarly-openapi-original.yml
+docs: https://trust.binarly.io/
+standards:
+- id: oauth2
+  conforms: true
+  evidence: Keycloak-issued tokens via client_credentials and password grants (docs authentication pages).
+- id: oidc
+  conforms: true
+  evidence: Keycloak OpenID Connect; scope=openid; realm BinarlyRealm.
+- id: jwt
+  conforms: true
+  evidence: OpenAPI securityScheme http bearer with bearerFormat JWT.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom application/json envelope (message + details[]), not application/problem+json.
+- id: rest-json
+  conforms: true
+  evidence: JSON over HTTP REST, uri-path versioning (/api/v4), offset pagination.
+- id: cyclonedx
+  conforms: true
+  evidence: Emits CycloneDX SBOM, VEX, and CBOM reports.
+- id: spdx
+  conforms: true
+  evidence: Emits SPDX SBOM reports.
+- id: openvex
+  conforms: true
+  evidence: Emits OpenVEX VEX reports.
+- id: soc2-type2
+  conforms: true
+  evidence: SOC 2 Type 2 compliance published at trust.binarly.io.
+- id: isa-iec-62443
+  conforms: true
+  evidence: Documented capability mapping to ISA/IEC 62443 industrial cybersecurity requirements.
+- id: nist-ir-8547-pqc
+  conforms: true
+  evidence: PQC compliance reporting and cryptographic-algorithm assessment against NIST IR 8547.
+compliance_program:
+  published: true
+  certifications:
+  - SOC 2 Type 2
+  url: https://trust.binarly.io/

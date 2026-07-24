@@ -1,0 +1,134 @@
+# Binarly Transparency Platform
+
+## Docs
+
+- [Setup API Client](https://docs.binarly.io/api-reference/authentication/create-api-client.md)
+- [User Authentication](https://docs.binarly.io/api-reference/authentication/generate-token.md)
+- [M2M Authentication](https://docs.binarly.io/api-reference/authentication/get-m2m-token.md)
+- [On-Prem API Considerations](https://docs.binarly.io/api-reference/deployment/onprem-considerations.md): API specifics for On-Premise deployments
+- [SaaS API Considerations](https://docs.binarly.io/api-reference/deployment/saas-considerations.md): API specifics for SaaS deployments
+- [Upload Debug Symbols](https://docs.binarly.io/api-reference/file/create-file-attachment.md)
+- [Compare Findings](https://docs.binarly.io/api-reference/finding/compare-findings.md)
+- [Get Image](https://docs.binarly.io/api-reference/image/get-image.md)
+- [List Images](https://docs.binarly.io/api-reference/image/list-images.md)
+- [Upload Image](https://docs.binarly.io/api-reference/image/upload-image.md)
+- [Get Started](https://docs.binarly.io/api-reference/introduction.md): Welcome to the Binarly Transparency Platform API
+- [Create Product](https://docs.binarly.io/api-reference/product/create-product.md)
+- [Get Product](https://docs.binarly.io/api-reference/product/get-product.md)
+- [List Products](https://docs.binarly.io/api-reference/product/list-products.md)
+- [CBOM Reports](https://docs.binarly.io/api-reference/report/cbom-report.md)
+- [Findings Report](https://docs.binarly.io/api-reference/report/findings-report.md)
+- [PQC Compliance Report](https://docs.binarly.io/api-reference/report/pqc-report.md)
+- [SBOM Reports](https://docs.binarly.io/api-reference/report/sbom-report.md)
+- [VEX Reports](https://docs.binarly.io/api-reference/report/vex-report.md)
+- [Get Scan](https://docs.binarly.io/api-reference/scan/get-scan.md)
+- [List Scans](https://docs.binarly.io/api-reference/scan/list-scans.md)
+- [List Components](https://docs.binarly.io/api-reference/scan/scan-components.md)
+- [Troubleshooting](https://docs.binarly.io/api-reference/troubleshooting.md): Get help with the Binarly Transparency Platform
+- [Bash Script](https://docs.binarly.io/api-reference/use-cases/cicd/bash.md): Universal bash script for CI/CD integration
+- [GitHub Actions](https://docs.binarly.io/api-reference/use-cases/cicd/github-actions.md): GitHub Actions workflow for firmware scanning
+- [GitLab CI](https://docs.binarly.io/api-reference/use-cases/cicd/gitlab-ci.md): GitLab CI/CD configuration for firmware scanning
+- [Jenkins Pipeline](https://docs.binarly.io/api-reference/use-cases/cicd/jenkins.md): Jenkinsfile pipeline for firmware scanning
+- [Overview](https://docs.binarly.io/api-reference/use-cases/cicd/overview.md): Learn how to automate firmware security scanning in your CI/CD pipeline.
+- [Verify Results](https://docs.binarly.io/api-reference/use-cases/cicd/verify-results.md): Pass/fail CI/CD builds based on findings analysis with comparison statistics
+- [Compliance Artifacts](https://docs.binarly.io/api-reference/use-cases/compliance-artifacts.md): Generate SBOMs, VEX, CBOM, and PQC compliance reports for supply chain security.
+- [Triage & Analysis](https://docs.binarly.io/api-reference/use-cases/triage-and-analysis.md): Identify regressions and analyze security findings.
+- [Configuration](https://docs.binarly.io/on-prem/v2/configuration.md)
+- [Considerations](https://docs.binarly.io/on-prem/v2/considerations.md)
+- [Installation](https://docs.binarly.io/on-prem/v2/installation.md)
+- [Removal](https://docs.binarly.io/on-prem/v2/uninstallation.md)
+- [Configuration](https://docs.binarly.io/on-prem/v3/configuration.md)
+- [Considerations](https://docs.binarly.io/on-prem/v3/considerations.md)
+- [Installation](https://docs.binarly.io/on-prem/v3/installation.md)
+- [Uninstallation](https://docs.binarly.io/on-prem/v3/uninstallation.md)
+- [Virtual Machine Deployment](https://docs.binarly.io/on-prem/v3/virtualmachine.md)
+- [Release cadence & versioning](https://docs.binarly.io/release-notes/release-cadence.md): How Binarly versions and ships the Transparency Platform.
+- [v2.0](https://docs.binarly.io/release-notes/v2.0.md)
+- [v2.5](https://docs.binarly.io/release-notes/v2.5.md)
+- [v2.7](https://docs.binarly.io/release-notes/v2.7.md)
+- [v2.8](https://docs.binarly.io/release-notes/v2.8.md)
+- [v3.0](https://docs.binarly.io/release-notes/v3.0.md)
+- [3.11.3+2026.04.07](https://docs.binarly.io/release-notes/v3.11.3.md): Binarly v3.11.3 release notes: large-scale scan stability, expanded secrets scanning file types and validators, and an SBOM version reporting fix.
+- [3.19.2+2026.04.15](https://docs.binarly.io/release-notes/v3.19.2.md): Binarly v3.19.2 release notes: finding variants in SBOM, VEX, and CBOM exports, VulHunt detection for CVE-2024-56171 in libxml2, and reliability fixes.
+- [3.22.0+2026.04.21](https://docs.binarly.io/release-notes/v3.22.0.md): Binarly v3.22.0 release notes: a default comparison column, plus general availability of CVSS vector display, triage improvements, and findings scope filtering.
+- [3.25.2+2026.04.28](https://docs.binarly.io/release-notes/v3.25.2.md): Binarly v3.25.2 release notes: CycloneDX SBOM output fix, restored Components tab hierarchy, and more reliable vulnerability database queries.
+- [3.31.1+2026.05.06](https://docs.binarly.io/release-notes/v3.31.1.md): Binarly v3.31.1 release notes: redesigned findings page by default, SSVC column reorder, improved SSVC scoring, and VulHunt detection for CVE-2024-25178.
+- [3.35.1+2026.05.13](https://docs.binarly.io/release-notes/v3.35.1.md): Binarly v3.35.1 release notes: secret validity in the findings grid, standalone UEFI MM module analysis, U-Boot image support, and CVE-2026-33243 detection.
+- [3.38.1+2026.05.19](https://docs.binarly.io/release-notes/v3.38.1.md): Binarly v3.38.1 release notes: secret validity in reports, VulHunt detection for CVE-2022-37434 in zlib and NVIDIA DGX Spark MM modules, and a git processing fix.
+- [3.41.0+2026.05.26](https://docs.binarly.io/release-notes/v3.41.0.md): Binarly v3.41.0 release notes: VulHunt detection for CVE-2026-33243 in U-Boot, extended CVE-2022-37434 zlib coverage, a KSPP ARM hardening check, and CryptoScan key formats.
+- [3.47.1+2026.06.02](https://docs.binarly.io/release-notes/v3.47.1.md): Binarly v3.47.1 release notes: secret validity filtering GA, Mitigate detection for Insyde FDM misconfigurations, more finding identifier types, and Python analysis fixes.
+- [3.49.1+2026.06.10](https://docs.binarly.io/release-notes/v3.49.1.md): Binarly v3.49.1 release notes: logarithmic EMS score normalization, VulHunt detection for CVE-2026-45185 in Exim, RSA badkeys CryptoScan checks.
+- [v3.5](https://docs.binarly.io/release-notes/v3.5.md)
+- [3.50.1+2026.06.17](https://docs.binarly.io/release-notes/v3.50.1.md): Binarly v3.50.1 release notes: RPM dependency vulnerability detection for RockyLinux ISO images, debug symbol exclusion, dependencies grid fix.
+- [3.53.0+2026.06.23](https://docs.binarly.io/release-notes/v3.53.0.md): Binarly v3.53.0 release notes: MCUboot bootloader and Zephyr firmware analysis support, plus CVEHunt dependency scanning for MCUboot, Zephyr, U-Boot.
+- [3.53.4+2026.07.01](https://docs.binarly.io/release-notes/v3.53.4.md): Binarly v3.53.4 release notes: new UEFI detections for writable SPI flash and Secure Boot Setup Mode, VulHunt U-Boot coverage, and apk package support.
+- [3.56.2+2026.07.09](https://docs.binarly.io/release-notes/v3.56.2.md): Binarly v3.56.2 release notes: risk score in the findings grid, Code and Environment Reachability columns, Alpine vulnerability advisory source, plus bug fixes.
+- [3.57.3+2026.07.13](https://docs.binarly.io/release-notes/v3.57.3.md): Binarly v3.57.3 release notes: bug fixes for finding details, vulnerable code snippet retrieval, report formatting, and reachability display.
+- [3.59.0+2026.07.14](https://docs.binarly.io/release-notes/v3.59.0.md): Binarly v3.59.0 release notes: saved filters now use Code Reachability, plus a severity column bug fix.
+- [v3.6](https://docs.binarly.io/release-notes/v3.6.md)
+- [3.8.1+2026.04.01](https://docs.binarly.io/release-notes/v3.8.1.md): Binarly v3.8.1 release notes: redesigned finding details, variants management, an AI triage assistant, and CycloneDX SBOM enrichment.
+- [Accuracy & Confidence in Findings](https://docs.binarly.io/resource-center/accuracy-confidence.md)
+- [Cryptographic Algorithm Detection Reference](https://docs.binarly.io/resource-center/algorithm-compliance.md): Full reference of cryptographic algorithms, protocols, and certificate issues detected by BTP, with classification status and NIST IR 8547 PQC compliance assessment.
+- [Attack Surface Approximation and Prioritisation (ASAP)](https://docs.binarly.io/resource-center/asap.md): How Binarly computes reachability across four levels, from within a single binary up to the environment-aware attack surface, to prioritise the findings that actually matter.
+- [Binarly Risk Score](https://docs.binarly.io/resource-center/binarly-risk-score.md): How the Binarly Risk Score turns exploitation, impact, decision, and finding-type signals into one transparent 0 to 1 priority score, with selectable profiles.
+- [Cryptographic Detection](https://docs.binarly.io/resource-center/cryptographic-detection.md): How the Binarly Transparency Platform detects cryptographic materials in firmware and binary images.
+- [Debugging Symbols](https://docs.binarly.io/resource-center/debugging-symbols.md)
+- [Detection Methods and Limitation](https://docs.binarly.io/resource-center/detection-methods.md): How Binarly identifies vulnerabilities using version-based and rule-based detection, including ecosystem filtering to reduce false positives.
+- [EMS Escalations: Exploitation Maturity Score scale and triggers](https://docs.binarly.io/resource-center/ems-escalations.md): Learn how the Exploitation Maturity Score (EMS) rates vulnerabilities on a 0-10 scale, when escalations trigger, and how ransomware and KEV signals apply.
+- [Finding Classes Reference](https://docs.binarly.io/resource-center/finding-classes.md): Complete reference documentation for all finding classes generated by the Binarly analysis pipeline.
+- [Finding Types & Classes](https://docs.binarly.io/resource-center/finding-types.md): Reference documentation for finding types and their associated finding classes.
+- [Hardening Analysis](https://docs.binarly.io/resource-center/hardening-analysis.md): How the Binarly Transparency Platform detects missing security mitigations and binary weaknesses in compiled binaries.
+- [ISA/IEC 62443 Compliance Capability Mapping](https://docs.binarly.io/resource-center/isa-iec-62443-compliance-mapping.md): How the Binarly Transparency Platform maps to ISA/IEC 62443 industrial cybersecurity requirements for firmware and software component security.
+- [Severity Levels](https://docs.binarly.io/resource-center/risk-scoring.md)
+- [Secrets Detection](https://docs.binarly.io/resource-center/secrets-detection.md): How the Binarly Transparency Platform detects hardcoded secrets across firmware, container images, source files, and binary artifacts.
+- [Transitive Dependencies](https://docs.binarly.io/resource-center/transitive-dependencies.md)
+- [Vulnerability Data Sources](https://docs.binarly.io/resource-center/vdb-sources.md): Reference for all vulnerability data sources used by the Binarly platform.
+- [Binary vs. source scanning](https://docs.binarly.io/user-guides/about/comparison/binary-vs-source.md): How binary scanning compares to source-code scanning across different SDLC security approaches.
+- [The Binarly advantage](https://docs.binarly.io/user-guides/about/comparison/the-binarly-advantage.md): How Binarly's binary-native analysis finds what source-code tools structurally cannot, and the capabilities that set it apart.
+- [Customer support](https://docs.binarly.io/user-guides/about/customer-support.md): How to get help with the Binarly Transparency Platform.
+- [Deployment architectures](https://docs.binarly.io/user-guides/about/deployment-architectures/SaaS-vs-onprem.md): The Binarly Transparency Platform is available as a fully managed SaaS offering and as a self-hosted on-premises installation for air-gapped and regulated environments.
+- [Security & compliance](https://docs.binarly.io/user-guides/about/security.md): How the Binarly Transparency Platform handles deployment security, access control, authentication, and compliance certification.
+- [Supported platforms](https://docs.binarly.io/user-guides/about/supported-platforms.md): Binary formats, operating systems, processor architectures, and analysis capabilities supported by the Binarly Transparency Platform.
+- [Use cases](https://docs.binarly.io/user-guides/about/use-cases.md): Primary use cases for the Binarly Transparency Platform: secure product development, third-party risk management, and post-quantum cryptography readiness.
+- [Why Binarly](https://docs.binarly.io/user-guides/about/why.md): The Binarly Transparency Platform gives software producers and enterprise buyers ground-truth visibility into compiled software and firmware — without source code access.
+- [JIRA Integration](https://docs.binarly.io/user-guides/advanced/jira.md)
+- [Notifications](https://docs.binarly.io/user-guides/advanced/notifications.md)
+- [Automatic Advisories](https://docs.binarly.io/user-guides/export/advisories.md)
+- [CBOM (Cryptographic Bill of Materials)](https://docs.binarly.io/user-guides/export/cbom.md): Export a Cryptographic Bill of Materials (CBOM) to inventory all cryptographic algorithms, certificates, and keys discovered in a scanned image.
+- [PQC Compliance Report](https://docs.binarly.io/user-guides/export/pqc.md)
+- [Image and Detail Reports](https://docs.binarly.io/user-guides/export/reports.md)
+- [SBOM (Software Bill of Materials)](https://docs.binarly.io/user-guides/export/sbom.md)
+- [VEX (Vulnerability Exploitability Exchange)](https://docs.binarly.io/user-guides/export/vex.md)
+- [First Scan](https://docs.binarly.io/user-guides/get-started/first-scan.md)
+- [Remediate Vulnerabilities](https://docs.binarly.io/user-guides/get-started/fix-unknown.md)
+- [Glossary](https://docs.binarly.io/user-guides/get-started/glossary.md)
+- [Login](https://docs.binarly.io/user-guides/get-started/login.md)
+- [Requirements](https://docs.binarly.io/user-guides/get-started/requirements.md)
+- [Reviewing findings, images, and product trends](https://docs.binarly.io/user-guides/image-scans/all-about-details.md): Organize images by product, review analysis findings, and track vulnerability trends over time in the Binarly Transparency Platform.
+- [Compare Images](https://docs.binarly.io/user-guides/image-scans/compare.md)
+- [Cryptographic Materials](https://docs.binarly.io/user-guides/image-scans/cryptographic-materials.md): Using the Cryptographic Materials tab to review algorithms, certificates, and keys discovered in an image scan.
+- [CVSS Vector Filtering](https://docs.binarly.io/user-guides/image-scans/cvss-vector-filtering.md): Filter the Findings Grid by CVSS v3 vector elements to focus on specific attack characteristics and prioritize remediation.
+- [Finding Variants](https://docs.binarly.io/user-guides/image-scans/finding-variants.md): Finding Variants provides an ability to use vulnerability information from alternative sources for finding prioritization.
+- [Findings Scope](https://docs.binarly.io/user-guides/image-scans/findings-scope.md): Findings Scope limits reported findings for a product by disabling certain finding types not relevant to the product threat model. This helps with noise reduction and fine-tuning of reports and dashboard content.
+- [Products](https://docs.binarly.io/user-guides/image-scans/products.md)
+- [Filtering findings by reachability](https://docs.binarly.io/user-guides/image-scans/reachability-filtering.md): Read the Code Reachability and Environment Reachability columns together to scope the Findings grid to vulnerabilities whose code both loads in the deployment and is reachable inside its binary.
+- [Prioritizing with the Risk Score](https://docs.binarly.io/user-guides/image-scans/risk-score.md): Use the Binarly Risk Score to rank findings by priority: pick a scoring profile, read the score, and sort and filter findings by risk score.
+- [The Dashboard](https://docs.binarly.io/user-guides/image-scans/the-dashboard.md)
+- [Saved Views](https://docs.binarly.io/user-guides/important-findings/saved-views.md)
+- [Widget](https://docs.binarly.io/user-guides/important-findings/widget.md)
+- [Quotas](https://docs.binarly.io/user-guides/rbac/quotas.md)
+- [Roles](https://docs.binarly.io/user-guides/rbac/roles.md)
+- [Users](https://docs.binarly.io/user-guides/rbac/user-management.md)
+- [Deployments](https://docs.binarly.io/user-guides/rule-management/deployments.md): Deploy Rulesets to run automatically on image scans at the organization or product level.
+- [Custom Rule Manager](https://docs.binarly.io/user-guides/rule-management/overview.md): Write, test, and deploy your own detection rules on the Binarly Transparency Platform.
+- [Playground](https://docs.binarly.io/user-guides/rule-management/playground.md): Interactively write and test detection rules against images before packaging them into a Ruleset.
+- [Rulesets](https://docs.binarly.io/user-guides/rule-management/rulesets.md): Package and push your detection rules to the Binarly Registry as OCI artifacts.
+
+## Optional
+
+- [Free Scanner](https://risk.binarly.io)
+- [VulHunt](https://vulhunt.re)
+- [Github](https://github.com/binarly-io/)
+- [Advisories](https://www.binarly.io/advisories)
+- [Product Blog](https://www.binarly.io/blog)
+- [Research Blog](https://www.binarly.io/articles)

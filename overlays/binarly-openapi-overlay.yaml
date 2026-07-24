@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Binarly Transparency Platform API
+  version: 1.0.0
+extends: openapi/binarly-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 4
+    x-apievangelist-notes: >-
+      Rich, well-tagged OpenAPI 3.0.3 (109 operations, 481 schemas, 21 tags) with
+      shared error responses and RBAC x-permission annotations. Gaps: no servers[]
+      block (base URL is tenant-scoped and documented only in prose), custom error
+      envelope instead of RFC 9457, and no in-spec examples.
+- target: $
+  update:
+    servers:
+    - url: https://dashboard-{slug}.binarly.cloud/api/v4
+      description: >-
+        SaaS tenant base URL (documented in the API reference; substitute your
+        organization slug). Added by API Evangelist; not present in the source spec.
+      variables:
+        slug:
+          default: your-org
+          description: Your organization's tenant identifier.
+- target: $.components.securitySchemes.auth
+  update:
+    x-apievangelist-identity-provider: Keycloak (realm BinarlyRealm)
+    x-apievangelist-flows: [clientCredentials, password]
+    x-apievangelist-token-ttl-seconds: 1800
