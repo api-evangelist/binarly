@@ -529,6 +529,10 @@ apis:
   - type: AgenticAccess
     url: agentic-access/binarly-agentic-access.yml
 common:
+- type: MCPServer
+  url: mcp/binarly-mcp.yml
+- type: Overlay
+  url: overlays/binarly-openapi-overlay.yaml
 - type: TrustCenter
   url: security/binarly-trust-center.yml
 - type: DomainSecurity
