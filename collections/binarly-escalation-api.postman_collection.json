@@ -1,0 +1,741 @@
+{
+  "item": [
+    {
+      "id": "a270f1dd-7a3a-4649-8fdd-26eb062ea28d",
+      "name": "Escalation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "70ee60e8-8929-46b6-b5f4-a053222de66a",
+          "name": "List Product Finding Escalations",
+          "request": {
+            "name": "List Product Finding Escalations",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "products",
+                ":productId",
+                "findings",
+                "-",
+                "escalations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "30"
+                },
+                {
+                  "disabled": false,
+                  "key": "contentType",
+                  "value": "<string>",
+                  "description": "Content Type"
+                },
+                {
+                  "disabled": false,
+                  "key": "cvssFrom",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cvssTo",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epssProbabilityFrom",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "epssProbabilityTo",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "emsFrom",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "emsTo",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasKnownFix",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "exploitabilityPredicates",
+                  "value": "<string>,<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dependencyName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isKev",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageId",
+                  "value": "<ulid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "vulnId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "createTimeFrom",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "createTimeTo",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "withFinding",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "withVulnerabilityDiff",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "productId",
+                  "description": "(Required) Product ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a7e4a1a-3567-4d57-8fb9-1cdaec52bc36",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "findings",
+                    "-",
+                    "escalations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "30"
+                    },
+                    {
+                      "key": "contentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cvssFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "cvssTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "epssProbabilityFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "epssProbabilityTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "emsFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "emsTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "hasKnownFix",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exploitabilityPredicates",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "dependencyName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isKev",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageId",
+                      "value": "01ARZ3NDEKTSV4RRFFQ69G5FAV"
+                    },
+                    {
+                      "key": "vulnId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createTimeFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createTimeTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withFinding",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "withVulnerabilityDiff",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"escalations\": [\n    {\n      \"createTime\": \"2024-01-01T01:00:00Z\",\n      \"findingId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"id\": {\n        \"readOnly\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"vulnId\": \"string\",\n      \"vulnerabilityHistoryId\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n      \"vulnerabilityId\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n      \"finding\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"vulnerabilityDiff\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"createTime\": \"2024-01-01T01:00:00Z\",\n      \"findingId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"id\": {\n        \"readOnly\": true,\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"vulnId\": \"string\",\n      \"vulnerabilityHistoryId\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n      \"vulnerabilityId\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n      \"finding\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"vulnerabilityDiff\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a687d78-5703-467e-92db-f20d059c1200",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "findings",
+                    "-",
+                    "escalations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "30"
+                    },
+                    {
+                      "key": "contentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cvssFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "cvssTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "epssProbabilityFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "epssProbabilityTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "emsFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "emsTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "hasKnownFix",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exploitabilityPredicates",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "dependencyName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isKev",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageId",
+                      "value": "01ARZ3NDEKTSV4RRFFQ69G5FAV"
+                    },
+                    {
+                      "key": "vulnId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createTimeFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createTimeTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withFinding",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "withVulnerabilityDiff",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7d0169e-ba20-454c-a8e5-06bd8b2dc326",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "findings",
+                    "-",
+                    "escalations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "30"
+                    },
+                    {
+                      "key": "contentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cvssFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "cvssTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "epssProbabilityFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "epssProbabilityTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "emsFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "emsTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "hasKnownFix",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exploitabilityPredicates",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "dependencyName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isKev",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageId",
+                      "value": "01ARZ3NDEKTSV4RRFFQ69G5FAV"
+                    },
+                    {
+                      "key": "vulnId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createTimeFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createTimeTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withFinding",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "withVulnerabilityDiff",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6b711e5-ce82-4964-91f6-1c49621c54b6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "findings",
+                    "-",
+                    "escalations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "30"
+                    },
+                    {
+                      "key": "contentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cvssFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "cvssTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "epssProbabilityFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "epssProbabilityTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "emsFrom",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "emsTo",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "hasKnownFix",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "exploitabilityPredicates",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "dependencyName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isKev",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageId",
+                      "value": "01ARZ3NDEKTSV4RRFFQ69G5FAV"
+                    },
+                    {
+                      "key": "vulnId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createTimeFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createTimeTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withFinding",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "withVulnerabilityDiff",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ee281c2f-8701-4100-8394-dde63a3ec318",
+    "name": "Binarly Assistant Escalation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

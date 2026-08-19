@@ -2,7 +2,8 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/binarly-openapi-original.yml
-note: No official Binarly MCP server was found. Candidate tool list derived one-per-operation from the Transparency Platform API v4 OpenAPI; not an authoritative provider offering.
+note: No official Binarly MCP server was found. Candidate tool list derived one-per-operation from the
+  Transparency Platform API v4 OpenAPI; not an authoritative provider offering.
 server:
   name: binarly
   transport: http
@@ -335,3 +336,9 @@ tools:
 - name: ListProductFindingEscalations
   description: List Product Finding Escalations
   source_operation: openapi/binarly-openapi-original.yml#ListProductFindingEscalations
+deployment:
+  mode: none
+  verified: derived
+  tools: 109
+  checked: '2026-08-12'
+  source: catalog MCP census

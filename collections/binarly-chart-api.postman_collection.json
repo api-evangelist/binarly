@@ -1,0 +1,2543 @@
+{
+  "item": [
+    {
+      "id": "b53ea835-6ade-42c7-9b71-165444e8cfe8",
+      "name": "Chart",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3af20b8-2ea3-4365-a5d4-e34c01ce622d",
+          "name": "Chart List Components",
+          "request": {
+            "name": "Chart List Components",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "charts",
+                "components:chartList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cfeb1d75-6717-4b69-922b-53753ce5638d",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "components:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"value\": 369,\n      \"hasFindings\": \"string\"\n    },\n    {\n      \"value\": 6169,\n      \"hasFindings\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46d01249-9784-48f1-9f34-97f3d5ab930f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "components:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6d70e8b-dd69-4eeb-9d57-e95a39f8a2f7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "components:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb2191d7-5ffb-4f3c-8283-3a734d4a6c6c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "components:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bab2fcf-be9a-4761-a5a6-f4128e4c8a33",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "components:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34233a07-5e8d-4531-b07d-059b41210af4",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "components:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fcf5ba1-023b-413e-99fb-f7d24e6ed43d",
+          "name": "Chart List Dependencies",
+          "request": {
+            "name": "Chart List Dependencies",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "charts",
+                "dependencies:chartList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"aggregation\": {\n    \"kind\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "20c396a3-3790-4174-a324-fe00d715293d",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "dependencies:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"aggregation\": {\n    \"kind\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"value\": 409,\n      \"product\": \"string\",\n      \"version\": \"string\",\n      \"productId\": \"string\"\n    },\n    {\n      \"value\": 240,\n      \"product\": \"string\",\n      \"version\": \"string\",\n      \"productId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70d9fb37-8cb1-46b6-9b01-41b123d4349f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "dependencies:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"aggregation\": {\n    \"kind\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "361e57a1-7d78-4800-8f15-3c3e13b70bf2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "dependencies:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"aggregation\": {\n    \"kind\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ddb708f-42ed-459c-a03d-674f1d298099",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "dependencies:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"aggregation\": {\n    \"kind\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71a43552-ac3d-4d5d-b661-6a9b094632e4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "dependencies:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"aggregation\": {\n    \"kind\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f1472f0-b7b5-41bd-8ba5-071e603b39c5",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "dependencies:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"aggregation\": {\n    \"kind\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9076e78-0edb-4a2a-9c9b-b9c66cb80f0a",
+          "name": "Chart List Findings",
+          "request": {
+            "name": "Chart List Findings",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "charts",
+                "findings:chartList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"filterSets\": [\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ec07b43-1935-4473-91e1-d4f69d53bbe1",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findings:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"filterSets\": [\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"value\": 2522,\n      \"productId\": \"string\",\n      \"productName\": \"string\",\n      \"severity\": \"unspecified\",\n      \"toolName\": \"string\",\n      \"type\": \"mitigation\",\n      \"date\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"age\": \"string\",\n      \"secret.kind\": \"string\",\n      \"cryptoAlgorithmName\": \"string\",\n      \"cryptoProtocolName\": \"string\",\n      \"isNistIR8547Compliant\": true,\n      \"exploitabilityPredicates\": [\n        \"kev\",\n        \"verifiedExploit\"\n      ]\n    },\n    {\n      \"value\": 8523,\n      \"productId\": \"string\",\n      \"productName\": \"string\",\n      \"severity\": \"low\",\n      \"toolName\": \"string\",\n      \"type\": \"unknownVulnerability\",\n      \"date\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"age\": \"string\",\n      \"secret.kind\": \"string\",\n      \"cryptoAlgorithmName\": \"string\",\n      \"cryptoProtocolName\": \"string\",\n      \"isNistIR8547Compliant\": true,\n      \"exploitabilityPredicates\": [\n        \"ransomware\",\n        \"publicPoc\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ad0a9d4-9da7-44a8-82ef-00fcbd6fdd7d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findings:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"filterSets\": [\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77568ff2-28ce-444e-8709-746fbff04998",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findings:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"filterSets\": [\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbe13027-4fcc-46ab-8afd-618d04053cd7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findings:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"filterSets\": [\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4686612a-77f7-4107-908b-5011c0461007",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findings:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"filterSets\": [\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78036bcc-fc7e-43c5-ae3d-b84e64e99261",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findings:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ],\n  \"filterSets\": [\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"filters\": [\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"value\": \"\",\n          \"comparator\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4cd87cf-7fb0-42f5-8e75-6248894b43fa",
+          "name": "Chart List Findings Trend",
+          "request": {
+            "name": "Chart List Findings Trend",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "charts",
+                "findingsTrend:chartList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42b8bcfc-d1f4-4443-a286-71301a2093ea",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findingsTrend:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"value\": 5294,\n      \"productId\": \"string\",\n      \"productName\": \"string\",\n      \"severity\": \"unspecified\",\n      \"toolName\": \"string\",\n      \"type\": \"suspiciousCode\",\n      \"date\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"age\": \"string\",\n      \"secret.kind\": \"string\",\n      \"cryptoAlgorithmName\": \"string\",\n      \"cryptoProtocolName\": \"string\",\n      \"isNistIR8547Compliant\": true,\n      \"exploitabilityPredicates\": [\n        \"kev\",\n        \"publicExploit\"\n      ]\n    },\n    {\n      \"value\": 8378,\n      \"productId\": \"string\",\n      \"productName\": \"string\",\n      \"severity\": \"critical\",\n      \"toolName\": \"string\",\n      \"type\": \"mitigation\",\n      \"date\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"age\": \"string\",\n      \"secret.kind\": \"string\",\n      \"cryptoAlgorithmName\": \"string\",\n      \"cryptoProtocolName\": \"string\",\n      \"isNistIR8547Compliant\": false,\n      \"exploitabilityPredicates\": [\n        \"kev\",\n        \"kev\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9250ba52-bb6d-4ee9-ae35-d38f0fd09dc8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findingsTrend:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "901c8eb0-ed52-445c-9d94-282ff16bc8c3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findingsTrend:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6acfd64-90f7-4482-ba74-4e0069185b95",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findingsTrend:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55b96057-ec58-49f6-8701-b0502c1f9726",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findingsTrend:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6238fe72-3986-40bd-b01e-d89b37ac8f51",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "findingsTrend:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "054aa5fe-d575-4082-b979-c3b54634247d",
+          "name": "Chart List Cryptographic Assets",
+          "request": {
+            "name": "Chart List Cryptographic Assets",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "charts",
+                "cryptographicAssets:chartList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62a24430-5be5-4192-a999-8e0ab9440efe",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "cryptographicAssets:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"value\": 897,\n      \"type\": \"string\",\n      \"isVulnerable\": false\n    },\n    {\n      \"value\": 5723,\n      \"type\": \"string\",\n      \"isVulnerable\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f16af90-e062-4e7e-879e-d3a2719bbdde",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "cryptographicAssets:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fd310ab-38e8-482e-86d1-97726ccf41fe",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "cryptographicAssets:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3f2211b-48c7-458e-a1e0-03193ce93f53",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "cryptographicAssets:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "869a21dd-f002-4f29-b20f-b3ba48e4e082",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "cryptographicAssets:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6a72fbc-6883-40ef-a251-0f21eca55b93",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "cryptographicAssets:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b5dfb23-8151-4cc2-8625-6687d65c36df",
+          "name": "Chart List Jira Issues",
+          "request": {
+            "name": "Chart List Jira Issues",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "charts",
+                "jira",
+                "issues:chartList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c8b581c-5d4b-4a5b-9523-98559fed442b",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "jira",
+                    "issues:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"value\": 5106,\n      \"issueStatus\": \"string\"\n    },\n    {\n      \"value\": 5540,\n      \"issueStatus\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1de2528d-d725-4eb2-856c-0c434cf56a52",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "jira",
+                    "issues:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdfc88c3-5714-4d2b-9849-3f286d949c8f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "jira",
+                    "issues:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d020719-0576-43f4-b972-59ba07522aa3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "jira",
+                    "issues:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c07ebf70-db44-4fc3-90d7-85fa606009bb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "jira",
+                    "issues:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f675169a-4578-4eb3-8442-f5573b2d1000",
+          "name": "Chart List Provenances",
+          "request": {
+            "name": "Chart List Provenances",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "charts",
+                "provenances:chartList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f7dd5c7-b454-4cf3-bfab-077716efe2e5",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "provenances:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"value\": 7901,\n      \"vendor\": \"string\",\n      \"product\": \"string\",\n      \"vulnerabilitiesCount\": 9639,\n      \"medianEmsScore\": 9047.975172059676\n    },\n    {\n      \"value\": 969,\n      \"vendor\": \"string\",\n      \"product\": \"string\",\n      \"vulnerabilitiesCount\": 8760,\n      \"medianEmsScore\": 1081.045456609283\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cc1b0b9-cc54-4b2d-bd9a-d0fa0fb0d5d2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "provenances:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ddb256c-afcb-491f-80b7-ffb8494d914e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "provenances:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99b09a58-3c08-4d01-80f1-29ebb29a57f6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "provenances:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf41289d-278c-4874-8ba4-91ddaa9f355c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "charts",
+                    "provenances:chartList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": [\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"value\": \"\",\n      \"comparator\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2f42173e-e556-4543-a42c-25a7d963d87e",
+    "name": "Binarly Assistant Chart API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

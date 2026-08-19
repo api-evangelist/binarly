@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant RoleBinding API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RoleBinding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/roles"
+          },
+          "docs": "List Roles"
+        },
+        {
+          "info": {
+            "name": "List Role Bindings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/roleBindings",
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Role Bindings"
+        },
+        {
+          "info": {
+            "name": "Create Role Binding",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/roleBindings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Role Binding"
+        },
+        {
+          "info": {
+            "name": "Update Role Binding",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v4/roleBindings/:roleBindingId",
+            "params": [
+              {
+                "name": "roleBindingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Role Binding"
+        },
+        {
+          "info": {
+            "name": "Delete Role Binding",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v4/roleBindings/:roleBindingId",
+            "params": [
+              {
+                "name": "roleBindingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Role Binding"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

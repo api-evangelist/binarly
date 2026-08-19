@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant TempFile API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TempFile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Temporary File Upload URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/tempFiles:generateUploadUrl",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              }
+            ]
+          },
+          "docs": "Generate Temporary File Upload URL"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

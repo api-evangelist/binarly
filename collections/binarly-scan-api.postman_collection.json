@@ -1,0 +1,3315 @@
+{
+  "item": [
+    {
+      "id": "079b7f4c-005d-42d6-950a-c39ea9574cfd",
+      "name": "Scan",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf5a1452-c3cf-49fd-905f-f640ffccd98d",
+          "name": "List Scans",
+          "request": {
+            "name": "List Scans",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "products",
+                ":productId",
+                "images",
+                ":imageId",
+                "scans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "productId",
+                  "description": "(Required) Product ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "imageId",
+                  "description": "(Required) Image ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d9ec30c-9201-4546-a18d-32beb4e1c384",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scans\": [\n    {\n      \"author\": {\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"resourceType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"createTime\": \"2024-01-01T01:00:00Z\",\n      \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n      \"parent\": \"string\",\n      \"latestScanState\": {\n        \"createTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parent\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"author\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"source\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"author\": {\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"resourceType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"createTime\": \"2024-01-01T01:00:00Z\",\n      \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n      \"parent\": \"string\",\n      \"latestScanState\": {\n        \"createTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parent\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"author\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"source\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "219fbd4a-4a42-48a6-a58a-4b6bb0253d03",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a51b561-956f-4e3c-ab6d-43168bfc0677",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3ed1a05-f601-41d3-a389-17d77a9cdc07",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ffcfead-41cd-42ae-9727-11609e2f2539",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cbfc9fe-4e33-4eef-8c08-33927858625f",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01ac48c9-8d94-4cb7-b976-cb0075128773",
+          "name": "Create Scan",
+          "request": {
+            "name": "Create Scan",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "products",
+                ":productId",
+                "images",
+                ":imageId",
+                "scans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "productId",
+                  "description": "(Required) Product ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "imageId",
+                  "description": "(Required) Image ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7990f1b6-edba-4581-b189-71883c1c8520",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"author\": {\n    \"userId\": \"string\",\n    \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n    \"createTime\": \"2024-01-01T01:00:00Z\",\n    \"email\": \"user@binarly.io\",\n    \"status\": \"archived\",\n    \"resourceType\": \"Occurrence\"\n  },\n  \"createTime\": \"2024-01-01T01:00:00Z\",\n  \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n  \"parent\": \"string\",\n  \"latestScanState\": {\n    \"createTime\": \"2024-01-01T01:00:00Z\",\n    \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n    \"type\": \"failed\",\n    \"parent\": \"string\",\n    \"author\": {\n      \"readOnly\": true,\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"source\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "297702b3-58cb-49d2-8c72-a4462cef7e3a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef47dc5d-29be-42ed-83c3-1c05f7832c6b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc5fd6b9-29d2-435f-862e-c41ab3967eda",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54c8c720-8635-45aa-8219-c2cb67b2088d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a9672db-509f-4ad3-a8a9-4f22e8f38991",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bdc1e25-0ba7-412d-8f7a-1875d2dd43c1",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e922bf41-5b7d-4c66-bae7-ab6669945adb",
+          "name": "Get Scan by ID",
+          "request": {
+            "name": "Get Scan by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "products",
+                ":productId",
+                "images",
+                ":imageId",
+                "scans",
+                ":scanId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "productId",
+                  "description": "(Required) Product ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "imageId",
+                  "description": "(Required) Image ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "scanId",
+                  "description": "(Required) Scan ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc21d971-3991-4080-b7e8-d20bbcf19da0",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"author\": {\n    \"userId\": \"string\",\n    \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n    \"createTime\": \"2024-01-01T01:00:00Z\",\n    \"email\": \"user@binarly.io\",\n    \"status\": \"archived\",\n    \"resourceType\": \"Occurrence\"\n  },\n  \"createTime\": \"2024-01-01T01:00:00Z\",\n  \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n  \"parent\": \"string\",\n  \"latestScanState\": {\n    \"createTime\": \"2024-01-01T01:00:00Z\",\n    \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n    \"type\": \"failed\",\n    \"parent\": \"string\",\n    \"author\": {\n      \"readOnly\": true,\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"source\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c9328b6-a691-4233-b60c-831b514534a8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76751cb2-ad62-4386-833c-e0659183598e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edfbb7bd-2b78-46ec-b2a0-59907d870e06",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96899734-0112-4860-ad4d-80f39091be7e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ff99a72-6d68-4ee3-945b-232fd7dfd2a1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcb1ddbe-842d-403a-8691-b30487f853fc",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91dd0932-9984-4002-9005-7dc9a0f22dc2",
+          "name": "Create Scan State",
+          "request": {
+            "name": "Create Scan State",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "products",
+                ":productId",
+                "images",
+                ":imageId",
+                "scans",
+                ":scanId",
+                "states"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "productId",
+                  "description": "(Required) Product ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "imageId",
+                  "description": "(Required) Image ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "scanId",
+                  "description": "(Required) Scan ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a6cd26b-6cbb-43f4-bdd5-5cb17d350882",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"author\": {\n    \"userId\": \"string\",\n    \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n    \"createTime\": \"2024-01-01T01:00:00Z\",\n    \"email\": \"user@binarly.io\",\n    \"status\": \"archived\",\n    \"resourceType\": \"User\"\n  },\n  \"createTime\": \"2024-01-01T01:00:00Z\",\n  \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n  \"parent\": \"string\",\n  \"latestScanState\": {\n    \"createTime\": \"2024-01-01T01:00:00Z\",\n    \"id\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\",\n    \"type\": \"<string>\",\n    \"parent\": \"string\",\n    \"author\": {\n      \"readOnly\": true,\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"source\": \"01ARZ3NDEKTSV4RRFFQ69G5FAV\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a54d3220-294f-4829-8507-a8e966861a3b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0eaf561a-100c-4187-948f-d882292bc988",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2fe7db6-125e-41ab-96ea-e31541a3e4fd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89531664-788f-48e3-94ce-6a0eac66b1f2",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8e85b3f-d818-4586-b2f3-0d0e06b3130d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dec0f290-0207-4b64-8c2f-1deafa349aef",
+          "name": "Get Component by ID",
+          "request": {
+            "name": "Get Component by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "products",
+                ":productId",
+                "images",
+                ":imageId",
+                "scans",
+                ":scanId",
+                "components",
+                ":componentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "productId",
+                  "description": "(Required) Product ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "imageId",
+                  "description": "(Required) Image ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "scanId",
+                  "description": "(Required) Scan ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "componentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11e52c6b-5346-470d-9ce5-e93404dd617a",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components",
+                    ":componentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "componentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"containerPath\": \"string\",\n  \"attributes\": \"\",\n  \"kind\": \"string\",\n  \"md5\": \"string\",\n  \"sha1\": \"string\",\n  \"sha256\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96cd1088-65f0-4ebb-addc-4cabc71ab34f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components",
+                    ":componentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "componentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70224b67-4e1b-416c-ac38-7fac1efe0343",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components",
+                    ":componentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "componentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26c00b14-c1fa-480a-8fb5-0c61cd02725d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components",
+                    ":componentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "componentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de1ad6b1-4bf0-4eab-9656-98a2b047854f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components",
+                    ":componentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "componentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfd5d9b8-0dd6-4873-b30e-00539d5fefcf",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components",
+                    ":componentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "componentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf510b88-c7a2-4365-8e89-07c9a949667c",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components",
+                    ":componentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "componentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "697d6fd5-a8f4-4028-9f00-81d703e0e391",
+          "name": "List Components",
+          "request": {
+            "name": "List Components",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v4",
+                "products",
+                ":productId",
+                "images",
+                ":imageId",
+                "scans",
+                ":scanId",
+                "components"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "productId",
+                  "description": "(Required) Product ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "imageId",
+                  "description": "(Required) Image ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<ulid>",
+                  "key": "scanId",
+                  "description": "(Required) Scan ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0a16063-9580-4d4b-a175-63dd927d7099",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"components\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"containerPath\": \"string\",\n      \"attributes\": \"\",\n      \"kind\": \"string\",\n      \"md5\": \"string\",\n      \"sha1\": \"string\",\n      \"sha256\": \"string\",\n      \"components\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/RecursiveComponent detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/RecursiveComponent detected>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"containerPath\": \"string\",\n      \"attributes\": \"\",\n      \"kind\": \"string\",\n      \"md5\": \"string\",\n      \"sha1\": \"string\",\n      \"sha256\": \"string\",\n      \"components\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/RecursiveComponent detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/RecursiveComponent detected>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61c13ee9-74f6-449f-ba61-efe0cd479d5c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dcb5989-5004-4dd0-9ab8-9907fea365a6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3878023-6b08-443a-9eba-ca6f5b001345",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"permission\": \"string\",\n  \"resourceName\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "521b3c93-cb3c-42ee-959b-764ee975a7d1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "042e1bc6-adb4-40a1-99e4-25a445fad3ea",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a198c33-e169-47d7-9473-247f94407ca1",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v4",
+                    "products",
+                    ":productId",
+                    "images",
+                    ":imageId",
+                    "scans",
+                    ":scanId",
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "productId",
+                      "description": "(Required) Product ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "imageId",
+                      "description": "(Required) Image ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<ulid>",
+                      "key": "scanId",
+                      "description": "(Required) Scan ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    },\n    {\n      \"reason\": \"string\",\n      \"field\": \"string\",\n      \"service\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3284077a-34af-4f49-9574-35be7a7719a2",
+    "name": "Binarly Assistant Scan API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

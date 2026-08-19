@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant Notification API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Notification Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/users/me/notificationSettings"
+          },
+          "docs": "Get Notification Settings"
+        },
+        {
+          "info": {
+            "name": "Set Notification Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v4/users/me/notificationSettings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Notification Settings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

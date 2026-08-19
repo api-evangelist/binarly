@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant CustomRules API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CustomRules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/customRules:updateRules",
+            "params": [
+              {
+                "name": "dryRun",
+                "value": "",
+                "type": "query",
+                "description": "Validate only, don't save rules"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Update Rules"
+        },
+        {
+          "info": {
+            "name": "Bulk Disable Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/customRules:bulkDisable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Disable Rules"
+        },
+        {
+          "info": {
+            "name": "Bulk Enable Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/customRules:bulkEnable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Enable Rules"
+        },
+        {
+          "info": {
+            "name": "Get Rule by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/customRules/rules/:ruleName",
+            "params": [
+              {
+                "name": "ruleName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Rule by Name"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,282 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant Integration API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Integration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of providers and their active integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/providers"
+          },
+          "docs": "Get a list of providers and their active integrations"
+        },
+        {
+          "info": {
+            "name": "Create integration entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/providers/:provider/integrations",
+            "params": [
+              {
+                "name": "provider",
+                "value": "",
+                "type": "path",
+                "description": "Provider"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create integration entity"
+        },
+        {
+          "info": {
+            "name": "Update integration data",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update integration data"
+        },
+        {
+          "info": {
+            "name": "Get session for an integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId/session",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              }
+            ]
+          },
+          "docs": "Get session for an integration"
+        },
+        {
+          "info": {
+            "name": "List Jira projects with related issue types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId/jira/projects",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              }
+            ]
+          },
+          "docs": "List Jira projects with related issue types"
+        },
+        {
+          "info": {
+            "name": "Get Jira issue for specified finding",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId/jira/issues",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "query",
+                "description": "Finding Id"
+              }
+            ]
+          },
+          "docs": "Get Jira issue for specified finding"
+        },
+        {
+          "info": {
+            "name": "Create Jira issue for specified finding",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId/jira/issues",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "query",
+                "description": "Finding Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Jira issue for specified finding"
+        },
+        {
+          "info": {
+            "name": "Attach file to a Jira issue for specified finding",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId/jira/issues:attach",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "query",
+                "description": "Finding Id"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Attach file to a Jira issue for specified finding"
+        },
+        {
+          "info": {
+            "name": "Check Jira issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId/jira/issues:check",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              }
+            ]
+          },
+          "docs": "Check Jira issues"
+        },
+        {
+          "info": {
+            "name": "Create Jira webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId/jira/webhook",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Jira webhook"
+        },
+        {
+          "info": {
+            "name": "Delete Jira webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId/jira/webhook",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              }
+            ]
+          },
+          "docs": "Delete Jira webhook"
+        },
+        {
+          "info": {
+            "name": "Get failed Jira webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/providers/-/integrations/:integrationId/jira/webhook/failed",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration Id"
+              }
+            ]
+          },
+          "docs": "Get failed Jira webhooks"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

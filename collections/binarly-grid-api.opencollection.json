@@ -1,0 +1,212 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant Grid API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Grid",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Grid List Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/products:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Products"
+        },
+        {
+          "info": {
+            "name": "Grid List Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/images:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Images"
+        },
+        {
+          "info": {
+            "name": "Grid List Scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/scans:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Scans"
+        },
+        {
+          "info": {
+            "name": "Grid List Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/files:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Files"
+        },
+        {
+          "info": {
+            "name": "Grid List Findings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/findings:gridList",
+            "params": [
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "Content Type"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Findings"
+        },
+        {
+          "info": {
+            "name": "Grid List Dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/dependencies:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Dependencies"
+        },
+        {
+          "info": {
+            "name": "Grid List Components",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/components:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Components"
+        },
+        {
+          "info": {
+            "name": "Grid List Cryptographic Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/cryptographicAssets:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Cryptographic Assets"
+        },
+        {
+          "info": {
+            "name": "Grid List Custom Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/customRules:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Custom Rules"
+        },
+        {
+          "info": {
+            "name": "Grid List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/users:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Users"
+        },
+        {
+          "info": {
+            "name": "Grid List Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/groups:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Groups"
+        },
+        {
+          "info": {
+            "name": "Grid List Group Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/grids/groupMembers:gridList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grid List Group Members"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assistant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Assistant chats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/assistant/chats"
+          },
+          "docs": "List Assistant chats"
+        },
+        {
+          "info": {
+            "name": "Create Assistant chat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/assistant/chats"
+          },
+          "docs": "Create Assistant chat"
+        },
+        {
+          "info": {
+            "name": "Delete Assistant chat",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v4/assistant/chats/:chatId",
+            "params": [
+              {
+                "name": "chatId",
+                "value": "",
+                "type": "path",
+                "description": "Assistant chat ID"
+              }
+            ]
+          },
+          "docs": "Delete Assistant chat"
+        },
+        {
+          "info": {
+            "name": "Get Assistant chat history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/assistant/chats/:chatId/dialogs",
+            "params": [
+              {
+                "name": "chatId",
+                "value": "",
+                "type": "path",
+                "description": "Assistant chat ID"
+              }
+            ]
+          },
+          "docs": "Get Assistant chat history"
+        },
+        {
+          "info": {
+            "name": "Send Command to Chat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/assistant/chats/:chatId/dialogs:sendCommand",
+            "params": [
+              {
+                "name": "chatId",
+                "value": "",
+                "type": "path",
+                "description": "Assistant chat ID"
+              },
+              {
+                "name": "purpose",
+                "value": "",
+                "type": "query",
+                "description": "Chat purpose"
+              },
+              {
+                "name": "command",
+                "value": "",
+                "type": "query",
+                "description": "Command"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "query",
+                "description": "Finding Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send Command to Chat"
+        },
+        {
+          "info": {
+            "name": "Get Assistant suggestions for finding",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/assistant/chats/:chatId/suggestions",
+            "params": [
+              {
+                "name": "chatId",
+                "value": "",
+                "type": "path",
+                "description": "Assistant chat ID"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "query",
+                "description": "Finding Id"
+              }
+            ]
+          },
+          "docs": "Get Assistant suggestions for finding"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

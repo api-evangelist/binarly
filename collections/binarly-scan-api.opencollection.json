@@ -1,0 +1,207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant Scan API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/scans",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              }
+            ]
+          },
+          "docs": "List Scans"
+        },
+        {
+          "info": {
+            "name": "Create Scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/scans",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              }
+            ]
+          },
+          "docs": "Create Scan"
+        },
+        {
+          "info": {
+            "name": "Get Scan by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/scans/:scanId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan ID"
+              }
+            ]
+          },
+          "docs": "Get Scan by ID"
+        },
+        {
+          "info": {
+            "name": "Create Scan State",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/scans/:scanId/states",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Scan State"
+        },
+        {
+          "info": {
+            "name": "Get Component by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/scans/:scanId/components/:componentId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan ID"
+              },
+              {
+                "name": "componentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Component by ID"
+        },
+        {
+          "info": {
+            "name": "List Components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/scans/:scanId/components",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan ID"
+              }
+            ]
+          },
+          "docs": "List Components"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

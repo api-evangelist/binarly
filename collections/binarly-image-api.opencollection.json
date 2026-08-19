@@ -1,0 +1,514 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant Image API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images:upload",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "createScan",
+                "value": "",
+                "type": "query",
+                "description": "Create a Scan for the Image"
+              },
+              {
+                "name": "tempFileId",
+                "value": "",
+                "type": "query",
+                "description": "Temporary File ID of uploaded file"
+              },
+              {
+                "name": "imageName",
+                "value": "",
+                "type": "query",
+                "description": "Uploaded image name when body is empty"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Uploaded image version when body is empty"
+              },
+              {
+                "name": "filename",
+                "value": "",
+                "type": "query",
+                "description": "Uploaded image filename when body is empty"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload Image"
+        },
+        {
+          "info": {
+            "name": "Get Image by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "withCounts",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Image by ID"
+        },
+        {
+          "info": {
+            "name": "Update Image by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Image by ID"
+        },
+        {
+          "info": {
+            "name": "List Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              }
+            ]
+          },
+          "docs": "List Images"
+        },
+        {
+          "info": {
+            "name": "Bulk Archive Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images:bulkArchive",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Archive Images"
+        },
+        {
+          "info": {
+            "name": "Bulk Unarchive Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images:bulkUnarchive",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Unarchive Images"
+        },
+        {
+          "info": {
+            "name": "CycloneDX SBOM Report for an Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/sbomReport:cycloneDX",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "Content Type"
+              }
+            ]
+          },
+          "docs": "CycloneDX SBOM Report for an Image"
+        },
+        {
+          "info": {
+            "name": "SPDX SBOM Report for an Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/sbomReport:SPDX",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              }
+            ]
+          },
+          "docs": "SPDX SBOM Report for an Image"
+        },
+        {
+          "info": {
+            "name": "CBOM Report for an Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/cbomReport:cycloneDX",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              }
+            ]
+          },
+          "docs": "CBOM Report for an Image"
+        },
+        {
+          "info": {
+            "name": "VEX Report for an Image in OpenVEX format",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/vexReport:openVEX",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "query",
+                "description": "Finding ID"
+              }
+            ]
+          },
+          "docs": "VEX Report for an Image in OpenVEX format"
+        },
+        {
+          "info": {
+            "name": "VEX Report for an Image in CycloneDX format",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/vexReport:cycloneDX",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "query",
+                "description": "Finding ID"
+              }
+            ]
+          },
+          "docs": "VEX Report for an Image in CycloneDX format"
+        },
+        {
+          "info": {
+            "name": "Image Findings PDF Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/findingsReport:pdf",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Image Findings PDF Report"
+        },
+        {
+          "info": {
+            "name": "Download Image Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/findingsReport:download",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "Content Type"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Download Image Report"
+        },
+        {
+          "info": {
+            "name": "Download Cryptographic Materials Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/cryptographicMaterialsReport",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "Content Type"
+              }
+            ]
+          },
+          "docs": "Download Cryptographic Materials Report"
+        },
+        {
+          "info": {
+            "name": "Advisory Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/advisoryReport",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "Content Type"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Advisory Report"
+        },
+        {
+          "info": {
+            "name": "Image Findings JSON Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/products/:productId/images/:imageId/findingsReport:json",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Image ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Image Findings JSON Report"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

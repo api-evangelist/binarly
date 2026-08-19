@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant Finding API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Finding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Finding State",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/products/:productId/findings/:findingId/CreateFindingState",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "path",
+                "description": "Finding ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Finding State"
+        },
+        {
+          "info": {
+            "name": "Finding PDF Detail Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/findings/:findingId/detailReport:pdf",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "path",
+                "description": "Finding ID"
+              },
+              {
+                "name": "occurrences.imageId",
+                "value": "",
+                "type": "query",
+                "description": "Image ID"
+              }
+            ]
+          },
+          "docs": "Finding PDF Detail Report"
+        },
+        {
+          "info": {
+            "name": "Get Finding",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/findings/:findingId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "path",
+                "description": "Finding ID"
+              },
+              {
+                "name": "occurrences.imageId",
+                "value": "",
+                "type": "query",
+                "description": "Image ID"
+              }
+            ]
+          },
+          "docs": "Get Finding"
+        },
+        {
+          "info": {
+            "name": "Finding Advisory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v4/products/:productId/findings/:findingId/advisory",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              },
+              {
+                "name": "findingId",
+                "value": "",
+                "type": "path",
+                "description": "Finding ID"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "Content Type"
+              }
+            ]
+          },
+          "docs": "Finding Advisory"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

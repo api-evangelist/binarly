@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Binarly Assistant Chart API",
+    "version": "4.275.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chart List Components",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/charts/components:chartList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Chart List Components"
+        },
+        {
+          "info": {
+            "name": "Chart List Dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/charts/dependencies:chartList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Chart List Dependencies"
+        },
+        {
+          "info": {
+            "name": "Chart List Findings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/charts/findings:chartList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Chart List Findings"
+        },
+        {
+          "info": {
+            "name": "Chart List Findings Trend",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/charts/findingsTrend:chartList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Chart List Findings Trend"
+        },
+        {
+          "info": {
+            "name": "Chart List Cryptographic Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/charts/cryptographicAssets:chartList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Chart List Cryptographic Assets"
+        },
+        {
+          "info": {
+            "name": "Chart List Jira Issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/charts/jira/issues:chartList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Chart List Jira Issues"
+        },
+        {
+          "info": {
+            "name": "Chart List Provenances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v4/charts/provenances:chartList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Chart List Provenances"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
