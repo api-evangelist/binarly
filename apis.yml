@@ -366,6 +366,8 @@ apis:
   humanURL: https://docs.binarly.io/api-reference/introduction
   baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
   tags:
+  - Scans
+  tags_raw:
   - Scan
   properties:
   - type: OpenAPI
