@@ -7,8 +7,8 @@ info:
     CycloneDX and SPDX SBOMs, an OpenVEX VEX, a CBOM, and a findings report — for
     procurement and regulatory evidence.
 sourceDescriptions:
-- name: binarly
-  url: ../openapi/binarly-openapi-original.yml
+- name: imageApi
+  url: ../openapi/binarly-image-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: generateComplianceArtifacts

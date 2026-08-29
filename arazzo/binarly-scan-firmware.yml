@@ -7,8 +7,20 @@ info:
     until it completes, then list the findings and pull a PDF report — the core
     CI/CD gate flow for the Binarly Transparency Platform.
 sourceDescriptions:
-- name: binarly
-  url: ../openapi/binarly-openapi-original.yml
+- name: gridApi
+  url: ../openapi/binarly-grid-api-openapi.yml
+  type: openapi
+- name: imageApi
+  url: ../openapi/binarly-image-api-openapi.yml
+  type: openapi
+- name: productApi
+  url: ../openapi/binarly-product-api-openapi.yml
+  type: openapi
+- name: scanApi
+  url: ../openapi/binarly-scan-api-openapi.yml
+  type: openapi
+- name: tempfileApi
+  url: ../openapi/binarly-tempfile-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: scanFirmwareInCICD
