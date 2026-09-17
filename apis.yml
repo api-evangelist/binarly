@@ -109,30 +109,6 @@ apis:
     url: conformance/binarly-conformance.yml
   - type: AgenticAccess
     url: agentic-access/binarly-agentic-access.yml
-- aid: binarly:binarly-customrules-api
-  name: Binarly CustomRules API
-  description: The CustomRules API from Binarly — 4 operation(s) for customrules.
-  humanURL: https://docs.binarly.io/api-reference/introduction
-  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
-  tags:
-  - CustomRules
-  properties:
-  - type: OpenAPI
-    url: openapi/binarly-customrules-api-openapi.yml
-  - type: Authentication
-    url: authentication/binarly-authentication.yml
-  - type: Conventions
-    url: conventions/binarly-conventions.yml
-  - type: ErrorCatalog
-    url: errors/binarly-problem-types.yml
-  - type: Lifecycle
-    url: lifecycle/binarly-lifecycle.yml
-  - type: DataModel
-    url: data-model/binarly-data-model.yml
-  - type: Conformance
-    url: conformance/binarly-conformance.yml
-  - type: AgenticAccess
-    url: agentic-access/binarly-agentic-access.yml
 - aid: binarly:binarly-escalation-api
   name: Binarly Escalation API
   description: The Escalation API from Binarly — 1 operation(s) for escalation.
@@ -529,6 +505,30 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/binarly-vulnerability-api-openapi.yml
+  - type: Authentication
+    url: authentication/binarly-authentication.yml
+  - type: Conventions
+    url: conventions/binarly-conventions.yml
+  - type: ErrorCatalog
+    url: errors/binarly-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/binarly-lifecycle.yml
+  - type: DataModel
+    url: data-model/binarly-data-model.yml
+  - type: Conformance
+    url: conformance/binarly-conformance.yml
+  - type: AgenticAccess
+    url: agentic-access/binarly-agentic-access.yml
+- aid: binarly:binarly-custom-rules-api
+  name: Binarly Custom Rules API
+  description: The Custom Rules API from Binarly — 4 operation(s) for custom rules.
+  humanURL: https://docs.binarly.io/api-reference/introduction
+  baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
+  tags:
+  - Custom Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/binarly-custom-rules-api-openapi.yml
   - type: Authentication
     url: authentication/binarly-authentication.yml
   - type: Conventions
