@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Binarly Assistant RoleBinding API
+  title: Binarly Role Binding API
   version: 4.275.2
 security:
 - auth: []
@@ -152,49 +152,25 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    WithOptionalResourceType:
+    WithRoles:
       type: object
+      required:
+      - roles
       properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
     RoleBinding:
       type: object
       required:
@@ -213,6 +189,79 @@ components:
           - $ref: '#/components/schemas/Group'
         resourceName:
           $ref: '#/components/schemas/ResourceName'
+    WithOptionalCreateTime:
+      type: object
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithBoundResourceTypes:
+      type: object
+      required:
+      - boundResourceTypes
+      properties:
+        boundResourceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceType'
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    WithRoleBindings:
+      type: object
+      required:
+      - roleBindings
+      properties:
+        roleBindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleBinding'
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    UpdateRoleBindingPayload:
+      type: object
+      required:
+      - roleId
+      properties:
+        roleId:
+          $ref: '#/components/schemas/ULID'
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
     WithResourceType:
       type: object
       required:
@@ -220,6 +269,71 @@ components:
       properties:
         resourceType:
           $ref: '#/components/schemas/ResourceType'
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    CreateRoleBindingPayload:
+      type: object
+      required:
+      - roleId
+      - identityId
+      - identityResourceType
+      - resourceName
+      properties:
+        roleId:
+          $ref: '#/components/schemas/ULID'
+        identityId:
+          $ref: '#/components/schemas/ULID'
+        identityResourceType:
+          $ref: '#/components/schemas/ResourceType'
+        resourceName:
+          $ref: '#/components/schemas/ResourceName'
+    WithId:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+    ResourceName:
+      type: string
+      example: products/{productId}
+    WithPermissions:
+      type: object
+      required:
+      - permissions
+      properties:
+        permissions:
+          type: array
+          items:
+            type: string
+            example: users.create
     ErrorDetail:
       type: object
       required:
@@ -234,46 +348,6 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    User:
-      readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/WithUserId'
-      - $ref: '#/components/schemas/WithOptionalId'
-      - $ref: '#/components/schemas/WithOptionalCreateTime'
-      - $ref: '#/components/schemas/WithOptionalEmail'
-      - $ref: '#/components/schemas/WithOptionalUserStatus'
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-    Role:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithPermissions'
-      - $ref: '#/components/schemas/WithBoundResourceTypes'
-    WithBoundResourceTypes:
-      type: object
-      required:
-      - boundResourceTypes
-      properties:
-        boundResourceTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceType'
-    UpdateRoleBindingPayload:
-      type: object
-      required:
-      - roleId
-      properties:
-        roleId:
-          $ref: '#/components/schemas/ULID'
-    WithRoles:
-      type: object
-      required:
-      - roles
-      properties:
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
     WithOptionalId:
       type: object
       properties:
@@ -281,27 +355,18 @@ components:
           readOnly: true
           allOf:
           - $ref: '#/components/schemas/ULID'
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
     Group:
       allOf:
       - $ref: '#/components/schemas/WithId'
       - $ref: '#/components/schemas/WithCreateTime'
       - $ref: '#/components/schemas/WithName'
       - $ref: '#/components/schemas/WithResourceType'
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
+    Role:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithPermissions'
+      - $ref: '#/components/schemas/WithBoundResourceTypes'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -319,108 +384,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    WithPermissions:
-      type: object
-      required:
-      - permissions
-      properties:
-        permissions:
-          type: array
-          items:
-            type: string
-            example: users.create
-    ResourceName:
-      type: string
-      example: products/{productId}
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
-    WithRoleBindings:
-      type: object
-      required:
-      - roleBindings
-      properties:
-        roleBindings:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleBinding'
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    WithOptionalCreateTime:
-      type: object
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    CreateRoleBindingPayload:
-      type: object
-      required:
-      - roleId
-      - identityId
-      - identityResourceType
-      - resourceName
-      properties:
-        roleId:
-          $ref: '#/components/schemas/ULID'
-        identityId:
-          $ref: '#/components/schemas/ULID'
-        identityResourceType:
-          $ref: '#/components/schemas/ResourceType'
-        resourceName:
-          $ref: '#/components/schemas/ResourceName'
     WithUserId:
       type: object
       required:
@@ -430,6 +393,43 @@ components:
           type: string
           readOnly: true
           x-go-type-skip-optional-pointer: true
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     QueryResourceName:
       name: resourceName

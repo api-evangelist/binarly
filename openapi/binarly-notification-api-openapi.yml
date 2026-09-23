@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Binarly Assistant Notification API
+  title: Binarly Notification API
   version: 4.275.2
 security:
 - auth: []
@@ -64,11 +64,6 @@ components:
       - immediate
       - daily
       - weekly
-    WithOptionalSlackWebhookURL:
-      type: object
-      properties:
-        slackWebhookURL:
-          type: string
     WithEmailEnabled:
       type: object
       required:
@@ -76,13 +71,13 @@ components:
       properties:
         emailEnabled:
           type: boolean
-    WithSlackInterval:
-      type: object
-      required:
-      - slackInterval
-      properties:
-        slackInterval:
-          $ref: '#/components/schemas/NotificationIntervalEnum'
+    NotificationSettings:
+      allOf:
+      - $ref: '#/components/schemas/WithEmailInterval'
+      - $ref: '#/components/schemas/WithSlackInterval'
+      - $ref: '#/components/schemas/WithEmailEnabled'
+      - $ref: '#/components/schemas/WithSlackEnabled'
+      - $ref: '#/components/schemas/WithOptionalSlackWebhookURL'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -100,27 +95,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    NotificationSettings:
-      allOf:
-      - $ref: '#/components/schemas/WithEmailInterval'
-      - $ref: '#/components/schemas/WithSlackInterval'
-      - $ref: '#/components/schemas/WithEmailEnabled'
-      - $ref: '#/components/schemas/WithSlackEnabled'
-      - $ref: '#/components/schemas/WithOptionalSlackWebhookURL'
-    WithEmailInterval:
-      type: object
-      required:
-      - emailInterval
-      properties:
-        emailInterval:
-          $ref: '#/components/schemas/NotificationIntervalEnum'
-    WithSlackEnabled:
-      type: object
-      required:
-      - slackEnabled
-      properties:
-        slackEnabled:
-          type: boolean
     ErrorResponse:
       required:
       - message
@@ -148,13 +122,39 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
+    WithEmailInterval:
+      type: object
+      required:
+      - emailInterval
+      properties:
+        emailInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
+    WithSlackEnabled:
+      type: object
+      required:
+      - slackEnabled
+      properties:
+        slackEnabled:
+          type: boolean
+    WithSlackInterval:
+      type: object
+      required:
+      - slackInterval
+      properties:
+        slackInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
+    WithOptionalSlackWebhookURL:
+      type: object
+      properties:
+        slackWebhookURL:
+          type: string
   responses:
-    Forbidden:
-      description: Forbidden
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized
       content:
@@ -173,12 +173,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
   securitySchemes:
     auth:
       type: http

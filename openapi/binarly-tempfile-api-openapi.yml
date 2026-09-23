@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Binarly Assistant TempFile API
+  title: Binarly Temp File API
   version: 4.275.2
 security:
 - auth: []
@@ -35,14 +35,14 @@ paths:
           $ref: '#/components/responses/BadGateway'
 components:
   responses:
-    Forbidden:
-      description: Forbidden
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
-    Unauthorized:
-      description: Unauthorized
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -59,12 +59,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
   schemas:
     ULID:
       type: string
@@ -105,6 +105,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
+    TempFile:
+      type: object
+      required:
+      - uploadUrl
+      - id
+      properties:
+        uploadUrl:
+          type: string
+        id:
+          $ref: '#/components/schemas/ULID'
     ErrorDetail:
       type: object
       required:
@@ -119,16 +129,6 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    TempFile:
-      type: object
-      required:
-      - uploadUrl
-      - id
-      properties:
-        uploadUrl:
-          type: string
-        id:
-          $ref: '#/components/schemas/ULID'
   parameters:
     PathProductId:
       name: productId

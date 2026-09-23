@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Binarly Assistant Subscription API
+  title: Binarly Subscription API
   version: 4.275.2
 security:
 - auth: []
@@ -91,38 +91,20 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    SubscriptionPayload:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WithResourceName'
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
     WithSubscriptions:
       type: object
       required:
@@ -132,9 +114,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Subscription'
-    Subscriptions:
+    Subscription:
       allOf:
-      - $ref: '#/components/schemas/WithSubscriptions'
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithResourceName'
+      - $ref: '#/components/schemas/WithCreateTime'
     ULID:
       type: string
       format: ulid
@@ -161,33 +145,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithId:
+    WithResourceName:
       type: object
       required:
-      - id
+      - resourceName
       properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    SubscriptionPayload:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/WithResourceName'
-    Subscription:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithResourceName'
-      - $ref: '#/components/schemas/WithCreateTime'
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
+        resourceName:
           type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
     ErrorResponse:
       required:
       - message
@@ -215,13 +179,49 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    WithResourceName:
+    WithId:
       type: object
       required:
-      - resourceName
+      - id
       properties:
-        resourceName:
-          type: string
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    Subscriptions:
+      allOf:
+      - $ref: '#/components/schemas/WithSubscriptions'
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
   parameters:
     QueryResourceName:
       name: resourceName

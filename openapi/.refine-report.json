@@ -1,26 +1,7 @@
 {
   "provider": "binarly",
   "sources": [
-    "binarly-assistant-api-openapi.yml",
-    "binarly-chart-api-openapi.yml",
-    "binarly-customrules-api-openapi.yml",
-    "binarly-escalation-api-openapi.yml",
-    "binarly-file-api-openapi.yml",
-    "binarly-finding-api-openapi.yml",
-    "binarly-grid-api-openapi.yml",
-    "binarly-group-api-openapi.yml",
-    "binarly-image-api-openapi.yml",
-    "binarly-integration-api-openapi.yml",
-    "binarly-notification-api-openapi.yml",
-    "binarly-product-api-openapi.yml",
-    "binarly-rolebinding-api-openapi.yml",
-    "binarly-scan-api-openapi.yml",
-    "binarly-search-api-openapi.yml",
-    "binarly-subscription-api-openapi.yml",
-    "binarly-tempfile-api-openapi.yml",
-    "binarly-user-api-openapi.yml",
-    "binarly-userstorage-api-openapi.yml",
-    "binarly-vulnerability-api-openapi.yml"
+    "_original/binarly-openapi-original.yml"
   ],
   "outputs": [
     "binarly-assistant-api-openapi.yml",
@@ -44,9 +25,57 @@
     "binarly-userstorage-api-openapi.yml",
     "binarly-vulnerability-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "binarly-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "binarly-openapi-original.yml: declared missing tag: Assistant",
+    "binarly-openapi-original.yml: declared missing tag: Chart",
+    "binarly-openapi-original.yml: declared missing tag: CustomRules",
+    "binarly-openapi-original.yml: declared missing tag: Escalation",
+    "binarly-openapi-original.yml: declared missing tag: File",
+    "binarly-openapi-original.yml: declared missing tag: Finding",
+    "binarly-openapi-original.yml: declared missing tag: Grid",
+    "binarly-openapi-original.yml: declared missing tag: Group",
+    "binarly-openapi-original.yml: declared missing tag: Image",
+    "binarly-openapi-original.yml: declared missing tag: Integration",
+    "binarly-openapi-original.yml: declared missing tag: Notification",
+    "binarly-openapi-original.yml: declared missing tag: Product",
+    "binarly-openapi-original.yml: declared missing tag: RoleBinding",
+    "binarly-openapi-original.yml: declared missing tag: Scan",
+    "binarly-openapi-original.yml: declared missing tag: Search",
+    "binarly-openapi-original.yml: declared missing tag: Subscription",
+    "binarly-openapi-original.yml: declared missing tag: TempFile",
+    "binarly-openapi-original.yml: declared missing tag: User",
+    "binarly-openapi-original.yml: declared missing tag: UserStorage",
+    "binarly-openapi-original.yml: declared missing tag: Vulnerability",
+    "superseded outputs removed: binarly-custom-rules-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 20 total)"
+  ],
+  "skipped": [
+    "binarly-assistant-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-chart-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-custom-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-escalation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-file-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-finding-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-grid-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-group-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-image-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-integration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-notification-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-product-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-rolebinding-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-scan-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-subscription-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-tempfile-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-userstorage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "binarly-vulnerability-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

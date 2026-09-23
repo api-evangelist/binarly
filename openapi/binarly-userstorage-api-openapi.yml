@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Binarly Assistant UserStorage API
+  title: Binarly User Storage API
   version: 4.275.2
 security:
 - auth: []
@@ -127,58 +127,51 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    UserStorageKey:
-      type: string
-    UserStorageRecordPayload:
-      allOf:
-      - $ref: '#/components/schemas/WithOptionalUserStorageKey'
-      - $ref: '#/components/schemas/WithOptionalUserStorageValue'
-      - $ref: '#/components/schemas/WithOptionalUserStorageRecordTTL'
-    WithOptionalUserStorageRecordTTL:
+    ErrorResponse:
+      required:
+      - message
       type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithUserStorageRecordTTL:
+      type: object
+      required:
+      - ttl
       properties:
         ttl:
           type: integer
           format: int64
           minimum: 0
+    WithOptionalUserStorageValue:
+      type: object
+      properties:
+        value:
+          type: object
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    UserStorageRecord:
+      allOf:
+      - $ref: '#/components/schemas/WithUserStorageKey'
+      - $ref: '#/components/schemas/WithUserStorageValue'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithUserStorageRecordTTL'
+    UserStorageKey:
+      type: string
     ErrorDetail:
       type: object
       required:
@@ -193,18 +186,16 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    WithUserStorageKey:
+    UserStorageRecordPayload:
+      allOf:
+      - $ref: '#/components/schemas/WithOptionalUserStorageKey'
+      - $ref: '#/components/schemas/WithOptionalUserStorageValue'
+      - $ref: '#/components/schemas/WithOptionalUserStorageRecordTTL'
+    WithOptionalUserStorageKey:
       type: object
-      required:
-      - key
       properties:
         key:
           $ref: '#/components/schemas/UserStorageKey'
-    WithOptionalUserStorageValue:
-      type: object
-      properties:
-        value:
-          type: object
     ForbiddenErrorResponse:
       type: object
       required:
@@ -222,33 +213,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    WithOptionalUserStorageKey:
-      type: object
-      properties:
-        key:
-          $ref: '#/components/schemas/UserStorageKey'
-    WithUserStorageRecordTTL:
-      type: object
-      required:
-      - ttl
-      properties:
-        ttl:
-          type: integer
-          format: int64
-          minimum: 0
     WithUserStorageValue:
       type: object
       required:
@@ -256,21 +220,57 @@ components:
       properties:
         value:
           type: object
-    UserStorageRecord:
-      allOf:
-      - $ref: '#/components/schemas/WithUserStorageKey'
-      - $ref: '#/components/schemas/WithUserStorageValue'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithUserStorageRecordTTL'
-    WithCreateTime:
+    WithUserStorageKey:
       type: object
       required:
-      - createTime
+      - key
       properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
+        key:
+          $ref: '#/components/schemas/UserStorageKey'
+    WithOptionalUserStorageRecordTTL:
+      type: object
+      properties:
+        ttl:
+          type: integer
+          format: int64
+          minimum: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     auth:
       type: http

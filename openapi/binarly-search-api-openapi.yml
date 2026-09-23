@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Binarly Assistant Search API
+  title: Binarly Search API
   version: 4.275.2
 security:
 - auth: []
@@ -83,53 +83,51 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    WithOptionalResourceType:
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    ErrorResponse:
+      required:
+      - message
       type: object
       properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    SearchResults:
-      allOf:
-      - $ref: '#/components/schemas/WithSearchResults'
-      - $ref: '#/components/schemas/WithTotals'
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
     Resource:
       allOf:
       - $ref: '#/components/schemas/WithOptionalResourceType'
       - $ref: '#/components/schemas/WithResourceName'
       - $ref: '#/components/schemas/WithName'
       - $ref: '#/components/schemas/WithOptionalImageId'
+    SearchTokensResults:
+      allOf:
+      - $ref: '#/components/schemas/WithSearchTokensResults'
+    WithOptionalImageId:
+      type: object
+      properties:
+        imageId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithFieldName:
+      type: object
+      required:
+      - fieldName
+      properties:
+        fieldName:
+          type: string
     WithResourceHierarchy:
       type: object
       required:
@@ -139,12 +137,65 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Resource'
-    WithFieldName:
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    WithId:
       type: object
       required:
-      - fieldName
+      - id
       properties:
-        fieldName:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithHeadline:
+      type: object
+      required:
+      - headline
+      properties:
+        headline:
+          type: string
+    SearchResult:
+      allOf:
+      - $ref: '#/components/schemas/WithResourceHierarchy'
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithFieldName'
+      - $ref: '#/components/schemas/WithHeadline'
+    WithSearchResults:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    WithResourceName:
+      type: object
+      required:
+      - resourceName
+      properties:
+        resourceName:
+          type: string
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
           type: string
     ErrorDetail:
       type: object
@@ -160,25 +211,10 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    WithTotals:
-      type: object
-      required:
-      - total
-      properties:
-        total:
-          type: integer
-    WithOptionalImageId:
-      type: object
-      properties:
-        imageId:
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    SearchResult:
+    SearchResults:
       allOf:
-      - $ref: '#/components/schemas/WithResourceHierarchy'
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithFieldName'
-      - $ref: '#/components/schemas/WithHeadline'
+      - $ref: '#/components/schemas/WithSearchResults'
+      - $ref: '#/components/schemas/WithTotals'
     WithSearchTokensResults:
       type: object
       required:
@@ -188,6 +224,13 @@ components:
           type: array
           items:
             type: string
+    WithTotals:
+      type: object
+      required:
+      - total
+      properties:
+        total:
+          type: integer
     ForbiddenErrorResponse:
       type: object
       required:
@@ -205,89 +248,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    WithResourceName:
-      type: object
-      required:
-      - resourceName
-      properties:
-        resourceName:
-          type: string
-    WithSearchResults:
-      type: object
-      required:
-      - rows
-      properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchResult'
-    SearchTokensResults:
-      allOf:
-      - $ref: '#/components/schemas/WithSearchTokensResults'
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithHeadline:
-      type: object
-      required:
-      - headline
-      properties:
-        headline:
-          type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    QuerySkip:
-      name: skip
-      required: false
-      in: query
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     QuerySize:
       name: size
       required: false
@@ -297,6 +289,14 @@ components:
         minimum: 0
         maximum: 1000
         default: 30
+    QuerySkip:
+      name: skip
+      required: false
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     auth:
       type: http
