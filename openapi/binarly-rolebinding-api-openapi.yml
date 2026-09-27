@@ -153,24 +153,106 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    WithRoles:
+    Role:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithPermissions'
+      - $ref: '#/components/schemas/WithBoundResourceTypes'
+    WithPermissions:
       type: object
       required:
-      - roles
+      - permissions
       properties:
-        roles:
+        permissions:
           type: array
           items:
-            $ref: '#/components/schemas/Role'
-    ULID:
+            type: string
+            example: users.create
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    WithOptionalCreateTime:
+      type: object
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithBoundResourceTypes:
+      type: object
+      required:
+      - boundResourceTypes
+      properties:
+        boundResourceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceType'
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithRoleBindings:
+      type: object
+      required:
+      - roleBindings
+      properties:
+        roleBindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleBinding'
+    Group:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithResourceType'
+    WithResourceType:
+      type: object
+      required:
+      - resourceType
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    ResourceType:
       type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
     RoleBinding:
       type: object
       required:
@@ -189,13 +271,15 @@ components:
           - $ref: '#/components/schemas/Group'
         resourceName:
           $ref: '#/components/schemas/ResourceName'
-    WithOptionalCreateTime:
-      type: object
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
     ErrorResponse:
       required:
       - message
@@ -209,131 +293,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithBoundResourceTypes:
-      type: object
-      required:
-      - boundResourceTypes
-      properties:
-        boundResourceTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceType'
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    WithRoleBindings:
-      type: object
-      required:
-      - roleBindings
-      properties:
-        roleBindings:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleBinding'
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    UpdateRoleBindingPayload:
-      type: object
-      required:
-      - roleId
-      properties:
-        roleId:
-          $ref: '#/components/schemas/ULID'
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    WithResourceType:
-      type: object
-      required:
-      - resourceType
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    User:
-      readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/WithUserId'
-      - $ref: '#/components/schemas/WithOptionalId'
-      - $ref: '#/components/schemas/WithOptionalCreateTime'
-      - $ref: '#/components/schemas/WithOptionalEmail'
-      - $ref: '#/components/schemas/WithOptionalUserStatus'
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    CreateRoleBindingPayload:
-      type: object
-      required:
-      - roleId
-      - identityId
-      - identityResourceType
-      - resourceName
-      properties:
-        roleId:
-          $ref: '#/components/schemas/ULID'
-        identityId:
-          $ref: '#/components/schemas/ULID'
-        identityResourceType:
-          $ref: '#/components/schemas/ResourceType'
-        resourceName:
-          $ref: '#/components/schemas/ResourceName'
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    WithName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-    ResourceName:
-      type: string
-      example: products/{productId}
-    WithPermissions:
-      type: object
-      required:
-      - permissions
-      properties:
-        permissions:
-          type: array
-          items:
-            type: string
-            example: users.create
     ErrorDetail:
       type: object
       required:
@@ -348,25 +307,38 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    WithOptionalId:
+    UpdateRoleBindingPayload:
       type: object
+      required:
+      - roleId
       properties:
-        id:
+        roleId:
+          $ref: '#/components/schemas/ULID'
+    WithRoles:
+      type: object
+      required:
+      - roles
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    WithUserId:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
+          type: string
           readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    Group:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithResourceType'
-    Role:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithPermissions'
-      - $ref: '#/components/schemas/WithBoundResourceTypes'
+          x-go-type-skip-optional-pointer: true
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
     ForbiddenErrorResponse:
       type: object
       required:
@@ -384,42 +356,59 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithUserId:
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    WithId:
       type: object
       required:
-      - userId
+      - id
       properties:
-        userId:
-          type: string
+        id:
           readOnly: true
-          x-go-type-skip-optional-pointer: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    CreateRoleBindingPayload:
+      type: object
+      required:
+      - roleId
+      - identityId
+      - identityResourceType
+      - resourceName
+      properties:
+        roleId:
+          $ref: '#/components/schemas/ULID'
+        identityId:
+          $ref: '#/components/schemas/ULID'
+        identityResourceType:
+          $ref: '#/components/schemas/ResourceType'
+        resourceName:
+          $ref: '#/components/schemas/ResourceName'
+    ResourceName:
+      type: string
+      example: products/{productId}
+  parameters:
+    QueryResourceName:
+      name: resourceName
+      required: true
+      in: query
+      schema:
+        type: string
   responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
     InternalServerError:
       description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Conflict:
-      description: Conflict
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
@@ -430,13 +419,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    QueryResourceName:
-      name: resourceName
-      required: true
-      in: query
-      schema:
-        type: string
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     auth:
       type: http

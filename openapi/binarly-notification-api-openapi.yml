@@ -57,97 +57,6 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  schemas:
-    NotificationIntervalEnum:
-      type: string
-      enum:
-      - immediate
-      - daily
-      - weekly
-    WithEmailEnabled:
-      type: object
-      required:
-      - emailEnabled
-      properties:
-        emailEnabled:
-          type: boolean
-    NotificationSettings:
-      allOf:
-      - $ref: '#/components/schemas/WithEmailInterval'
-      - $ref: '#/components/schemas/WithSlackInterval'
-      - $ref: '#/components/schemas/WithEmailEnabled'
-      - $ref: '#/components/schemas/WithSlackEnabled'
-      - $ref: '#/components/schemas/WithOptionalSlackWebhookURL'
-    ForbiddenErrorResponse:
-      type: object
-      required:
-      - message
-      - permission
-      - resourceName
-      properties:
-        message:
-          type: string
-        permission:
-          type: string
-        resourceName:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    ErrorDetail:
-      type: object
-      required:
-      - error
-      properties:
-        reason:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
-    WithEmailInterval:
-      type: object
-      required:
-      - emailInterval
-      properties:
-        emailInterval:
-          $ref: '#/components/schemas/NotificationIntervalEnum'
-    WithSlackEnabled:
-      type: object
-      required:
-      - slackEnabled
-      properties:
-        slackEnabled:
-          type: boolean
-    WithSlackInterval:
-      type: object
-      required:
-      - slackInterval
-      properties:
-        slackInterval:
-          $ref: '#/components/schemas/NotificationIntervalEnum'
-    WithOptionalSlackWebhookURL:
-      type: object
-      properties:
-        slackWebhookURL:
-          type: string
   responses:
     InternalServerError:
       description: Internal server error
@@ -179,6 +88,97 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
+  schemas:
+    WithSlackEnabled:
+      type: object
+      required:
+      - slackEnabled
+      properties:
+        slackEnabled:
+          type: boolean
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    NotificationSettings:
+      allOf:
+      - $ref: '#/components/schemas/WithEmailInterval'
+      - $ref: '#/components/schemas/WithSlackInterval'
+      - $ref: '#/components/schemas/WithEmailEnabled'
+      - $ref: '#/components/schemas/WithSlackEnabled'
+      - $ref: '#/components/schemas/WithOptionalSlackWebhookURL'
+    WithOptionalSlackWebhookURL:
+      type: object
+      properties:
+        slackWebhookURL:
+          type: string
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    NotificationIntervalEnum:
+      type: string
+      enum:
+      - immediate
+      - daily
+      - weekly
+    WithSlackInterval:
+      type: object
+      required:
+      - slackInterval
+      properties:
+        slackInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
+    WithEmailEnabled:
+      type: object
+      required:
+      - emailEnabled
+      properties:
+        emailEnabled:
+          type: boolean
+    WithEmailInterval:
+      type: object
+      required:
+      - emailInterval
+      properties:
+        emailInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
   securitySchemes:
     auth:
       type: http

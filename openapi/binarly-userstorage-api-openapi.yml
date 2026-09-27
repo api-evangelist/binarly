@@ -128,91 +128,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    WithUserStorageRecordTTL:
-      type: object
-      required:
-      - ttl
-      properties:
-        ttl:
-          type: integer
-          format: int64
-          minimum: 0
-    WithOptionalUserStorageValue:
-      type: object
-      properties:
-        value:
-          type: object
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    UserStorageRecord:
-      allOf:
-      - $ref: '#/components/schemas/WithUserStorageKey'
-      - $ref: '#/components/schemas/WithUserStorageValue'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithUserStorageRecordTTL'
-    UserStorageKey:
-      type: string
-    ErrorDetail:
-      type: object
-      required:
-      - error
-      properties:
-        reason:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
-    UserStorageRecordPayload:
-      allOf:
-      - $ref: '#/components/schemas/WithOptionalUserStorageKey'
-      - $ref: '#/components/schemas/WithOptionalUserStorageValue'
-      - $ref: '#/components/schemas/WithOptionalUserStorageRecordTTL'
-    WithOptionalUserStorageKey:
-      type: object
-      properties:
-        key:
-          $ref: '#/components/schemas/UserStorageKey'
-    ForbiddenErrorResponse:
-      type: object
-      required:
-      - message
-      - permission
-      - resourceName
-      properties:
-        message:
-          type: string
-        permission:
-          type: string
-        resourceName:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
     WithUserStorageValue:
       type: object
       required:
@@ -234,9 +149,106 @@ components:
           type: integer
           format: int64
           minimum: 0
+    WithUserStorageRecordTTL:
+      type: object
+      required:
+      - ttl
+      properties:
+        ttl:
+          type: integer
+          format: int64
+          minimum: 0
+    UserStorageKey:
+      type: string
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    UserStorageRecordPayload:
+      allOf:
+      - $ref: '#/components/schemas/WithOptionalUserStorageKey'
+      - $ref: '#/components/schemas/WithOptionalUserStorageValue'
+      - $ref: '#/components/schemas/WithOptionalUserStorageRecordTTL'
+    UserStorageRecord:
+      allOf:
+      - $ref: '#/components/schemas/WithUserStorageKey'
+      - $ref: '#/components/schemas/WithUserStorageValue'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithUserStorageRecordTTL'
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithOptionalUserStorageValue:
+      type: object
+      properties:
+        value:
+          type: object
+    WithOptionalUserStorageKey:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/UserStorageKey'
   responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
@@ -253,20 +265,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Conflict:
       description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
       content:
         application/json:
           schema:

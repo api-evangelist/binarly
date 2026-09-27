@@ -193,11 +193,193 @@ paths:
           $ref: '#/components/responses/BadGateway'
 components:
   schemas:
+    Component:
+      allOf:
+      - $ref: '#/components/schemas/WithPlatformId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithPath'
+      - $ref: '#/components/schemas/WithOptionalContainerPath'
+      - $ref: '#/components/schemas/WithOptionalAttributes'
+      - $ref: '#/components/schemas/WithOptionalKind'
+      - $ref: '#/components/schemas/WithOptionalMd5'
+      - $ref: '#/components/schemas/WithOptionalSha1'
+      - $ref: '#/components/schemas/WithOptionalSha256'
+    WithPath:
+      type: object
+      required:
+      - path
+      properties:
+        path:
+          type: string
+    WithAuthor:
+      type: object
+      required:
+      - author
+      properties:
+        author:
+          $ref: '#/components/schemas/User'
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    WithOptionalComponents:
+      type: object
+      properties:
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecursiveComponent'
+    WithOptionalCreateTime:
+      type: object
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithRecursiveComponents:
+      type: object
+      required:
+      - components
+      properties:
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecursiveComponent'
+    WithOptionalSha1:
+      type: object
+      properties:
+        sha1:
+          type: string
+    WithOptionalAttributes:
+      type: object
+      properties:
+        attributes: {}
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    ScanState:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithScanStateType'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalAuthor'
+      - $ref: '#/components/schemas/WithOptionalSource'
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
     WithOptionalAuthor:
       type: object
       properties:
         author:
           $ref: '#/components/schemas/User'
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalSource:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/ULID'
+    WithOptionalParent:
+      type: object
+      properties:
+        parent:
+          $ref: '#/components/schemas/Parent'
+    Scan:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithOptionalLatestScanState'
+    WithOptionalKind:
+      type: object
+      properties:
+        kind:
+          type: string
+    WithScanStateType:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - new
+          - running
+          - failed
+          - done
+          - cancelled
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    WithOptionalLatestScanState:
+      type: object
+      properties:
+        latestScanState:
+          $ref: '#/components/schemas/ScanState'
+    RecursiveComponent:
+      allOf:
+      - $ref: '#/components/schemas/WithPlatformId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithPath'
+      - $ref: '#/components/schemas/WithOptionalContainerPath'
+      - $ref: '#/components/schemas/WithOptionalAttributes'
+      - $ref: '#/components/schemas/WithOptionalKind'
+      - $ref: '#/components/schemas/WithOptionalMd5'
+      - $ref: '#/components/schemas/WithOptionalSha1'
+      - $ref: '#/components/schemas/WithOptionalSha256'
+      - $ref: '#/components/schemas/WithOptionalComponents'
+    Parent:
+      type: string
+      format: path
+      description: URI path (path-noscheme) without the leading /
+      readOnly: true
+      x-go-type: string
+      x-go-type-skip-optional-pointer: true
+    WithPlatformId:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    WithOptionalSha256:
+      type: object
+      properties:
+        sha256:
+          type: string
     ULID:
       type: string
       format: ulid
@@ -207,13 +389,6 @@ components:
       x-go-type: ulid.ULID
       x-go-type-import:
         path: github.com/oklog/ulid/v2
-    WithOptionalCreateTime:
-      type: object
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
     ErrorResponse:
       required:
       - message
@@ -227,140 +402,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    RecursiveComponents:
-      $ref: '#/components/schemas/WithRecursiveComponents'
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    WithOptionalParent:
-      type: object
-      properties:
-        parent:
-          $ref: '#/components/schemas/Parent'
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    User:
-      readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/WithUserId'
-      - $ref: '#/components/schemas/WithOptionalId'
-      - $ref: '#/components/schemas/WithOptionalCreateTime'
-      - $ref: '#/components/schemas/WithOptionalEmail'
-      - $ref: '#/components/schemas/WithOptionalUserStatus'
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-    Component:
-      allOf:
-      - $ref: '#/components/schemas/WithPlatformId'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithPath'
-      - $ref: '#/components/schemas/WithOptionalContainerPath'
-      - $ref: '#/components/schemas/WithOptionalAttributes'
-      - $ref: '#/components/schemas/WithOptionalKind'
-      - $ref: '#/components/schemas/WithOptionalMd5'
-      - $ref: '#/components/schemas/WithOptionalSha1'
-      - $ref: '#/components/schemas/WithOptionalSha256'
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    WithOptionalComponents:
-      type: object
-      properties:
-        components:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecursiveComponent'
-    WithRecursiveComponents:
-      type: object
-      required:
-      - components
-      properties:
-        components:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecursiveComponent'
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    Scan:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithOptionalParent'
-      - $ref: '#/components/schemas/WithAuthor'
-      - $ref: '#/components/schemas/WithOptionalLatestScanState'
-    WithOptionalKind:
-      type: object
-      properties:
-        kind:
-          type: string
-    RecursiveComponent:
-      allOf:
-      - $ref: '#/components/schemas/WithPlatformId'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithPath'
-      - $ref: '#/components/schemas/WithOptionalContainerPath'
-      - $ref: '#/components/schemas/WithOptionalAttributes'
-      - $ref: '#/components/schemas/WithOptionalKind'
-      - $ref: '#/components/schemas/WithOptionalMd5'
-      - $ref: '#/components/schemas/WithOptionalSha1'
-      - $ref: '#/components/schemas/WithOptionalSha256'
-      - $ref: '#/components/schemas/WithOptionalComponents'
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    WithPath:
-      type: object
-      required:
-      - path
-      properties:
-        path:
-          type: string
-    WithName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-    WithOptionalSha1:
-      type: object
-      properties:
-        sha1:
-          type: string
     ErrorDetail:
       type: object
       required:
@@ -375,39 +416,17 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    ScanState:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithScanStateType'
-      - $ref: '#/components/schemas/WithOptionalParent'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithOptionalAuthor'
-      - $ref: '#/components/schemas/WithOptionalSource'
-    WithOptionalId:
-      type: object
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithOptionalAttributes:
-      type: object
-      properties:
-        attributes: {}
-    WithScans:
+    RecursiveComponents:
+      $ref: '#/components/schemas/WithRecursiveComponents'
+    WithUserId:
       type: object
       required:
-      - scans
+      - userId
       properties:
-        scans:
-          type: array
-          items:
-            $ref: '#/components/schemas/Scan'
-    WithOptionalContainerPath:
-      type: object
-      properties:
-        containerPath:
+        userId:
           type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
     ForbiddenErrorResponse:
       type: object
       required:
@@ -425,81 +444,55 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithAuthor:
-      type: object
-      required:
-      - author
-      properties:
-        author:
-          $ref: '#/components/schemas/User'
-    Parent:
-      type: string
-      format: path
-      description: URI path (path-noscheme) without the leading /
+    User:
       readOnly: true
-      x-go-type: string
-      x-go-type-skip-optional-pointer: true
-    WithOptionalSha256:
-      type: object
-      properties:
-        sha256:
-          type: string
-    WithPlatformId:
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    WithId:
       type: object
       required:
       - id
       properties:
         id:
-          type: string
-    WithUserId:
-      type: object
-      required:
-      - userId
-      properties:
-        userId:
-          type: string
           readOnly: true
-          x-go-type-skip-optional-pointer: true
-    WithOptionalSource:
-      type: object
-      properties:
-        source:
-          $ref: '#/components/schemas/ULID'
-    WithScanStateType:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithScans:
       type: object
       required:
-      - type
+      - scans
       properties:
-        type:
-          type: string
-          enum:
-          - new
-          - running
-          - failed
-          - done
-          - cancelled
-    WithOptionalLatestScanState:
-      type: object
-      properties:
-        latestScanState:
-          $ref: '#/components/schemas/ScanState'
+        scans:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
     WithOptionalMd5:
       type: object
       properties:
         md5:
+          type: string
+    WithOptionalContainerPath:
+      type: object
+      properties:
+        containerPath:
+          type: string
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
           type: string
   parameters:
     PathScanId:
       name: scanId
       in: path
       description: Scan ID
-      required: true
-      schema:
-        $ref: '#/components/schemas/ULID'
-    PathImageId:
-      name: imageId
-      in: path
-      description: Image ID
       required: true
       schema:
         $ref: '#/components/schemas/ULID'
@@ -510,9 +503,34 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/ULID'
+    PathImageId:
+      name: imageId
+      in: path
+      description: Image ID
+      required: true
+      schema:
+        $ref: '#/components/schemas/ULID'
   responses:
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
@@ -529,24 +547,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadGateway:
-      description: Bad Gateway
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     auth:
       type: http

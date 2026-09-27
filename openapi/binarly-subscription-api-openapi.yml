@@ -92,19 +92,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    SubscriptionPayload:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/WithResourceName'
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
     WithSubscriptions:
       type: object
       required:
@@ -114,11 +101,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Subscription'
-    Subscription:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithResourceName'
-      - $ref: '#/components/schemas/WithCreateTime'
     ULID:
       type: string
       format: ulid
@@ -128,30 +110,6 @@ components:
       x-go-type: ulid.ULID
       x-go-type-import:
         path: github.com/oklog/ulid/v2
-    ForbiddenErrorResponse:
-      type: object
-      required:
-      - message
-      - permission
-      - resourceName
-      properties:
-        message:
-          type: string
-        permission:
-          type: string
-        resourceName:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    WithResourceName:
-      type: object
-      required:
-      - resourceName
-      properties:
-        resourceName:
-          type: string
     ErrorResponse:
       required:
       - message
@@ -179,6 +137,36 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    SubscriptionPayload:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WithResourceName'
     WithId:
       type: object
       required:
@@ -191,6 +179,18 @@ components:
     Subscriptions:
       allOf:
       - $ref: '#/components/schemas/WithSubscriptions'
+    Subscription:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithResourceName'
+      - $ref: '#/components/schemas/WithCreateTime'
+    WithResourceName:
+      type: object
+      required:
+      - resourceName
+      properties:
+        resourceName:
+          type: string
   responses:
     InternalServerError:
       description: Internal server error

@@ -112,27 +112,44 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    WithIds:
+    WithUsers:
       type: object
       required:
-      - ids
+      - users
       properties:
-        ids:
+        users:
           type: array
           items:
-            $ref: '#/components/schemas/ULID'
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
+            $ref: '#/components/schemas/User'
+    WithPermissions:
+      type: object
+      required:
+      - permissions
+      properties:
+        permissions:
+          type: array
+          items:
+            type: string
+            example: users.create
     CreateUserPayload:
       allOf:
       - $ref: '#/components/schemas/WithEmail'
+    WithUser:
+      type: object
+      required:
+      - user
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
     WithOptionalCreateTime:
       type: object
       properties:
@@ -140,6 +157,22 @@ components:
           type: string
           readOnly: true
           example: '2024-01-01T01:00:00Z'
+    Org:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithName'
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    WithOrg:
+      type: object
+      required:
+      - org
+      properties:
+        org:
+          $ref: '#/components/schemas/Org'
     WithAllResourcesPermissions:
       type: object
       required:
@@ -149,6 +182,55 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourcePermissions'
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    WithIds:
+      type: object
+      required:
+      - ids
+      properties:
+        ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ULID'
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    WithEmail:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
     ErrorResponse:
       required:
       - message
@@ -162,108 +244,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    ResourcePermissions:
-      allOf:
-      - $ref: '#/components/schemas/WithResourceName'
-      - $ref: '#/components/schemas/WithPermissions'
-    WithEmail:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    User:
-      readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/WithUserId'
-      - $ref: '#/components/schemas/WithOptionalId'
-      - $ref: '#/components/schemas/WithOptionalCreateTime'
-      - $ref: '#/components/schemas/WithOptionalEmail'
-      - $ref: '#/components/schemas/WithOptionalUserStatus'
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    Org:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithName'
-    WithUser:
-      type: object
-      required:
-      - user
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    WithResourceName:
-      type: object
-      required:
-      - resourceName
-      properties:
-        resourceName:
-          type: string
-    WithOrg:
-      type: object
-      required:
-      - org
-      properties:
-        org:
-          $ref: '#/components/schemas/Org'
-    WithName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-    WithPermissions:
-      type: object
-      required:
-      - permissions
-      properties:
-        permissions:
-          type: array
-          items:
-            type: string
-            example: users.create
     ErrorDetail:
       type: object
       required:
@@ -278,13 +258,17 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    WithOptionalId:
+    BulkIds:
+      $ref: '#/components/schemas/WithIds'
+    WithUserId:
       type: object
+      required:
+      - userId
       properties:
-        id:
+        userId:
+          type: string
           readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
+          x-go-type-skip-optional-pointer: true
     ForbiddenErrorResponse:
       type: object
       required:
@@ -302,29 +286,57 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithUsers:
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    ResourcePermissions:
+      allOf:
+      - $ref: '#/components/schemas/WithResourceName'
+      - $ref: '#/components/schemas/WithPermissions'
+    WithId:
       type: object
       required:
-      - users
+      - id
       properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-    BulkIds:
-      $ref: '#/components/schemas/WithIds'
-    WithUserId:
-      type: object
-      required:
-      - userId
-      properties:
-        userId:
-          type: string
+        id:
           readOnly: true
-          x-go-type-skip-optional-pointer: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+    WithResourceName:
+      type: object
+      required:
+      - resourceName
+      properties:
+        resourceName:
+          type: string
   responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
@@ -341,20 +353,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Conflict:
       description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
       content:
         application/json:
           schema:

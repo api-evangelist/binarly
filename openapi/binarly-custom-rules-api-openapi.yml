@@ -129,72 +129,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    WithIsEnabled:
-      type: object
-      required:
-      - isEnabled
-      properties:
-        isEnabled:
-          type: boolean
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
-    WithOptionalCreateTime:
-      type: object
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    WithNames:
-      type: object
-      required:
-      - names
-      properties:
-        names:
-          type: array
-          items:
-            $ref: '#/components/schemas/Name'
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    WithOptionalDescription:
-      type: object
-      properties:
-        description:
-          type: string
-    UpdatedRules:
-      allOf:
-      - $ref: '#/components/schemas/WithRulesVersion'
-    RulesFiles:
-      type: array
-      items:
-        $ref: '#/components/schemas/RulesFile'
     RulesFile:
       type: object
       required:
@@ -207,61 +141,46 @@ components:
           type: string
         lintResults:
           $ref: '#/components/schemas/RulesLintResults'
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    Rule:
-      allOf:
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithOptionalTitle'
-      - $ref: '#/components/schemas/WithOptionalDescription'
-      - $ref: '#/components/schemas/WithSeverity'
-      - $ref: '#/components/schemas/WithIsEnabled'
-      - $ref: '#/components/schemas/WithAuthor'
-      - $ref: '#/components/schemas/WithUpdateTime'
-      - $ref: '#/components/schemas/WithBody'
-    User:
-      readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/WithUserId'
-      - $ref: '#/components/schemas/WithOptionalId'
-      - $ref: '#/components/schemas/WithOptionalCreateTime'
-      - $ref: '#/components/schemas/WithOptionalEmail'
-      - $ref: '#/components/schemas/WithOptionalUserStatus'
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    RulesUpload:
+    WithAuthor:
       type: object
       required:
-      - file
+      - author
       properties:
-        file:
+        author:
+          $ref: '#/components/schemas/User'
+    WithOptionalDescription:
+      type: object
+      properties:
+        description:
           type: string
-          format: binary
-    WithName:
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    WithOptionalTitle:
+      type: object
+      properties:
+        title:
+          type: string
+    WithBody:
       type: object
       required:
-      - name
+      - body
       properties:
-        name:
+        body:
           type: string
+    WithOptionalCreateTime:
+      type: object
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
     UnprocessableContentResponse:
       type: object
       required:
@@ -271,46 +190,19 @@ components:
         message:
           type: string
         errors: {}
-    ErrorDetail:
+    RulesLintResults:
       type: object
       required:
-      - error
+      - status
+      - details
       properties:
-        reason:
+        status:
           type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
-    Name:
-      type: string
-    WithRulesVersion:
-      type: object
-      required:
-      - version
-      properties:
-        version:
-          $ref: '#/components/schemas/RulesVersion'
-    WithOptionalId:
-      type: object
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    RulesVersion:
-      type: object
-      required:
-      - id
-      - rules
-      properties:
-        id:
-          $ref: '#/components/schemas/ULID'
-        rules:
-          $ref: '#/components/schemas/RulesFiles'
+          enum:
+          - ok
+          - error
+        details:
+          $ref: '#/components/schemas/RulesLintResultDetails'
     RulesLintResultDetails:
       type: object
       properties:
@@ -325,13 +217,47 @@ components:
           type: array
           items:
             type: string
-    UnprocessableRulesResponse:
+    WithRulesVersion:
       type: object
       required:
-      - errors
+      - version
       properties:
-        errors:
-          $ref: '#/components/schemas/RulesFiles'
+        version:
+          $ref: '#/components/schemas/RulesVersion'
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    RulesFiles:
+      type: array
+      items:
+        $ref: '#/components/schemas/RulesFile'
+    WithUpdateTime:
+      type: object
+      required:
+      - updateTime
+      properties:
+        updateTime:
+          type: string
+    BulkNames:
+      $ref: '#/components/schemas/WithNames'
+    WithNames:
+      type: object
+      required:
+      - names
+      properties:
+        names:
+          type: array
+          items:
+            $ref: '#/components/schemas/Name'
     WithSeverity:
       type: object
       required:
@@ -345,6 +271,87 @@ components:
           - medium
           - high
           - critical
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    WithIsEnabled:
+      type: object
+      required:
+      - isEnabled
+      properties:
+        isEnabled:
+          type: boolean
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    UpdatedRules:
+      allOf:
+      - $ref: '#/components/schemas/WithRulesVersion'
+    Rule:
+      allOf:
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithOptionalTitle'
+      - $ref: '#/components/schemas/WithOptionalDescription'
+      - $ref: '#/components/schemas/WithSeverity'
+      - $ref: '#/components/schemas/WithIsEnabled'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithUpdateTime'
+      - $ref: '#/components/schemas/WithBody'
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    WithUserId:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
     ForbiddenErrorResponse:
       type: object
       required:
@@ -362,63 +369,50 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithAuthor:
+    WithName:
       type: object
       required:
-      - author
+      - name
       properties:
-        author:
-          $ref: '#/components/schemas/User'
-    WithUserId:
+        name:
+          type: string
+    Name:
+      type: string
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    UnprocessableRulesResponse:
       type: object
       required:
-      - userId
+      - errors
       properties:
-        userId:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-    WithBody:
+        errors:
+          $ref: '#/components/schemas/RulesFiles'
+    RulesUpload:
       type: object
       required:
-      - body
+      - file
       properties:
-        body:
+        file:
           type: string
-    WithOptionalTitle:
-      type: object
-      properties:
-        title:
-          type: string
-    BulkNames:
-      $ref: '#/components/schemas/WithNames'
-    RulesLintResults:
+          format: binary
+    RulesVersion:
       type: object
       required:
-      - status
-      - details
+      - id
+      - rules
       properties:
-        status:
-          type: string
-          enum:
-          - ok
-          - error
-        details:
-          $ref: '#/components/schemas/RulesLintResultDetails'
-    WithUpdateTime:
-      type: object
-      required:
-      - updateTime
-      properties:
-        updateTime:
-          type: string
+        id:
+          $ref: '#/components/schemas/ULID'
+        rules:
+          $ref: '#/components/schemas/RulesFiles'
   responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     UnprocessableRules:
       description: Unprocessable Custom Rules
       content:
@@ -427,6 +421,24 @@ components:
             allOf:
             - $ref: '#/components/schemas/UnprocessableContentResponse'
             - $ref: '#/components/schemas/UnprocessableRulesResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Not Found
       content:
@@ -439,18 +451,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     auth:
       type: http

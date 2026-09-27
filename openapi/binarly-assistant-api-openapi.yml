@@ -208,60 +208,6 @@ paths:
           $ref: '#/components/responses/BadGateway'
 components:
   schemas:
-    Suggestion:
-      type: object
-      required:
-      - suggestion
-      - command
-      - findingId
-      properties:
-        suggestion:
-          type: string
-        command:
-          type: string
-        findingId:
-          type: string
-    Chats:
-      $ref: '#/components/schemas/WithChats'
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    ChatRequest:
-      allOf:
-      - $ref: '#/components/schemas/WithChatRequest'
-    ChatDialogs:
-      $ref: '#/components/schemas/WithChatDialogs'
-    Chat:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
     ChatDialog:
       type: object
       required:
@@ -275,17 +221,6 @@ components:
           type: string
         createTime:
           type: string
-    WithSuggestions:
-      type: object
-      required:
-      - suggestions
-      properties:
-        suggestions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Suggestion'
     WithChatDialogs:
       type: object
       required:
@@ -297,20 +232,24 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/ChatDialog'
-    ErrorDetail:
+    Chats:
+      $ref: '#/components/schemas/WithChats'
+    ChatDialogs:
+      $ref: '#/components/schemas/WithChatDialogs'
+    WithSuggestions:
       type: object
       required:
-      - error
+      - suggestions
       properties:
-        reason:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
+        suggestions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Suggestion'
+    Chat:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
     WithChats:
       type: object
       required:
@@ -327,6 +266,60 @@ components:
       properties:
         request:
           type: string
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    Suggestion:
+      type: object
+      required:
+      - suggestion
+      - command
+      - findingId
+      properties:
+        suggestion:
+          type: string
+        command:
+          type: string
+        findingId:
+          type: string
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    Suggestions:
+      $ref: '#/components/schemas/WithSuggestions'
+    ChatRequest:
+      allOf:
+      - $ref: '#/components/schemas/WithChatRequest'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -344,11 +337,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    Suggestions:
-      $ref: '#/components/schemas/WithSuggestions'
+    WithId:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
   responses:
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
@@ -365,24 +383,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadGateway:
-      description: Bad Gateway
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     auth:
       type: http

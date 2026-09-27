@@ -181,6 +181,97 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    WithAuthor:
+      type: object
+      required:
+      - author
+      properties:
+        author:
+          $ref: '#/components/schemas/User'
+    WithOptionalDescription:
+      type: object
+      properties:
+        description:
+          type: string
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    WithOptionalName:
+      type: object
+      properties:
+        name:
+          type: string
+    CreateProductPayload:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithOptionalDescription'
+    WithOptionalCreateTime:
+      type: object
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithProducts:
+      type: object
+      required:
+      - products
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+    Product:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithOptionalDescription'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithAuthor'
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalParent:
+      type: object
+      properties:
+        parent:
+          $ref: '#/components/schemas/Parent'
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
     WithIds:
       type: object
       required:
@@ -190,6 +281,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ULID'
+    Parent:
+      type: string
+      format: path
+      description: URI path (path-noscheme) without the leading /
+      readOnly: true
+      x-go-type: string
+      x-go-type-skip-optional-pointer: true
+    Products:
+      $ref: '#/components/schemas/WithProducts'
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
     ULID:
       type: string
       format: ulid
@@ -199,18 +305,6 @@ components:
       x-go-type: ulid.ULID
       x-go-type-import:
         path: github.com/oklog/ulid/v2
-    WithOptionalCreateTime:
-      type: object
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    WithOptionalName:
-      type: object
-      properties:
-        name:
-          type: string
     ErrorResponse:
       required:
       - message
@@ -224,104 +318,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    WithOptionalDescription:
-      type: object
-      properties:
-        description:
-          type: string
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    WithOptionalParent:
-      type: object
-      properties:
-        parent:
-          $ref: '#/components/schemas/Parent'
-    Product:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithOptionalParent'
-      - $ref: '#/components/schemas/WithOptionalDescription'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithAuthor'
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    User:
-      readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/WithUserId'
-      - $ref: '#/components/schemas/WithOptionalId'
-      - $ref: '#/components/schemas/WithOptionalCreateTime'
-      - $ref: '#/components/schemas/WithOptionalEmail'
-      - $ref: '#/components/schemas/WithOptionalUserStatus'
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    Products:
-      $ref: '#/components/schemas/WithProducts'
-    WithProducts:
-      type: object
-      required:
-      - products
-      properties:
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    CreateProductPayload:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithOptionalDescription'
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    WithName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
     ErrorDetail:
       type: object
       required:
@@ -336,13 +332,24 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    WithOptionalId:
+    BulkIds:
+      $ref: '#/components/schemas/WithIds'
+    WithUserId:
       type: object
+      required:
+      - userId
       properties:
-        id:
+        userId:
+          type: string
           readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
+          x-go-type-skip-optional-pointer: true
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
     ForbiddenErrorResponse:
       type: object
       required:
@@ -360,63 +367,44 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithAuthor:
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    WithId:
       type: object
       required:
-      - author
+      - id
       properties:
-        author:
-          $ref: '#/components/schemas/User'
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
     UpdateProductPayload:
       type: object
       allOf:
       - $ref: '#/components/schemas/WithOptionalName'
       - $ref: '#/components/schemas/WithOptionalDescription'
-    Parent:
-      type: string
-      format: path
-      description: URI path (path-noscheme) without the leading /
-      readOnly: true
-      x-go-type: string
-      x-go-type-skip-optional-pointer: true
-    BulkIds:
-      $ref: '#/components/schemas/WithIds'
-    WithUserId:
-      type: object
-      required:
-      - userId
-      properties:
-        userId:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
   responses:
-    Unauthorized:
-      description: Unauthorized
+    BadGateway:
+      description: Bad Gateway
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
     InternalServerError:
       description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Conflict:
-      description: Conflict
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
@@ -427,8 +415,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadGateway:
-      description: Bad Gateway
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Conflict
       content:
         application/json:
           schema:
