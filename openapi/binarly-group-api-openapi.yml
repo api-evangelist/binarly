@@ -226,56 +226,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    CreateGroupPayload:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/WithName'
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    WithOptionalCreateTime:
-      type: object
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    WithGroupMembers:
-      type: object
-      required:
-      - members
-      properties:
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    WithOptionalId:
-      type: object
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
     Groups:
       type: object
       required:
@@ -285,33 +235,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Group'
-    UpdateGroupPayload:
+    WithOptionalCreateTime:
       type: object
-      allOf:
-      - $ref: '#/components/schemas/WithName'
-    Group:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithResourceType'
-    WithResourceType:
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithName:
       type: object
       required:
-      - resourceType
+      - name
       properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
+        name:
+          type: string
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
     WithIds:
       type: object
       required:
@@ -321,21 +265,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ULID'
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    AddGroupMemberPayload:
-      type: object
-      required:
-      - userId
-      properties:
-        userId:
-          $ref: '#/components/schemas/ULID'
-        roleId:
-          $ref: '#/components/schemas/ULID'
     ULID:
       type: string
       format: ulid
@@ -345,19 +274,24 @@ components:
       x-go-type: ulid.ULID
       x-go-type-import:
         path: github.com/oklog/ulid/v2
-    ErrorResponse:
-      required:
-      - message
+    WithOptionalUserStatus:
       type: object
       properties:
-        message:
+        status:
           type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    AddGroupMemberPayload:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
+          $ref: '#/components/schemas/ULID'
+        roleId:
+          $ref: '#/components/schemas/ULID'
     ErrorDetail:
       type: object
       required:
@@ -372,24 +306,45 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    BulkIds:
-      $ref: '#/components/schemas/WithIds'
-    WithUserId:
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    WithGroupMembers:
       type: object
       required:
-      - userId
+      - members
       properties:
-        userId:
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    WithResourceType:
+      type: object
+      required:
+      - resourceType
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    UpdateGroupPayload:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WithName'
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
           type: string
           readOnly: true
           x-go-type-skip-optional-pointer: true
-    WithName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -407,6 +362,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
+    Group:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithResourceType'
+    CreateGroupPayload:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WithName'
     User:
       readOnly: true
       allOf:
@@ -416,6 +381,32 @@ components:
       - $ref: '#/components/schemas/WithOptionalEmail'
       - $ref: '#/components/schemas/WithOptionalUserStatus'
       - $ref: '#/components/schemas/WithOptionalResourceType'
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    BulkIds:
+      $ref: '#/components/schemas/WithIds'
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
     WithId:
       type: object
       required:
@@ -425,15 +416,30 @@ components:
           readOnly: true
           allOf:
           - $ref: '#/components/schemas/ULID'
+    WithUserId:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
   responses:
-    InternalServerError:
-      description: Internal server error
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -444,12 +450,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
     NotFound:
       description: Not Found
       content:

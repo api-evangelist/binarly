@@ -58,8 +58,20 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
     InternalServerError:
       description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
       content:
         application/json:
           schema:
@@ -76,39 +88,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
   schemas:
-    WithSlackEnabled:
-      type: object
-      required:
-      - slackEnabled
-      properties:
-        slackEnabled:
-          type: boolean
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
     ErrorDetail:
       type: object
       required:
@@ -123,6 +103,51 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    NotificationIntervalEnum:
+      type: string
+      enum:
+      - immediate
+      - daily
+      - weekly
+    WithEmailInterval:
+      type: object
+      required:
+      - emailInterval
+      properties:
+        emailInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
+    WithEmailEnabled:
+      type: object
+      required:
+      - emailEnabled
+      properties:
+        emailEnabled:
+          type: boolean
+    WithSlackInterval:
+      type: object
+      required:
+      - slackInterval
+      properties:
+        slackInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
+    WithOptionalSlackWebhookURL:
+      type: object
+      properties:
+        slackWebhookURL:
+          type: string
     NotificationSettings:
       allOf:
       - $ref: '#/components/schemas/WithEmailInterval'
@@ -130,11 +155,13 @@ components:
       - $ref: '#/components/schemas/WithEmailEnabled'
       - $ref: '#/components/schemas/WithSlackEnabled'
       - $ref: '#/components/schemas/WithOptionalSlackWebhookURL'
-    WithOptionalSlackWebhookURL:
+    WithSlackEnabled:
       type: object
+      required:
+      - slackEnabled
       properties:
-        slackWebhookURL:
-          type: string
+        slackEnabled:
+          type: boolean
     ForbiddenErrorResponse:
       type: object
       required:
@@ -152,33 +179,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    NotificationIntervalEnum:
-      type: string
-      enum:
-      - immediate
-      - daily
-      - weekly
-    WithSlackInterval:
-      type: object
-      required:
-      - slackInterval
-      properties:
-        slackInterval:
-          $ref: '#/components/schemas/NotificationIntervalEnum'
-    WithEmailEnabled:
-      type: object
-      required:
-      - emailEnabled
-      properties:
-        emailEnabled:
-          type: boolean
-    WithEmailInterval:
-      type: object
-      required:
-      - emailInterval
-      properties:
-        emailInterval:
-          $ref: '#/components/schemas/NotificationIntervalEnum'
   securitySchemes:
     auth:
       type: http

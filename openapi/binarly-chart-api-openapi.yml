@@ -228,8 +228,49 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ChartJiraIssues:
+    WithOptionalDate:
+      type: object
+      properties:
+        date:
+          type: string
+    WithOptionalCryptoAlgorithmName:
+      type: object
+      properties:
+        cryptoAlgorithmName:
+          type: string
+    ChartProvenances:
       type: object
       required:
       - rows
@@ -237,14 +278,106 @@ components:
         rows:
           type: array
           items:
-            $ref: '#/components/schemas/ChartJiraIssueRow'
-    ChartProvenanceRow:
-      allOf:
-      - $ref: '#/components/schemas/WithOptionalVendor'
-      - $ref: '#/components/schemas/WithOptionalProduct'
-      - $ref: '#/components/schemas/WithOptionalVulnerabilitiesCount'
-      - $ref: '#/components/schemas/WithOptionalMedianEmsScore'
-      - $ref: '#/components/schemas/WithValue'
+            $ref: '#/components/schemas/ChartProvenanceRow'
+    WithOptionalMedianEmsScore:
+      type: object
+      properties:
+        medianEmsScore:
+          type: number
+          format: float
+    WithOptionalProductName:
+      type: object
+      properties:
+        productName:
+          type: string
+    WithOptionalProduct:
+      type: object
+      properties:
+        product:
+          type: string
+    WithOptionalIsNistIR8547Compliant:
+      type: object
+      properties:
+        isNistIR8547Compliant:
+          type: boolean
+    ChartFindingsTrendQuery:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            type: string
+            enum:
+            - date
+            - severity
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterItem'
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    WithOptionalFindingType:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - knownVulnerability
+          - unknownVulnerability
+          - maliciousCode
+          - suspiciousCode
+          - dependencyVulnerability
+          - cryptographicAsset
+          - mitigation
+          - weakness
+          - supplyChainFailure
+          - secret
+          - leakedSecret
+          - uncategorized
+    WithOptionalToolName:
+      type: object
+      properties:
+        toolName:
+          type: string
+    ChartComponents:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChartComponentRow'
+    FilterItem:
+      type: object
+      required:
+      - field
+      - value
+      properties:
+        field:
+          type: string
+        comparator:
+          type: string
+          enum:
+          - equals
+          - contains
+          - between
+          - in
+          - notContains
+          - overlaps
+        value: {}
     ChartDependenciesQuery:
       type: object
       properties:
@@ -268,188 +401,19 @@ components:
               enum:
               - countAll
               - countDistinct
-    ChartCryptographicAssetsQuery:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            type: string
-            enum:
-            - type
-            - isVulnerable
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterItem'
-    ChartCryptographicAssetsRow:
+    ChartJiraIssues:
       type: object
       required:
-      - value
+      - rows
       properties:
-        type:
-          type: string
-        isVulnerable:
-          type: boolean
-        value:
-          type: integer
-          x-go-type: int64
-    WithOptionalVulnerabilitiesCount:
-      type: object
-      properties:
-        vulnerabilitiesCount:
-          type: integer
-    WithOptionalTitle:
-      type: object
-      properties:
-        title:
-          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChartJiraIssueRow'
     WithOptionalName:
       type: object
       properties:
         name:
-          type: string
-    ChartDependencyRow:
-      type: object
-      required:
-      - value
-      properties:
-        product:
-          type: string
-        version:
-          type: string
-        productId:
-          type: string
-        value:
-          type: integer
-          x-go-type: int32
-    WithOptionalFindingType:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - knownVulnerability
-          - unknownVulnerability
-          - maliciousCode
-          - suspiciousCode
-          - dependencyVulnerability
-          - cryptographicAsset
-          - mitigation
-          - weakness
-          - supplyChainFailure
-          - secret
-          - leakedSecret
-          - uncategorized
-    WithOptionalVendor:
-      type: object
-      properties:
-        vendor:
-          type: string
-    WithOptionalIsNistIR8547Compliant:
-      type: object
-      properties:
-        isNistIR8547Compliant:
-          type: boolean
-    ChartJiraQuery:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            type: string
-            enum:
-            - issueStatus
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterItem'
-    FilterSet:
-      type: object
-      properties:
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterItem'
-          description: Filters to be AND‑combined within this set
-      required:
-      - filters
-    WithOptionalStringProductId:
-      type: object
-      properties:
-        productId:
-          type: string
-    ChartProvenances:
-      type: object
-      required:
-      - rows
-      properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChartProvenanceRow'
-    ChartFindingsTrendQuery:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            type: string
-            enum:
-            - date
-            - severity
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterItem'
-    WithOptionalCryptoAlgorithmName:
-      type: object
-      properties:
-        cryptoAlgorithmName:
-          type: string
-    ChartFindingRow:
-      allOf:
-      - $ref: '#/components/schemas/WithOptionalStringProductId'
-      - $ref: '#/components/schemas/WithOptionalProductName'
-      - $ref: '#/components/schemas/WithOptionalSeverity'
-      - $ref: '#/components/schemas/WithOptionalToolName'
-      - $ref: '#/components/schemas/WithOptionalFindingType'
-      - $ref: '#/components/schemas/WithOptionalDate'
-      - $ref: '#/components/schemas/WithOptionalName'
-      - $ref: '#/components/schemas/WithOptionalTitle'
-      - $ref: '#/components/schemas/WithOptionalAge'
-      - $ref: '#/components/schemas/WithOptionalSecretKind'
-      - $ref: '#/components/schemas/WithOptionalCryptoAlgorithmName'
-      - $ref: '#/components/schemas/WithOptionalCryptoProtocolName'
-      - $ref: '#/components/schemas/WithOptionalIsNistIR8547Compliant'
-      - $ref: '#/components/schemas/WithOptionalExploitabilityPredicates'
-      - $ref: '#/components/schemas/WithValue'
-    WithValue:
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: integer
-          x-go-type: int64
-    ChartDependencies:
-      type: object
-      required:
-      - rows
-      properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChartDependencyRow'
-    WithOptionalDate:
-      type: object
-      properties:
-        date:
-          type: string
-    WithOptionalAge:
-      type: object
-      properties:
-        age:
           type: string
     WithOptionalExploitabilityPredicates:
       type: object
@@ -465,33 +429,47 @@ components:
             - verifiedExploit
             - publicExploit
             - publicPoc
-    ChartJiraIssueRow:
+    WithOptionalCryptoProtocolName:
       type: object
-      required:
-      - value
       properties:
-        issueStatus:
+        cryptoProtocolName:
           type: string
-        value:
-          type: integer
-    ChartComponentsQuery:
+    WithOptionalVulnerabilitiesCount:
       type: object
       properties:
-        fields:
-          type: array
-          items:
-            type: string
-            enum:
-            - hasFindings
+        vulnerabilitiesCount:
+          type: integer
+    WithOptionalSecretKind:
+      type: object
+      properties:
+        secret.kind:
+          type: string
+    FilterSet:
+      type: object
+      properties:
         filters:
           type: array
           items:
             $ref: '#/components/schemas/FilterItem'
-    WithOptionalProduct:
+          description: Filters to be AND‑combined within this set
+      required:
+      - filters
+    WithOptionalTitle:
       type: object
       properties:
-        product:
+        title:
           type: string
+    WithOptionalSeverity:
+      type: object
+      properties:
+        severity:
+          type: string
+          enum:
+          - unspecified
+          - low
+          - medium
+          - high
+          - critical
     ChartFindingsQuery:
       type: object
       properties:
@@ -527,40 +505,6 @@ components:
           description: 'Array of filter sets: filters within each set are combined with AND, and sets are combined with OR.
 
             '
-    WithOptionalCryptoProtocolName:
-      type: object
-      properties:
-        cryptoProtocolName:
-          type: string
-    ChartComponents:
-      type: object
-      required:
-      - rows
-      properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChartComponentRow'
-    ChartFindings:
-      type: object
-      required:
-      - rows
-      properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChartFindingRow'
-    WithOptionalSeverity:
-      type: object
-      properties:
-        severity:
-          type: string
-          enum:
-          - unspecified
-          - low
-          - medium
-          - high
-          - critical
     ErrorResponse:
       required:
       - message
@@ -574,20 +518,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    ErrorDetail:
-      type: object
-      required:
-      - error
-      properties:
-        reason:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
     ChartComponentRow:
       type: object
       required:
@@ -598,24 +528,84 @@ components:
         value:
           type: integer
           x-go-type: int64
-    FilterItem:
+    ChartProvenanceRow:
+      allOf:
+      - $ref: '#/components/schemas/WithOptionalVendor'
+      - $ref: '#/components/schemas/WithOptionalProduct'
+      - $ref: '#/components/schemas/WithOptionalVulnerabilitiesCount'
+      - $ref: '#/components/schemas/WithOptionalMedianEmsScore'
+      - $ref: '#/components/schemas/WithValue'
+    ChartFindingRow:
+      allOf:
+      - $ref: '#/components/schemas/WithOptionalStringProductId'
+      - $ref: '#/components/schemas/WithOptionalProductName'
+      - $ref: '#/components/schemas/WithOptionalSeverity'
+      - $ref: '#/components/schemas/WithOptionalToolName'
+      - $ref: '#/components/schemas/WithOptionalFindingType'
+      - $ref: '#/components/schemas/WithOptionalDate'
+      - $ref: '#/components/schemas/WithOptionalName'
+      - $ref: '#/components/schemas/WithOptionalTitle'
+      - $ref: '#/components/schemas/WithOptionalAge'
+      - $ref: '#/components/schemas/WithOptionalSecretKind'
+      - $ref: '#/components/schemas/WithOptionalCryptoAlgorithmName'
+      - $ref: '#/components/schemas/WithOptionalCryptoProtocolName'
+      - $ref: '#/components/schemas/WithOptionalIsNistIR8547Compliant'
+      - $ref: '#/components/schemas/WithOptionalExploitabilityPredicates'
+      - $ref: '#/components/schemas/WithValue'
+    WithValue:
       type: object
       required:
-      - field
       - value
       properties:
-        field:
+        value:
+          type: integer
+          x-go-type: int64
+    WithOptionalAge:
+      type: object
+      properties:
+        age:
           type: string
-        comparator:
+    ChartDependencyRow:
+      type: object
+      required:
+      - value
+      properties:
+        product:
           type: string
-          enum:
-          - equals
-          - contains
-          - between
-          - in
-          - notContains
-          - overlaps
-        value: {}
+        version:
+          type: string
+        productId:
+          type: string
+        value:
+          type: integer
+          x-go-type: int32
+    WithOptionalStringProductId:
+      type: object
+      properties:
+        productId:
+          type: string
+    ChartJiraQuery:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            type: string
+            enum:
+            - issueStatus
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterItem'
+    ChartFindings:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChartFindingRow'
     ChartCryptographicAssets:
       type: object
       required:
@@ -625,12 +615,84 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ChartCryptographicAssetsRow'
-    WithOptionalMedianEmsScore:
+    ChartDependencies:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChartDependencyRow'
+    ChartProvenancesQuery:
       type: object
       properties:
-        medianEmsScore:
-          type: number
-          format: float
+        fields:
+          type: array
+          items:
+            type: string
+            enum:
+            - vendor
+            - product
+            - vulnerabilitiesCount
+            - medianEmsScore
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterItem'
+    ChartCryptographicAssetsRow:
+      type: object
+      required:
+      - value
+      properties:
+        type:
+          type: string
+        isVulnerable:
+          type: boolean
+        value:
+          type: integer
+          x-go-type: int64
+    ChartCryptographicAssetsQuery:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            type: string
+            enum:
+            - type
+            - isVulnerable
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterItem'
+    WithOptionalVendor:
+      type: object
+      properties:
+        vendor:
+          type: string
+    ChartJiraIssueRow:
+      type: object
+      required:
+      - value
+      properties:
+        issueStatus:
+          type: string
+        value:
+          type: integer
+    ChartComponentsQuery:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            type: string
+            enum:
+            - hasFindings
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterItem'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -648,68 +710,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithOptionalProductName:
-      type: object
-      properties:
-        productName:
-          type: string
-    ChartProvenancesQuery:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            type: string
-            enum:
-            - vendor
-            - product
-            - vulnerabilitiesCount
-            - medianEmsScore
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterItem'
-    WithOptionalSecretKind:
-      type: object
-      properties:
-        secret.kind:
-          type: string
-    WithOptionalToolName:
-      type: object
-      properties:
-        toolName:
-          type: string
-  responses:
-    BadGateway:
-      description: Bad Gateway
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
   securitySchemes:
     auth:
       type: http

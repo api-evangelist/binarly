@@ -84,25 +84,13 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    SearchResults:
-      allOf:
-      - $ref: '#/components/schemas/WithSearchResults'
-      - $ref: '#/components/schemas/WithTotals'
-    WithResourceHierarchy:
+    WithHeadline:
       type: object
       required:
-      - resourceHierarchy
+      - headline
       properties:
-        resourceHierarchy:
-          type: array
-          items:
-            $ref: '#/components/schemas/Resource'
-    SearchResult:
-      allOf:
-      - $ref: '#/components/schemas/WithResourceHierarchy'
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithFieldName'
-      - $ref: '#/components/schemas/WithHeadline'
+        headline:
+          type: string
     WithSearchResults:
       type: object
       required:
@@ -112,59 +100,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SearchResult'
-    WithFieldName:
+    WithResourceHierarchy:
       type: object
       required:
-      - fieldName
+      - resourceHierarchy
       properties:
-        fieldName:
-          type: string
-    WithOptionalImageId:
-      type: object
-      properties:
-        imageId:
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    SearchTokensResults:
-      allOf:
-      - $ref: '#/components/schemas/WithSearchTokensResults'
-    Resource:
-      allOf:
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-      - $ref: '#/components/schemas/WithResourceName'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithOptionalImageId'
-    WithSearchTokensResults:
-      type: object
-      required:
-      - rows
-      properties:
-        rows:
+        resourceHierarchy:
           type: array
           items:
-            type: string
-    WithHeadline:
+            $ref: '#/components/schemas/Resource'
+    WithName:
       type: object
       required:
-      - headline
+      - name
       properties:
-        headline:
+        name:
           type: string
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
     WithTotals:
       type: object
       required:
@@ -181,19 +132,6 @@ components:
       x-go-type: ulid.ULID
       x-go-type-import:
         path: github.com/oklog/ulid/v2
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
     ErrorDetail:
       type: object
       required:
@@ -208,13 +146,91 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    WithName:
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithOptionalImageId:
+      type: object
+      properties:
+        imageId:
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    Resource:
+      allOf:
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+      - $ref: '#/components/schemas/WithResourceName'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithOptionalImageId'
+    WithFieldName:
       type: object
       required:
-      - name
+      - fieldName
       properties:
-        name:
+        fieldName:
           type: string
+    SearchResult:
+      allOf:
+      - $ref: '#/components/schemas/WithResourceHierarchy'
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithFieldName'
+      - $ref: '#/components/schemas/WithHeadline'
+    SearchResults:
+      allOf:
+      - $ref: '#/components/schemas/WithSearchResults'
+      - $ref: '#/components/schemas/WithTotals'
+    SearchTokensResults:
+      allOf:
+      - $ref: '#/components/schemas/WithSearchTokensResults'
+    WithResourceName:
+      type: object
+      required:
+      - resourceName
+      properties:
+        resourceName:
+          type: string
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    WithSearchTokensResults:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            type: string
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    WithId:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -232,31 +248,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithResourceName:
-      type: object
-      required:
-      - resourceName
-      properties:
-        resourceName:
-          type: string
   responses:
-    InternalServerError:
-      description: Internal server error
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -267,12 +273,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
     NotFound:
       description: Not Found
       content:
@@ -280,14 +280,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    QuerySkip:
-      name: skip
-      required: false
-      in: query
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     QuerySize:
       name: size
       required: false
@@ -297,6 +289,14 @@ components:
         minimum: 0
         maximum: 1000
         default: 30
+    QuerySkip:
+      name: skip
+      required: false
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     auth:
       type: http

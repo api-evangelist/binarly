@@ -128,52 +128,46 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnprocessableRules:
+      description: Unprocessable Custom Rules
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/UnprocessableContentResponse'
+            - $ref: '#/components/schemas/UnprocessableRulesResponse'
   schemas:
-    RulesFile:
-      type: object
-      required:
-      - filename
-      - lintResults
-      properties:
-        filename:
-          type: string
-        name:
-          type: string
-        lintResults:
-          $ref: '#/components/schemas/RulesLintResults'
-    WithAuthor:
-      type: object
-      required:
-      - author
-      properties:
-        author:
-          $ref: '#/components/schemas/User'
-    WithOptionalDescription:
-      type: object
-      properties:
-        description:
-          type: string
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    WithOptionalTitle:
-      type: object
-      properties:
-        title:
-          type: string
-    WithBody:
-      type: object
-      required:
-      - body
-      properties:
-        body:
-          type: string
     WithOptionalCreateTime:
       type: object
       properties:
@@ -181,54 +175,30 @@ components:
           type: string
           readOnly: true
           example: '2024-01-01T01:00:00Z'
-    UnprocessableContentResponse:
+    WithUserId:
       type: object
       required:
-      - message
-      - errors
+      - userId
       properties:
-        message:
+        userId:
           type: string
-        errors: {}
-    RulesLintResults:
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+    RulesUpload:
       type: object
       required:
-      - status
-      - details
+      - file
       properties:
-        status:
+        file:
           type: string
-          enum:
-          - ok
-          - error
-        details:
-          $ref: '#/components/schemas/RulesLintResultDetails'
-    RulesLintResultDetails:
+          format: binary
+    WithName:
       type: object
+      required:
+      - name
       properties:
         name:
           type: string
-        meta: {}
-        warnings:
-          type: array
-          items:
-            type: string
-        errors:
-          type: array
-          items:
-            type: string
-    WithRulesVersion:
-      type: object
-      required:
-      - version
-      properties:
-        version:
-          $ref: '#/components/schemas/RulesVersion'
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
     WithOptionalId:
       type: object
       properties:
@@ -236,77 +206,8 @@ components:
           readOnly: true
           allOf:
           - $ref: '#/components/schemas/ULID'
-    RulesFiles:
-      type: array
-      items:
-        $ref: '#/components/schemas/RulesFile'
-    WithUpdateTime:
-      type: object
-      required:
-      - updateTime
-      properties:
-        updateTime:
-          type: string
     BulkNames:
       $ref: '#/components/schemas/WithNames'
-    WithNames:
-      type: object
-      required:
-      - names
-      properties:
-        names:
-          type: array
-          items:
-            $ref: '#/components/schemas/Name'
-    WithSeverity:
-      type: object
-      required:
-      - severity
-      properties:
-        severity:
-          type: string
-          enum:
-          - unspecified
-          - low
-          - medium
-          - high
-          - critical
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    WithIsEnabled:
-      type: object
-      required:
-      - isEnabled
-      properties:
-        isEnabled:
-          type: boolean
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    UpdatedRules:
-      allOf:
-      - $ref: '#/components/schemas/WithRulesVersion'
-    Rule:
-      allOf:
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithOptionalTitle'
-      - $ref: '#/components/schemas/WithOptionalDescription'
-      - $ref: '#/components/schemas/WithSeverity'
-      - $ref: '#/components/schemas/WithIsEnabled'
-      - $ref: '#/components/schemas/WithAuthor'
-      - $ref: '#/components/schemas/WithUpdateTime'
-      - $ref: '#/components/schemas/WithBody'
     ULID:
       type: string
       format: ulid
@@ -316,19 +217,27 @@ components:
       x-go-type: ulid.ULID
       x-go-type-import:
         path: github.com/oklog/ulid/v2
-    ErrorResponse:
-      required:
-      - message
+    WithOptionalUserStatus:
       type: object
       properties:
-        message:
+        status:
           type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    RulesVersion:
+      type: object
+      required:
+      - id
+      - rules
+      properties:
+        id:
+          $ref: '#/components/schemas/ULID'
+        rules:
+          $ref: '#/components/schemas/RulesFiles'
+    Name:
+      type: string
     ErrorDetail:
       type: object
       required:
@@ -343,15 +252,89 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    WithUserId:
+    WithNames:
       type: object
       required:
-      - userId
+      - names
       properties:
-        userId:
+        names:
+          type: array
+          items:
+            $ref: '#/components/schemas/Name'
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    WithUpdateTime:
+      type: object
+      required:
+      - updateTime
+      properties:
+        updateTime:
+          type: string
+    WithSeverity:
+      type: object
+      required:
+      - severity
+      properties:
+        severity:
+          type: string
+          enum:
+          - unspecified
+          - low
+          - medium
+          - high
+          - critical
+    UnprocessableRulesResponse:
+      type: object
+      required:
+      - errors
+      properties:
+        errors:
+          $ref: '#/components/schemas/RulesFiles'
+    UnprocessableContentResponse:
+      type: object
+      required:
+      - message
+      - errors
+      properties:
+        message:
+          type: string
+        errors: {}
+    WithIsEnabled:
+      type: object
+      required:
+      - isEnabled
+      properties:
+        isEnabled:
+          type: boolean
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
           type: string
           readOnly: true
           x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithOptionalDescription:
+      type: object
+      properties:
+        description:
+          type: string
+    WithAuthor:
+      type: object
+      required:
+      - author
+      properties:
+        author:
+          $ref: '#/components/schemas/User'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -369,15 +352,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithName:
+    RulesLintResults:
       type: object
       required:
-      - name
+      - status
+      - details
       properties:
-        name:
+        status:
           type: string
-    Name:
-      type: string
+          enum:
+          - ok
+          - error
+        details:
+          $ref: '#/components/schemas/RulesLintResultDetails'
     User:
       readOnly: true
       allOf:
@@ -387,70 +374,83 @@ components:
       - $ref: '#/components/schemas/WithOptionalEmail'
       - $ref: '#/components/schemas/WithOptionalUserStatus'
       - $ref: '#/components/schemas/WithOptionalResourceType'
-    UnprocessableRulesResponse:
+    RulesLintResultDetails:
       type: object
-      required:
-      - errors
       properties:
-        errors:
-          $ref: '#/components/schemas/RulesFiles'
-    RulesUpload:
-      type: object
-      required:
-      - file
-      properties:
-        file:
+        name:
           type: string
-          format: binary
-    RulesVersion:
+        meta: {}
+        warnings:
+          type: array
+          items:
+            type: string
+        errors:
+          type: array
+          items:
+            type: string
+    Rule:
+      allOf:
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithOptionalTitle'
+      - $ref: '#/components/schemas/WithOptionalDescription'
+      - $ref: '#/components/schemas/WithSeverity'
+      - $ref: '#/components/schemas/WithIsEnabled'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithUpdateTime'
+      - $ref: '#/components/schemas/WithBody'
+    WithRulesVersion:
       type: object
       required:
-      - id
-      - rules
+      - version
       properties:
-        id:
-          $ref: '#/components/schemas/ULID'
-        rules:
-          $ref: '#/components/schemas/RulesFiles'
-  responses:
-    UnprocessableRules:
-      description: Unprocessable Custom Rules
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/UnprocessableContentResponse'
-            - $ref: '#/components/schemas/UnprocessableRulesResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
+        version:
+          $ref: '#/components/schemas/RulesVersion'
+    WithBody:
+      type: object
+      required:
+      - body
+      properties:
+        body:
+          type: string
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    RulesFile:
+      type: object
+      required:
+      - filename
+      - lintResults
+      properties:
+        filename:
+          type: string
+        name:
+          type: string
+        lintResults:
+          $ref: '#/components/schemas/RulesLintResults'
+    RulesFiles:
+      type: array
+      items:
+        $ref: '#/components/schemas/RulesFile'
+    WithOptionalTitle:
+      type: object
+      properties:
+        title:
+          type: string
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    UpdatedRules:
+      allOf:
+      - $ref: '#/components/schemas/WithRulesVersion'
   securitySchemes:
     auth:
       type: http

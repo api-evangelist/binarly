@@ -207,35 +207,60 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
 components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ChatDialog:
-      type: object
-      required:
-      - authorType
-      - message
-      - createTime
-      properties:
-        authorType:
-          type: string
-        message:
-          type: string
-        createTime:
-          type: string
-    WithChatDialogs:
-      type: object
-      required:
-      - chatDialogs
-      properties:
-        chatDialogs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ChatDialog'
     Chats:
       $ref: '#/components/schemas/WithChats'
     ChatDialogs:
       $ref: '#/components/schemas/WithChatDialogs'
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    Chat:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
     WithSuggestions:
       type: object
       required:
@@ -247,60 +272,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Suggestion'
-    Chat:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-    WithChats:
-      type: object
-      required:
-      - chats
-      properties:
-        chats:
-          type: array
-          items:
-            $ref: '#/components/schemas/Chat'
-    WithChatRequest:
-      type: object
-      required:
-      - request
-      properties:
-        request:
-          type: string
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
-    Suggestion:
-      type: object
-      required:
-      - suggestion
-      - command
-      - findingId
-      properties:
-        suggestion:
-          type: string
-        command:
-          type: string
-        findingId:
-          type: string
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
     ErrorDetail:
       type: object
       required:
@@ -315,11 +286,31 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    Suggestions:
-      $ref: '#/components/schemas/WithSuggestions'
     ChatRequest:
       allOf:
       - $ref: '#/components/schemas/WithChatRequest'
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithChats:
+      type: object
+      required:
+      - chats
+      properties:
+        chats:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chat'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -337,6 +328,50 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
+    WithChatDialogs:
+      type: object
+      required:
+      - chatDialogs
+      properties:
+        chatDialogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChatDialog'
+    Suggestion:
+      type: object
+      required:
+      - suggestion
+      - command
+      - findingId
+      properties:
+        suggestion:
+          type: string
+        command:
+          type: string
+        findingId:
+          type: string
+    WithChatRequest:
+      type: object
+      required:
+      - request
+      properties:
+        request:
+          type: string
+    ChatDialog:
+      type: object
+      required:
+      - authorType
+      - message
+      - createTime
+      properties:
+        authorType:
+          type: string
+        message:
+          type: string
+        createTime:
+          type: string
     WithId:
       type: object
       required:
@@ -346,43 +381,8 @@ components:
           readOnly: true
           allOf:
           - $ref: '#/components/schemas/ULID'
-  responses:
-    BadGateway:
-      description: Bad Gateway
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Suggestions:
+      $ref: '#/components/schemas/WithSuggestions'
   securitySchemes:
     auth:
       type: http
