@@ -531,6 +531,8 @@ apis:
   humanURL: https://docs.binarly.io/api-reference/introduction
   baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
   tags:
+  - CustomRules
+  tags_raw:
   - Custom Rules
   properties:
   - type: OpenAPI
@@ -550,6 +552,9 @@ apis:
   - type: AgenticAccess
     url: agentic-access/binarly-agentic-access.yml
 common:
+- type: CapabilityMap
+  url: capabilities/binarly-capability-edges.yml
+  name: Binarly Business Capability Map
 - type: Website
   url: https://www.binarly.io/
 - type: X-MCPServerCandidate
