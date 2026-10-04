@@ -169,21 +169,228 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  parameters:
-    PathProductId:
-      name: productId
-      in: path
-      description: Product ID
-      required: true
-      schema:
-        $ref: '#/components/schemas/ULID'
-    PathImageId:
-      name: imageId
-      in: path
-      description: Image ID
-      required: true
-      schema:
-        $ref: '#/components/schemas/ULID'
+  schemas:
+    WithFilename:
+      type: object
+      required:
+      - filename
+      properties:
+        filename:
+          type: string
+    WithOptionalMetadata:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    Parent:
+      type: string
+      format: path
+      description: URI path (path-noscheme) without the leading /
+      readOnly: true
+      x-go-type: string
+      x-go-type-skip-optional-pointer: true
+    WithIsAttachment:
+      type: object
+      required:
+      - isAttachment
+      properties:
+        isAttachment:
+          type: boolean
+          default: false
+          readOnly: true
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithDownloadUrl:
+      type: object
+      required:
+      - downloadUrl
+      properties:
+        downloadUrl:
+          type: string
+          readOnly: true
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    BulkIds:
+      $ref: '#/components/schemas/WithIds'
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    File:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithFilename'
+      - $ref: '#/components/schemas/WithIsAttachment'
+      - $ref: '#/components/schemas/WithDownloadUrl'
+      - $ref: '#/components/schemas/WithOptionalMetadata'
+    WithFiles:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+    WithAuthor:
+      type: object
+      required:
+      - author
+      properties:
+        author:
+          $ref: '#/components/schemas/User'
+    Files:
+      $ref: '#/components/schemas/WithFiles'
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    WithId:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithOptionalParent:
+      type: object
+      properties:
+        parent:
+          $ref: '#/components/schemas/Parent'
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    WithOptionalCreateTime:
+      type: object
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    WithIds:
+      type: object
+      required:
+      - ids
+      properties:
+        ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ULID'
+    WithUserId:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+    FileUpload:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
   responses:
     Forbidden:
       description: Forbidden
@@ -191,6 +398,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized
       content:
@@ -209,240 +422,27 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadGateway:
-      description: Bad Gateway
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Not Found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  schemas:
-    WithOptionalCreateTime:
-      type: object
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    WithIsAttachment:
-      type: object
-      required:
-      - isAttachment
-      properties:
-        isAttachment:
-          type: boolean
-          default: false
-          readOnly: true
-    File:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithOptionalParent'
-      - $ref: '#/components/schemas/WithAuthor'
-      - $ref: '#/components/schemas/WithFilename'
-      - $ref: '#/components/schemas/WithIsAttachment'
-      - $ref: '#/components/schemas/WithDownloadUrl'
-      - $ref: '#/components/schemas/WithOptionalMetadata'
-    WithOptionalId:
-      type: object
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithIds:
-      type: object
-      required:
-      - ids
-      properties:
-        ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/ULID'
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    ErrorDetail:
-      type: object
-      required:
-      - error
-      properties:
-        reason:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    Files:
-      $ref: '#/components/schemas/WithFiles'
-    Parent:
-      type: string
-      format: path
-      description: URI path (path-noscheme) without the leading /
-      readOnly: true
-      x-go-type: string
-      x-go-type-skip-optional-pointer: true
-    WithDownloadUrl:
-      type: object
-      required:
-      - downloadUrl
-      properties:
-        downloadUrl:
-          type: string
-          readOnly: true
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    WithAuthor:
-      type: object
-      required:
-      - author
-      properties:
-        author:
-          $ref: '#/components/schemas/User'
-    WithFilename:
-      type: object
-      required:
-      - filename
-      properties:
-        filename:
-          type: string
-    ForbiddenErrorResponse:
-      type: object
-      required:
-      - message
-      - permission
-      - resourceName
-      properties:
-        message:
-          type: string
-        permission:
-          type: string
-        resourceName:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    WithOptionalMetadata:
-      type: object
-      properties:
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-    FileUpload:
-      type: object
-      required:
-      - file
-      properties:
-        file:
-          type: string
-          format: binary
-    WithFiles:
-      type: object
-      properties:
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/File'
-    User:
-      readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/WithUserId'
-      - $ref: '#/components/schemas/WithOptionalId'
-      - $ref: '#/components/schemas/WithOptionalCreateTime'
-      - $ref: '#/components/schemas/WithOptionalEmail'
-      - $ref: '#/components/schemas/WithOptionalUserStatus'
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    WithOptionalParent:
-      type: object
-      properties:
-        parent:
-          $ref: '#/components/schemas/Parent'
-    BulkIds:
-      $ref: '#/components/schemas/WithIds'
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithUserId:
-      type: object
-      required:
-      - userId
-      properties:
-        userId:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
+  parameters:
+    PathImageId:
+      name: imageId
+      in: path
+      description: Image ID
+      required: true
+      schema:
+        $ref: '#/components/schemas/ULID'
+    PathProductId:
+      name: productId
+      in: path
+      description: Product ID
+      required: true
+      schema:
+        $ref: '#/components/schemas/ULID'
   securitySchemes:
     auth:
       type: http

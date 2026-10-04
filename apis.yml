@@ -531,8 +531,6 @@ apis:
   humanURL: https://docs.binarly.io/api-reference/introduction
   baseURL: https://dashboard-{slug}.binarly.cloud/api/v4
   tags:
-  - CustomRules
-  tags_raw:
   - Custom Rules
   properties:
   - type: OpenAPI

@@ -582,108 +582,189 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  parameters:
-    PathProductId:
-      name: productId
-      in: path
-      description: Product ID
-      required: true
-      schema:
-        $ref: '#/components/schemas/ULID'
-    QueryContentType:
-      name: contentType
-      in: query
-      description: Content Type
-      required: true
-      schema:
-        type: string
-        enum:
-        - pdf
-        - json
-        - xml
-        - csv
-        - md
-    QueryOptionalContentType:
-      name: contentType
-      in: query
-      description: Content Type
-      required: false
-      schema:
-        type: string
-        enum:
-        - pdf
-        - json
-        - xml
-        - csv
-        - md
-    PathImageId:
-      name: imageId
-      in: path
-      description: Image ID
-      required: true
-      schema:
-        $ref: '#/components/schemas/ULID'
-    QueryOptionalFindingId:
-      name: findingId
-      in: query
-      description: Finding ID
-      schema:
-        $ref: '#/components/schemas/ULID'
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
-    BadGateway:
-      description: Bad Gateway
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unprocessable:
-      description: Unprocessable Content
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    WithOptionalCryptoAlgorithmName:
+    WithFilename:
+      type: object
+      required:
+      - filename
+      properties:
+        filename:
+          type: string
+    WithOptionalVersion:
       type: object
       properties:
-        cryptoAlgorithmName:
+        version:
           type: string
+    WithOptionalCryptoAlgorithmPrimitive:
+      type: object
+      properties:
+        cryptoAlgorithmPrimitive:
+          type: string
+    FindingCompliance:
+      type: object
+      properties:
+        nistIr8547:
+          $ref: '#/components/schemas/NISTIR8547'
+    CryptographicMaterialsReportImage:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithParent'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithProductName'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalAuthorEmail'
+      - $ref: '#/components/schemas/WithCryptographicMaterialsReportFindings'
+    NISTIR8547DigitalSignature:
+      type: object
+      properties:
+        securityStrength:
+          type: string
+        securityCategory:
+          type: integer
+      required:
+      - securityStrength
+      - securityCategory
+    WithOptionalAuthorEmail:
+      type: object
+      properties:
+        authorEmail:
+          type: string
+    WithCryptographicMaterialsReportFindings:
+      type: object
+      required:
+      - findings
+      properties:
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CryptographicMaterialsReportFinding'
+    WithOptionalMd5:
+      type: object
+      properties:
+        md5:
+          type: string
+    WithOptionalCvssLatestBaseScore:
+      type: object
+      properties:
+        cvssLatestBaseScore:
+          type: number
+          format: float
+    WithCount:
+      type: object
+      required:
+      - count
+      properties:
+        count:
+          type: integer
+    UpdateImagePayload:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WithOptionalName'
+      - $ref: '#/components/schemas/WithOptionalVersion'
+    WithComponent:
+      type: object
+      required:
+      - component
+      properties:
+        component:
+          $ref: '#/components/schemas/Component'
+    WithAuthor:
+      type: object
+      required:
+      - author
+      properties:
+        author:
+          $ref: '#/components/schemas/User'
+    WithDependenciesCount:
+      type: object
+      required:
+      - dependenciesCount
+      properties:
+        dependenciesCount:
+          type: integer
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithOptionalSha1:
+      type: object
+      properties:
+        sha1:
+          type: string
+    WithOptionalFindingsBySeverity:
+      type: object
+      properties:
+        findingsBySeverity:
+          $ref: '#/components/schemas/CountBySeverity'
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    WithOptionalSource:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/ULID'
+    WithOptionalName:
+      type: object
+      properties:
+        name:
+          type: string
+    NISTIR8547Security:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/NISTIR8547DigitalSignatureSecurity'
+      - $ref: '#/components/schemas/NISTIR8547KeyEstablishmentSecurity'
+      - $ref: '#/components/schemas/NISTIR8547BlockCipherSecurity'
+      - $ref: '#/components/schemas/NISTIR8547HashAndXOFSecurity'
+    Component:
+      allOf:
+      - $ref: '#/components/schemas/WithPlatformId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithPath'
+      - $ref: '#/components/schemas/WithOptionalContainerPath'
+      - $ref: '#/components/schemas/WithOptionalAttributes'
+      - $ref: '#/components/schemas/WithOptionalKind'
+      - $ref: '#/components/schemas/WithOptionalMd5'
+      - $ref: '#/components/schemas/WithOptionalSha1'
+      - $ref: '#/components/schemas/WithOptionalSha256'
+    WithEvidence:
+      type: object
+      required:
+      - evidence
+      properties:
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingEvidence'
+    WithComponentName:
+      type: object
+      required:
+      - componentName
+      properties:
+        componentName:
+          type: string
+    NISTIR8547Recommendation:
+      type: object
+      properties:
+        algorithm:
+          type: string
+        parameter:
+          type: string
+        security:
+          $ref: '#/components/schemas/NISTIR8547Security'
     WithOptionalCreateTime:
       type: object
       properties:
@@ -691,21 +772,15 @@ components:
           type: string
           readOnly: true
           example: '2024-01-01T01:00:00Z'
-    FindingCompliance:
+    WithOptionalUserStatus:
       type: object
       properties:
-        nistIr8547:
-          $ref: '#/components/schemas/NISTIR8547'
-    WithOptionalKind:
-      type: object
-      properties:
-        kind:
+        status:
           type: string
-    WithOptionalIsNistIR8547Compliant:
-      type: object
-      properties:
-        isNistIR8547Compliant:
-          type: boolean
+          x-go-type: string
+          enum:
+          - active
+          - archived
     WithIds:
       type: object
       required:
@@ -715,42 +790,42 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ULID'
-    WithComponentName:
+    WithPath:
       type: object
       required:
-      - componentName
+      - path
       properties:
-        componentName:
+        path:
           type: string
-    WithProductName:
+    NISTIR8547HashAndXOF:
       type: object
+      properties:
+        collisionSecurityStrength:
+          type: string
+        collisionSecurityCategory:
+          type: integer
+        preimageSecurityStrength:
+          type: string
+        preimageSecurityCategory:
+          type: integer
       required:
-      - productName
-      properties:
-        productName:
-          type: string
-    WithOptionalContainerPath:
-      type: object
-      properties:
-        containerPath:
-          type: string
-    WithOptionalName:
-      type: object
-      properties:
-        name:
-          type: string
-    WithOptionalScans:
-      type: object
-      properties:
-        scans:
-          type: array
-          items:
-            $ref: '#/components/schemas/Scan'
-    WithOptionalLatestScanState:
-      type: object
-      properties:
-        latestScanState:
-          $ref: '#/components/schemas/ScanState'
+      - collisionSecurityStrength
+      - collisionSecurityCategory
+      - preimageSecurityStrength
+      - preimageSecurityCategory
+    Image:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithVersion'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithOptionalFiles'
+      - $ref: '#/components/schemas/WithOptionalScans'
+      - $ref: '#/components/schemas/WithOptionalLatestScan'
+      - $ref: '#/components/schemas/WithOptionalIsArchived'
+      - $ref: '#/components/schemas/WithOptionalImageCounts'
     WithOptionalSsvcDecision:
       type: object
       properties:
@@ -761,35 +836,6 @@ components:
           - trackStar
           - attend
           - act
-    WithOptionalImageCounts:
-      type: object
-      properties:
-        counts:
-          $ref: '#/components/schemas/ImageCounts'
-    WithOptionalReportFindings:
-      type: object
-      properties:
-        findings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportFinding'
-    NISTIR8547ApprovalStatus:
-      type: string
-      enum:
-      - UNSPECIFIED
-      - ACCEPTABLE
-      - DEPRECATED
-      - DISALLOWED
-      - LEGACY_USE
-    WithFindingTypeCounts:
-      type: object
-      required:
-      - findingTypeCounts
-      properties:
-        findingTypeCounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/FindingTypeCount'
     NISTIR8547Parameter:
       type: object
       properties:
@@ -799,16 +845,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NISTIR8547Transition'
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
     WithImages:
       type: object
       required:
@@ -818,42 +854,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Image'
-    WithPath:
+    WithOptionalSha256:
       type: object
-      required:
-      - path
       properties:
-        path:
+        sha256:
           type: string
-    WithFindingStatus:
+    Parent:
+      type: string
+      format: path
+      description: URI path (path-noscheme) without the leading /
+      readOnly: true
+      x-go-type: string
+      x-go-type-skip-optional-pointer: true
+    WithScanStateType:
       type: object
       required:
-      - status
+      - type
       properties:
-        status:
+        type:
           type: string
           enum:
           - new
-          - in progress
-          - rejected
-          - remediated
-    Scan:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithOptionalParent'
-      - $ref: '#/components/schemas/WithAuthor'
-      - $ref: '#/components/schemas/WithOptionalLatestScanState'
-    ImageUpload:
+          - running
+          - failed
+          - done
+          - cancelled
+    WithOptionalIsArchived:
       type: object
       properties:
-        imageName:
-          type: string
-        version:
-          type: string
-        file:
-          type: string
-          format: binary
+        isArchived:
+          type: boolean
     WithIsAttachment:
       type: object
       required:
@@ -863,69 +893,11 @@ components:
           type: boolean
           default: false
           readOnly: true
-    File:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithOptionalParent'
-      - $ref: '#/components/schemas/WithAuthor'
-      - $ref: '#/components/schemas/WithFilename'
-      - $ref: '#/components/schemas/WithIsAttachment'
-      - $ref: '#/components/schemas/WithDownloadUrl'
-      - $ref: '#/components/schemas/WithOptionalMetadata'
-    WithOptionalAttributes:
+    WithOptionalLatestScan:
       type: object
       properties:
-        attributes: {}
-    WithComponent:
-      type: object
-      required:
-      - component
-      properties:
-        component:
-          $ref: '#/components/schemas/Component'
-    WithOptionalId:
-      type: object
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithEvidence:
-      type: object
-      required:
-      - evidence
-      properties:
-        evidence:
-          type: array
-          items:
-            $ref: '#/components/schemas/FindingEvidence'
-    WithOptionalIsArchived:
-      type: object
-      properties:
-        isArchived:
-          type: boolean
-    FindingEvidenceAnnotation:
-      type: object
-      properties: {}
-    WithCompliance:
-      type: object
-      required:
-      - compliance
-      properties:
-        compliance:
-          type: array
-          items:
-            $ref: '#/components/schemas/FindingCompliance'
-    NISTIR8547Recommendation:
-      type: object
-      properties:
-        algorithm:
-          type: string
-        parameter:
-          type: string
-        security:
-          $ref: '#/components/schemas/NISTIR8547Security'
+        latestScan:
+          $ref: '#/components/schemas/Scan'
     CountBySeverity:
       type: object
       readOnly: true
@@ -942,31 +914,30 @@ components:
           type: integer
         total:
           type: integer
-    FindingTypeCount:
-      allOf:
-      - $ref: '#/components/schemas/WithFindingType'
-      - $ref: '#/components/schemas/WithCount'
-    Secret:
+    WithFinding:
+      type: object
+      required:
+      - finding
+      properties:
+        finding: {}
+    WithOptionalCryptoProtocolName:
       type: object
       properties:
-        rule:
+        cryptoProtocolName:
           type: string
-        secret:
-          type: string
-        entropy:
-          type: number
-          format: double
-        description:
-          type: string
-        kind:
-          type: string
-        validity:
+    WithSeverity:
+      type: object
+      required:
+      - severity
+      properties:
+        severity:
           type: string
           enum:
-          - Valid
-          - Invalid
-          - Undetermined
-          - Filtered
+          - unspecified
+          - low
+          - medium
+          - high
+          - critical
     NISTIR8547BlockCipherSecurity:
       type: object
       properties:
@@ -974,226 +945,63 @@ components:
           $ref: '#/components/schemas/NISTIR8547BlockCipher'
       required:
       - blockCipher
-    WithDependenciesCount:
-      type: object
-      required:
-      - dependenciesCount
-      properties:
-        dependenciesCount:
-          type: integer
-    ReportFinding:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithFindingType'
-      - $ref: '#/components/schemas/WithFinding'
-      - $ref: '#/components/schemas/WithComponent'
-      - $ref: '#/components/schemas/WithSeverity'
-      - $ref: '#/components/schemas/WithOptionalCvssLatestBaseScore'
-      - $ref: '#/components/schemas/WithOptionalEpssProbability'
-      - $ref: '#/components/schemas/WithIsEstimatedEpss'
-      - $ref: '#/components/schemas/WithIsReachable'
-      - $ref: '#/components/schemas/WithFindingStatus'
-      - $ref: '#/components/schemas/WithDisplayName'
-      - $ref: '#/components/schemas/WithOptionalSecret'
-      - $ref: '#/components/schemas/WithOptionalSsvcDecision'
-      - $ref: '#/components/schemas/WithIsSsvcParanoidDecision'
-    WithIsSsvcParanoidDecision:
-      type: object
-      required:
-      - isSsvcParanoidDecision
-      properties:
-        isSsvcParanoidDecision:
-          type: boolean
-    WithFilename:
-      type: object
-      required:
-      - filename
-      properties:
-        filename:
-          type: string
-    WithOptionalFindingsBySeverity:
+    WithOptionalScans:
       type: object
       properties:
-        findingsBySeverity:
-          $ref: '#/components/schemas/CountBySeverity'
-    WithOptionalMetadata:
-      type: object
-      properties:
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-    VEXReport:
-      type: object
-      additionalProperties: {}
-    WithPlatformId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-    WithFindingType:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - knownVulnerability
-          - unknownVulnerability
-          - maliciousCode
-          - suspiciousCode
-          - dependencyVulnerability
-          - cryptographicAsset
-          - mitigation
-          - weakness
-          - supplyChainFailure
-          - secret
-          - leakedSecret
-          - uncategorized
-    WithDisplayName:
-      type: object
-      required:
-      - displayName
-      properties:
-        displayName:
-          type: string
-    WithCryptographicAssetsCount:
-      type: object
-      required:
-      - cryptographicAssetsCount
-      properties:
-        cryptographicAssetsCount:
-          type: integer
-    User:
-      readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/WithUserId'
-      - $ref: '#/components/schemas/WithOptionalId'
-      - $ref: '#/components/schemas/WithOptionalCreateTime'
-      - $ref: '#/components/schemas/WithOptionalEmail'
-      - $ref: '#/components/schemas/WithOptionalUserStatus'
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-    NISTIR8547BlockCipher:
-      type: object
-      properties:
-        securityStrength:
-          type: string
-        securityCategory:
-          type: integer
-      required:
-      - securityStrength
-      - securityCategory
-    WithUnsafeFunctionsCount:
-      type: object
-      required:
-      - unsafeFunctionsCount
-      properties:
-        unsafeFunctionsCount:
-          type: integer
-    ScanState:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithScanStateType'
-      - $ref: '#/components/schemas/WithOptionalParent'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithOptionalAuthor'
-      - $ref: '#/components/schemas/WithOptionalSource'
-    NISTIR8547KeyEstablishment:
-      type: object
-      properties:
-        securityStrength:
-          type: string
-        securityCategory:
-          type: integer
-      required:
-      - securityStrength
-      - securityCategory
-    WithCryptographicMaterialsReportFindings:
-      type: object
-      required:
-      - findings
-      properties:
-        findings:
+        scans:
           type: array
           items:
-            $ref: '#/components/schemas/CryptographicMaterialsReportFinding'
+            $ref: '#/components/schemas/Scan'
+    WithProductName:
+      type: object
+      required:
+      - productName
+      properties:
+        productName:
+          type: string
+    File:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithFilename'
+      - $ref: '#/components/schemas/WithIsAttachment'
+      - $ref: '#/components/schemas/WithDownloadUrl'
+      - $ref: '#/components/schemas/WithOptionalMetadata'
+    WithNewEscalationsCount:
+      type: object
+      required:
+      - newEscalationsCount
+      properties:
+        newEscalationsCount:
+          type: integer
+    WithKevCount:
+      type: object
+      required:
+      - kev
+      properties:
+        kev:
+          type: integer
     WithOptionalResourceType:
       type: object
       properties:
         resourceType:
           $ref: '#/components/schemas/ResourceType'
-    WithUserId:
+    ErrorDetail:
       type: object
       required:
-      - userId
+      - error
       properties:
-        userId:
+        reason:
           type: string
-          readOnly: true
           x-go-type-skip-optional-pointer: true
-    WithOptionalMd5:
-      type: object
-      properties:
-        md5:
+        field:
           type: string
-    UpdateImagePayload:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/WithOptionalName'
-      - $ref: '#/components/schemas/WithOptionalVersion'
-    WithIsEstimatedEpss:
-      type: object
-      required:
-      - isEstimatedEpss
-      properties:
-        isEstimatedEpss:
-          type: boolean
-    NISTIR8547KeyEstablishmentSecurity:
-      type: object
-      properties:
-        keyEstablishment:
-          $ref: '#/components/schemas/NISTIR8547KeyEstablishment'
-      required:
-      - keyEstablishment
-    WithScanStateType:
-      type: object
-      required:
-      - type
-      properties:
-        type:
+          x-go-type-skip-optional-pointer: true
+        service:
           type: string
-          enum:
-          - new
-          - running
-          - failed
-          - done
-          - cancelled
-    NISTIR8547Transition:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/NISTIR8547ApprovalStatus'
-        year:
-          type: integer
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
-    WithOptionalSource:
-      type: object
-      properties:
-        source:
-          $ref: '#/components/schemas/ULID'
+          x-go-type-skip-optional-pointer: true
     FindingEvidence:
       type: object
       required:
@@ -1212,12 +1020,242 @@ components:
         attributes:
           type: object
           properties: {}
-    WithOptionalEmail:
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    SbomReport:
+      type: object
+      additionalProperties: {}
+      x-go-type: string
+    WithVersion:
+      type: object
+      required:
+      - version
+      properties:
+        version:
+          type: string
+    NISTIR8547DigitalSignatureSecurity:
       type: object
       properties:
-        email:
+        digitalSignature:
+          $ref: '#/components/schemas/NISTIR8547DigitalSignature'
+      required:
+      - digitalSignature
+    ReportFinding:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithFindingType'
+      - $ref: '#/components/schemas/WithFinding'
+      - $ref: '#/components/schemas/WithComponent'
+      - $ref: '#/components/schemas/WithSeverity'
+      - $ref: '#/components/schemas/WithOptionalCvssLatestBaseScore'
+      - $ref: '#/components/schemas/WithOptionalEpssProbability'
+      - $ref: '#/components/schemas/WithIsEstimatedEpss'
+      - $ref: '#/components/schemas/WithIsReachable'
+      - $ref: '#/components/schemas/WithFindingStatus'
+      - $ref: '#/components/schemas/WithDisplayName'
+      - $ref: '#/components/schemas/WithOptionalSecret'
+      - $ref: '#/components/schemas/WithOptionalSsvcDecision'
+      - $ref: '#/components/schemas/WithIsSsvcParanoidDecision'
+    WithExpiredCertificatesCount:
+      type: object
+      required:
+      - expiredCertificatesCount
+      properties:
+        expiredCertificatesCount:
+          type: integer
+    NISTIR8547Transition:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/NISTIR8547ApprovalStatus'
+        year:
+          type: integer
+    WithOptionalLatestScanState:
+      type: object
+      properties:
+        latestScanState:
+          $ref: '#/components/schemas/ScanState'
+    NISTIR8547SecurityProfile:
+      type: object
+      properties:
+        security:
+          $ref: '#/components/schemas/NISTIR8547Security'
+    NISTIR8547KeyEstablishmentSecurity:
+      type: object
+      properties:
+        keyEstablishment:
+          $ref: '#/components/schemas/NISTIR8547KeyEstablishment'
+      required:
+      - keyEstablishment
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
           type: string
-          example: user@binarly.io
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    FindingEvidenceArtefact:
+      type: object
+      properties: {}
+    NISTIR8547HashAndXOFSecurity:
+      type: object
+      properties:
+        hashAndXOF:
+          $ref: '#/components/schemas/NISTIR8547HashAndXOF'
+      required:
+      - hashAndXOF
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    WithOptionalEpssProbability:
+      type: object
+      properties:
+        epssProbability:
+          type: number
+          format: float
+    CryptographicMaterialsReportFinding:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithFindingType'
+      - $ref: '#/components/schemas/WithComponentName'
+      - $ref: '#/components/schemas/WithComponent'
+      - $ref: '#/components/schemas/WithSeverity'
+      - $ref: '#/components/schemas/WithIsReachable'
+      - $ref: '#/components/schemas/WithFindingStatus'
+      - $ref: '#/components/schemas/WithDisplayName'
+      - $ref: '#/components/schemas/WithOptionalCryptoAlgorithmName'
+      - $ref: '#/components/schemas/WithOptionalCryptoAlgorithmPrimitive'
+      - $ref: '#/components/schemas/WithOptionalCryptoProtocolName'
+      - $ref: '#/components/schemas/WithOptionalIsNistIR8547Compliant'
+      - $ref: '#/components/schemas/WithCompliance'
+      - $ref: '#/components/schemas/WithEvidence'
+    NISTIR8547KeyEstablishment:
+      type: object
+      properties:
+        securityStrength:
+          type: string
+        securityCategory:
+          type: integer
+      required:
+      - securityStrength
+      - securityCategory
+    ScanState:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithScanStateType'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalAuthor'
+      - $ref: '#/components/schemas/WithOptionalSource'
+    ReportQuery:
+      type: object
+      properties:
+        page:
+          type: object
+          properties:
+            num:
+              type: integer
+              minimum: 1
+              maximum: 10000
+              default: 0
+            size:
+              type: integer
+              minimum: 10
+              maximum: 100
+              default: 10
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterItem'
+        sortBy:
+          type: object
+          properties:
+            field:
+              type: string
+            direction:
+              type: string
+              enum:
+              - ascend
+              - descend
+    FilterItem:
+      type: object
+      required:
+      - field
+      - value
+      properties:
+        field:
+          type: string
+        comparator:
+          type: string
+          enum:
+          - equals
+          - contains
+          - between
+          - in
+          - notContains
+          - overlaps
+        value: {}
+    VEXReport:
+      type: object
+      additionalProperties: {}
+    WithParent:
+      type: object
+      required:
+      - parent
+      properties:
+        parent:
+          $ref: '#/components/schemas/Parent'
+    WithIsReachable:
+      type: object
+      required:
+      - isReachable
+      properties:
+        isReachable:
+          type: boolean
+    WithOptionalImageCounts:
+      type: object
+      properties:
+        counts:
+          $ref: '#/components/schemas/ImageCounts'
+    Scan:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithOptionalParent'
+      - $ref: '#/components/schemas/WithAuthor'
+      - $ref: '#/components/schemas/WithOptionalLatestScanState'
+    WithOptionalContainerPath:
+      type: object
+      properties:
+        containerPath:
+          type: string
     GridQuery:
       type: object
       properties:
@@ -1260,94 +1298,16 @@ components:
                   enum:
                   - ascend
                   - descend
-    WithOptionalCryptoProtocolName:
-      type: object
-      properties:
-        cryptoProtocolName:
-          type: string
-    NISTIR8547Recommendations:
-      type: object
-      properties:
-        recommendations:
-          type: array
-          items:
-            $ref: '#/components/schemas/NISTIR8547Recommendation'
-    WithKevCount:
-      type: object
-      required:
-      - kev
-      properties:
-        kev:
-          type: integer
-    NISTIR8547Security:
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/NISTIR8547DigitalSignatureSecurity'
-      - $ref: '#/components/schemas/NISTIR8547KeyEstablishmentSecurity'
-      - $ref: '#/components/schemas/NISTIR8547BlockCipherSecurity'
-      - $ref: '#/components/schemas/NISTIR8547HashAndXOFSecurity'
-    WithDownloadUrl:
-      type: object
-      required:
-      - downloadUrl
-      properties:
-        downloadUrl:
-          type: string
-          readOnly: true
-    NISTIR8547SecurityProfile:
-      type: object
-      properties:
-        security:
-          $ref: '#/components/schemas/NISTIR8547Security'
-    WithAuthor:
-      type: object
-      required:
-      - author
-      properties:
-        author:
-          $ref: '#/components/schemas/User'
-    WithOptionalSha1:
-      type: object
-      properties:
-        sha1:
-          type: string
-    WithOptionalVersion:
-      type: object
-      properties:
-        version:
-          type: string
-    NISTIR8547DigitalSignatureSecurity:
-      type: object
-      properties:
-        digitalSignature:
-          $ref: '#/components/schemas/NISTIR8547DigitalSignature'
-      required:
-      - digitalSignature
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    NISTIR8547HashAndXOF:
-      type: object
-      properties:
-        collisionSecurityStrength:
-          type: string
-        collisionSecurityCategory:
-          type: integer
-        preimageSecurityStrength:
-          type: string
-        preimageSecurityCategory:
-          type: integer
-      required:
-      - collisionSecurityStrength
-      - collisionSecurityCategory
-      - preimageSecurityStrength
-      - preimageSecurityCategory
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
     NISTIR8547:
       type: object
       properties:
@@ -1359,6 +1319,201 @@ components:
           $ref: '#/components/schemas/NISTIR8547SecurityProfile'
         notCompliant:
           $ref: '#/components/schemas/NISTIR8547Recommendations'
+    NISTIR8547ApprovalStatus:
+      type: string
+      enum:
+      - UNSPECIFIED
+      - ACCEPTABLE
+      - DEPRECATED
+      - DISALLOWED
+      - LEGACY_USE
+    NISTIR8547Recommendations:
+      type: object
+      properties:
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/NISTIR8547Recommendation'
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    FindingTypeCount:
+      allOf:
+      - $ref: '#/components/schemas/WithFindingType'
+      - $ref: '#/components/schemas/WithCount'
+    ImageUpload:
+      type: object
+      properties:
+        imageName:
+          type: string
+        version:
+          type: string
+        file:
+          type: string
+          format: binary
+    WithOptionalFiles:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+    WithFindingStatus:
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          enum:
+          - new
+          - in progress
+          - rejected
+          - remediated
+    FindingEvidenceAnnotation:
+      type: object
+      properties: {}
+    WithIsEstimatedEpss:
+      type: object
+      required:
+      - isEstimatedEpss
+      properties:
+        isEstimatedEpss:
+          type: boolean
+    WithOptionalKind:
+      type: object
+      properties:
+        kind:
+          type: string
+    WithOptionalSecret:
+      type: object
+      properties:
+        secret:
+          $ref: '#/components/schemas/Secret'
+    WithDisplayName:
+      type: object
+      required:
+      - displayName
+      properties:
+        displayName:
+          type: string
+    Secret:
+      type: object
+      properties:
+        rule:
+          type: string
+        secret:
+          type: string
+        entropy:
+          type: number
+          format: double
+        description:
+          type: string
+        kind:
+          type: string
+        validity:
+          type: string
+          enum:
+          - Valid
+          - Invalid
+          - Undetermined
+          - Filtered
+    WithOptionalMetadata:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    WithCryptographicAssetsCount:
+      type: object
+      required:
+      - cryptographicAssetsCount
+      properties:
+        cryptographicAssetsCount:
+          type: integer
+    NISTIR8547BlockCipher:
+      type: object
+      properties:
+        securityStrength:
+          type: string
+        securityCategory:
+          type: integer
+      required:
+      - securityStrength
+      - securityCategory
+    WithDownloadUrl:
+      type: object
+      required:
+      - downloadUrl
+      properties:
+        downloadUrl:
+          type: string
+          readOnly: true
+    WithUnsafeFunctionsCount:
+      type: object
+      required:
+      - unsafeFunctionsCount
+      properties:
+        unsafeFunctionsCount:
+          type: integer
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    BulkIds:
+      $ref: '#/components/schemas/WithIds'
+    WithOptionalCryptoAlgorithmName:
+      type: object
+      properties:
+        cryptoAlgorithmName:
+          type: string
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+    WithOptionalAttributes:
+      type: object
+      properties:
+        attributes: {}
+    WithFindingType:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - knownVulnerability
+          - unknownVulnerability
+          - maliciousCode
+          - suspiciousCode
+          - dependencyVulnerability
+          - cryptographicAsset
+          - mitigation
+          - weakness
+          - supplyChainFailure
+          - secret
+          - leakedSecret
+          - uncategorized
+    WithOptionalReportFindings:
+      type: object
+      properties:
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportFinding'
     ReportImage:
       allOf:
       - $ref: '#/components/schemas/WithId'
@@ -1369,305 +1524,29 @@ components:
       - $ref: '#/components/schemas/WithOptionalAuthorEmail'
       - $ref: '#/components/schemas/WithOptionalFindingsBySeverity'
       - $ref: '#/components/schemas/WithOptionalReportFindings'
-    WithOptionalParent:
-      type: object
-      properties:
-        parent:
-          $ref: '#/components/schemas/Parent'
-    WithOptionalEpssProbability:
-      type: object
-      properties:
-        epssProbability:
-          type: number
-          format: float
-    WithNewEscalationsCount:
-      type: object
-      required:
-      - newEscalationsCount
-      properties:
-        newEscalationsCount:
-          type: integer
-    WithIsReachable:
-      type: object
-      required:
-      - isReachable
-      properties:
-        isReachable:
-          type: boolean
-    ReportQuery:
-      type: object
-      properties:
-        page:
-          type: object
-          properties:
-            num:
-              type: integer
-              minimum: 1
-              maximum: 10000
-              default: 0
-            size:
-              type: integer
-              minimum: 10
-              maximum: 100
-              default: 10
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterItem'
-        sortBy:
-          type: object
-          properties:
-            field:
-              type: string
-            direction:
-              type: string
-              enum:
-              - ascend
-              - descend
-    CryptographicMaterialsReportFinding:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithFindingType'
-      - $ref: '#/components/schemas/WithComponentName'
-      - $ref: '#/components/schemas/WithComponent'
-      - $ref: '#/components/schemas/WithSeverity'
-      - $ref: '#/components/schemas/WithIsReachable'
-      - $ref: '#/components/schemas/WithFindingStatus'
-      - $ref: '#/components/schemas/WithDisplayName'
-      - $ref: '#/components/schemas/WithOptionalCryptoAlgorithmName'
-      - $ref: '#/components/schemas/WithOptionalCryptoAlgorithmPrimitive'
-      - $ref: '#/components/schemas/WithOptionalCryptoProtocolName'
-      - $ref: '#/components/schemas/WithOptionalIsNistIR8547Compliant'
-      - $ref: '#/components/schemas/WithCompliance'
-      - $ref: '#/components/schemas/WithEvidence'
-    WithOptionalFiles:
-      type: object
-      properties:
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/File'
-    WithCount:
-      type: object
-      required:
-      - count
-      properties:
-        count:
-          type: integer
-    WithName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-    WithOptionalCryptoAlgorithmPrimitive:
-      type: object
-      properties:
-        cryptoAlgorithmPrimitive:
-          type: string
-    SbomReport:
-      type: object
-      additionalProperties: {}
-      x-go-type: string
-    Image:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithVersion'
-      - $ref: '#/components/schemas/WithOptionalParent'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithAuthor'
-      - $ref: '#/components/schemas/WithOptionalFiles'
-      - $ref: '#/components/schemas/WithOptionalScans'
-      - $ref: '#/components/schemas/WithOptionalLatestScan'
-      - $ref: '#/components/schemas/WithOptionalIsArchived'
-      - $ref: '#/components/schemas/WithOptionalImageCounts'
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    WithOptionalAuthorEmail:
-      type: object
-      properties:
-        authorEmail:
-          type: string
-    ErrorDetail:
-      type: object
-      required:
-      - error
-      properties:
-        reason:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
-    FilterItem:
-      type: object
-      required:
-      - field
-      - value
-      properties:
-        field:
-          type: string
-        comparator:
-          type: string
-          enum:
-          - equals
-          - contains
-          - between
-          - in
-          - notContains
-          - overlaps
-        value: {}
-    CryptographicMaterialsReportImage:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithParent'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithProductName'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithOptionalAuthorEmail'
-      - $ref: '#/components/schemas/WithCryptographicMaterialsReportFindings'
-    WithSeverity:
-      type: object
-      required:
-      - severity
-      properties:
-        severity:
-          type: string
-          enum:
-          - unspecified
-          - low
-          - medium
-          - high
-          - critical
-    ImageCounts:
-      allOf:
-      - $ref: '#/components/schemas/WithNewEscalationsCount'
-      - $ref: '#/components/schemas/WithDependenciesCount'
-      - $ref: '#/components/schemas/WithCryptographicAssetsCount'
-      - $ref: '#/components/schemas/WithFindingTypeCounts'
-      - $ref: '#/components/schemas/WithKevCount'
-      - $ref: '#/components/schemas/WithExpiredCertificatesCount'
-      - $ref: '#/components/schemas/WithUnsafeFunctionsCount'
-    FindingEvidenceArtefact:
-      type: object
-      properties: {}
-    Parent:
-      type: string
-      format: path
-      description: URI path (path-noscheme) without the leading /
-      readOnly: true
-      x-go-type: string
-      x-go-type-skip-optional-pointer: true
-    NISTIR8547DigitalSignature:
-      type: object
-      properties:
-        securityStrength:
-          type: string
-        securityCategory:
-          type: integer
-      required:
-      - securityStrength
-      - securityCategory
-    WithExpiredCertificatesCount:
-      type: object
-      required:
-      - expiredCertificatesCount
-      properties:
-        expiredCertificatesCount:
-          type: integer
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    NISTIR8547HashAndXOFSecurity:
-      type: object
-      properties:
-        hashAndXOF:
-          $ref: '#/components/schemas/NISTIR8547HashAndXOF'
-      required:
-      - hashAndXOF
-    WithVersion:
-      type: object
-      required:
-      - version
-      properties:
-        version:
-          type: string
-    WithFinding:
-      type: object
-      required:
-      - finding
-      properties:
-        finding: {}
-    Component:
-      allOf:
-      - $ref: '#/components/schemas/WithPlatformId'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithPath'
-      - $ref: '#/components/schemas/WithOptionalContainerPath'
-      - $ref: '#/components/schemas/WithOptionalAttributes'
-      - $ref: '#/components/schemas/WithOptionalKind'
-      - $ref: '#/components/schemas/WithOptionalMd5'
-      - $ref: '#/components/schemas/WithOptionalSha1'
-      - $ref: '#/components/schemas/WithOptionalSha256'
-    WithOptionalSecret:
-      type: object
-      properties:
-        secret:
-          $ref: '#/components/schemas/Secret'
     WithOptionalAuthor:
       type: object
       properties:
         author:
           $ref: '#/components/schemas/User'
-    BulkIds:
-      $ref: '#/components/schemas/WithIds'
-    WithOptionalSha256:
-      type: object
-      properties:
-        sha256:
-          type: string
-    WithOptionalCvssLatestBaseScore:
-      type: object
-      properties:
-        cvssLatestBaseScore:
-          type: number
-          format: float
-    WithOptionalLatestScan:
-      type: object
-      properties:
-        latestScan:
-          $ref: '#/components/schemas/Scan'
-    WithParent:
+    WithCompliance:
       type: object
       required:
-      - parent
+      - compliance
       properties:
-        parent:
-          $ref: '#/components/schemas/Parent'
+        compliance:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingCompliance'
+    WithFindingTypeCounts:
+      type: object
+      required:
+      - findingTypeCounts
+      properties:
+        findingTypeCounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingTypeCount'
     WithId:
       type: object
       required:
@@ -1677,23 +1556,144 @@ components:
           readOnly: true
           allOf:
           - $ref: '#/components/schemas/ULID'
-    ForbiddenErrorResponse:
+    WithOptionalParent:
+      type: object
+      properties:
+        parent:
+          $ref: '#/components/schemas/Parent'
+    WithOptionalIsNistIR8547Compliant:
+      type: object
+      properties:
+        isNistIR8547Compliant:
+          type: boolean
+    ImageCounts:
+      allOf:
+      - $ref: '#/components/schemas/WithNewEscalationsCount'
+      - $ref: '#/components/schemas/WithDependenciesCount'
+      - $ref: '#/components/schemas/WithCryptographicAssetsCount'
+      - $ref: '#/components/schemas/WithFindingTypeCounts'
+      - $ref: '#/components/schemas/WithKevCount'
+      - $ref: '#/components/schemas/WithExpiredCertificatesCount'
+      - $ref: '#/components/schemas/WithUnsafeFunctionsCount'
+    WithPlatformId:
       type: object
       required:
-      - message
-      - permission
-      - resourceName
+      - id
       properties:
-        message:
+        id:
           type: string
-        permission:
+    WithUserId:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
           type: string
-        resourceName:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+    WithIsSsvcParanoidDecision:
+      type: object
+      required:
+      - isSsvcParanoidDecision
+      properties:
+        isSsvcParanoidDecision:
+          type: boolean
+  responses:
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unprocessable:
+      description: Unprocessable Content
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    PathImageId:
+      name: imageId
+      in: path
+      description: Image ID
+      required: true
+      schema:
+        $ref: '#/components/schemas/ULID'
+    QueryOptionalContentType:
+      name: contentType
+      in: query
+      description: Content Type
+      required: false
+      schema:
+        type: string
+        enum:
+        - pdf
+        - json
+        - xml
+        - csv
+        - md
+    QueryOptionalFindingId:
+      name: findingId
+      in: query
+      description: Finding ID
+      schema:
+        $ref: '#/components/schemas/ULID'
+    QueryContentType:
+      name: contentType
+      in: query
+      description: Content Type
+      required: true
+      schema:
+        type: string
+        enum:
+        - pdf
+        - json
+        - xml
+        - csv
+        - md
+    PathProductId:
+      name: productId
+      in: path
+      description: Product ID
+      required: true
+      schema:
+        $ref: '#/components/schemas/ULID'
   securitySchemes:
     auth:
       type: http

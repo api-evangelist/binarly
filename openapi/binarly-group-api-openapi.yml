@@ -225,206 +225,6 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  schemas:
-    Groups:
-      type: object
-      required:
-      - groups
-      properties:
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-    WithOptionalCreateTime:
-      type: object
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    WithName:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-    WithOptionalId:
-      type: object
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithIds:
-      type: object
-      required:
-      - ids
-      properties:
-        ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/ULID'
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
-    WithOptionalUserStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          x-go-type: string
-          enum:
-          - active
-          - archived
-    AddGroupMemberPayload:
-      type: object
-      required:
-      - userId
-      properties:
-        userId:
-          $ref: '#/components/schemas/ULID'
-        roleId:
-          $ref: '#/components/schemas/ULID'
-    ErrorDetail:
-      type: object
-      required:
-      - error
-      properties:
-        reason:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
-    WithOptionalEmail:
-      type: object
-      properties:
-        email:
-          type: string
-          example: user@binarly.io
-    WithGroupMembers:
-      type: object
-      required:
-      - members
-      properties:
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-    WithResourceType:
-      type: object
-      required:
-      - resourceType
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    UpdateGroupPayload:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/WithName'
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    ForbiddenErrorResponse:
-      type: object
-      required:
-      - message
-      - permission
-      - resourceName
-      properties:
-        message:
-          type: string
-        permission:
-          type: string
-        resourceName:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    Group:
-      allOf:
-      - $ref: '#/components/schemas/WithId'
-      - $ref: '#/components/schemas/WithCreateTime'
-      - $ref: '#/components/schemas/WithName'
-      - $ref: '#/components/schemas/WithResourceType'
-    CreateGroupPayload:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/WithName'
-    User:
-      readOnly: true
-      allOf:
-      - $ref: '#/components/schemas/WithUserId'
-      - $ref: '#/components/schemas/WithOptionalId'
-      - $ref: '#/components/schemas/WithOptionalCreateTime'
-      - $ref: '#/components/schemas/WithOptionalEmail'
-      - $ref: '#/components/schemas/WithOptionalUserStatus'
-      - $ref: '#/components/schemas/WithOptionalResourceType'
-    WithCreateTime:
-      type: object
-      required:
-      - createTime
-      properties:
-        createTime:
-          type: string
-          readOnly: true
-          example: '2024-01-01T01:00:00Z'
-    ResourceType:
-      type: string
-      enum:
-      - Org
-      - Group
-      - Product
-      - User
-      - Image
-      - Finding
-      - Occurrence
-    BulkIds:
-      $ref: '#/components/schemas/WithIds'
-    WithOptionalResourceType:
-      type: object
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/ResourceType'
-    WithId:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          readOnly: true
-          allOf:
-          - $ref: '#/components/schemas/ULID'
-    WithUserId:
-      type: object
-      required:
-      - userId
-      properties:
-        userId:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
   responses:
     Forbidden:
       description: Forbidden
@@ -432,6 +232,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized
       content:
@@ -456,12 +262,206 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    CreateGroupPayload:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WithName'
+    WithCreateTime:
+      type: object
+      required:
+      - createTime
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    Groups:
+      type: object
+      required:
+      - groups
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+    User:
+      readOnly: true
+      allOf:
+      - $ref: '#/components/schemas/WithUserId'
+      - $ref: '#/components/schemas/WithOptionalId'
+      - $ref: '#/components/schemas/WithOptionalCreateTime'
+      - $ref: '#/components/schemas/WithOptionalEmail'
+      - $ref: '#/components/schemas/WithOptionalUserStatus'
+      - $ref: '#/components/schemas/WithOptionalResourceType'
+    BulkIds:
+      $ref: '#/components/schemas/WithIds'
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
+    WithResourceType:
+      type: object
+      required:
+      - resourceType
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    AddGroupMemberPayload:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
+          $ref: '#/components/schemas/ULID'
+        roleId:
+          $ref: '#/components/schemas/ULID'
+    WithName:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    Group:
+      allOf:
+      - $ref: '#/components/schemas/WithId'
+      - $ref: '#/components/schemas/WithCreateTime'
+      - $ref: '#/components/schemas/WithName'
+      - $ref: '#/components/schemas/WithResourceType'
+    WithOptionalId:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    ResourceType:
+      type: string
+      enum:
+      - Org
+      - Group
+      - Product
+      - User
+      - Image
+      - Finding
+      - Occurrence
+    WithOptionalResourceType:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceType'
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    WithId:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/ULID'
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    WithOptionalEmail:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@binarly.io
+    WithOptionalCreateTime:
+      type: object
+      properties:
+        createTime:
+          type: string
+          readOnly: true
+          example: '2024-01-01T01:00:00Z'
+    WithOptionalUserStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          x-go-type: string
+          enum:
+          - active
+          - archived
+    WithIds:
+      type: object
+      required:
+      - ids
+      properties:
+        ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ULID'
+    WithGroupMembers:
+      type: object
+      required:
+      - members
+      properties:
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    WithUserId:
+      type: object
+      required:
+      - userId
+      properties:
+        userId:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+    UpdateGroupPayload:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WithName'
   securitySchemes:
     auth:
       type: http
