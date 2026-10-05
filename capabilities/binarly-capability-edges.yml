@@ -1,0 +1,77 @@
+slug: binarly
+provider: Binarly
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Vulnerability
+  spec_file: binarly-vulnerability-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.9
+  evidence: ListVulnerabilities; GetVulnerability; schemas Vulnerability, WithIsKev, WithWeaponisedExploitURLs,
+    WithRecommendedAction
+  reason: Vulnerability catalogue with KEV flags, exploit references and recommended actions — squarely
+    vulnerability management.
+- tag: Finding
+  spec_file: binarly-finding-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: GET /api/v4/products/{productId}/findings/{findingId}/advisory "Finding Advisory"; POST .../CreateFindingState;
+    schemas FindingCVSSMetrics, FindingClassification, WithRecommendedAction
+  reason: Operations retrieve a security finding with CVSS/SSVC scoring, its advisory and detail report,
+    and set its disposition state — the core of vulnerability identification, triage and remediation tracking.
+    'Finding' is unambiguously a security defect here, not an audit finding, given the CVSS/EPSS schemas.
+- tag: RoleBinding
+  spec_file: binarly-rolebinding-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: ListRoles  List Roles; CreateRoleBinding  Create Role Binding; schemas WithPermissions, Role,
+    RoleBinding, Group, User
+  reason: 'Role-based access control: roles, permissions and bindings of users/groups to resources — identity
+    and access management.'
+- tag: Scan
+  spec_file: binarly-scan-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.82
+  evidence: CreateScan  Create Scan; ListComponents  List Components; GET /products/{productId}/images/{imageId}/scans
+  reason: Initiates and retrieves binary-native security scans of firmware/container images and their
+    components — vulnerability scanning and detection of known/unknown vulnerabilities.
+- tag: User
+  spec_file: binarly-user-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: CreateUser  Create User; BulkDeleteUsers  Bulk Delete Users; schemas ResourcePermissions,
+    WithAllResourcesPermissions, Org
+  reason: Platform user account provisioning/deprovisioning with resource permissions — identity and access
+    administration. Some chance this is better read as plain tenant user admin.
+- tag: Escalation
+  spec_file: binarly-escalation-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: GET /api/v4/products/{productId}/findings/-/escalations "List Product Finding Escalations";
+    schemas FindingSSVC, FindingCVSSMetrics, WithRecommendedAction, WithOptionalEstimatedEPSS
+  reason: Escalations here are prioritised security findings carrying CVSS/EPSS/SSVC scoring and recommended
+    remediation actions — vulnerability triage and remediation prioritisation, not financial-crime or
+    incident alerting. Sub-capability is well supported but the single list operation keeps confidence
+    below 0.8.
