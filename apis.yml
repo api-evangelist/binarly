@@ -47,7 +47,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-10-06'
 image: https://www.binarly.io/logo.svg
 x-docs-platform: mintlify
 x-docs-platform-confidence: medium
@@ -550,6 +550,8 @@ apis:
   - type: AgenticAccess
     url: agentic-access/binarly-agentic-access.yml
 common:
+- url: https://www.binarly.io/blog/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/binarly-capability-edges.yml
   name: Binarly Business Capability Map
