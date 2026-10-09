@@ -6,6 +6,17 @@ info:
     Create (or reuse) a product, upload a firmware/binary image, run a scan, poll
     until it completes, then list the findings and pull a PDF report — the core
     CI/CD gate flow for the Binarly Transparency Platform.
+  x-realizes-capability-ids:
+  - BC-620.40
+  x-capability-derivation:
+    method: 'deterministic join: sourceDescriptions -> per-tag OpenAPI -> tag/capability edge. No classification at this step.'
+    min_confidence: 0.7
+    sources:
+    - capability_id: BC-620.40
+      capability_name: Vulnerability Management
+      spec: binarly-scan-api-openapi.yml
+      confidence: 0.82
+    model: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities, CC BY 4.0
 sourceDescriptions:
 - name: gridApi
   url: ../openapi/binarly-grid-api-openapi.yml
