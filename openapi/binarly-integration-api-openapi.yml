@@ -422,14 +422,57 @@ paths:
           $ref: '#/components/responses/BadGateway'
 components:
   schemas:
-    CreateIntegrationPayload:
+    ErrorResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          x-go-type-skip-optional-pointer: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ErrorDetail:
       type: object
       required:
-      - serverUrl
+      - error
       properties:
-        serverUrl:
+        reason:
           type: string
-          format: url
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    JiraAttachment:
+      type: object
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+    IntegrationWebhook:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+    JiraBasicIssues:
+      type: object
+      required:
+      - issues
+      properties:
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/JiraBasicIssue'
     JiraBasicIssue:
       type: object
       required:
@@ -446,6 +489,9 @@ components:
           type: string
         status:
           type: string
+    UUID:
+      type: string
+      format: uuid
     UpdateIntegrationPayload:
       type: object
       properties:
@@ -455,17 +501,74 @@ components:
           type: string
         clientSecret:
           type: string
-    IntegrationWebhook:
+    JiraProjects:
       type: object
       required:
-      - id
+      - projects
       properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/JiraProject'
+    CreateIntegrationPayload:
+      type: object
+      required:
+      - serverUrl
+      properties:
+        serverUrl:
+          type: string
+          format: url
+    JiraIssueType:
+      type: object
+      required:
+      - name
+      - id
+      - description
+      - subtask
+      properties:
+        name:
+          type: string
         id:
           type: string
-    EmptyBody:
-      type:
-      - object
-      - 'null'
+        description:
+          type: string
+        subtask:
+          type: boolean
+    JiraProject:
+      type: object
+      required:
+      - name
+      - id
+      - description
+      - issueTypes
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        issueTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JiraIssueType'
+    ForbiddenErrorResponse:
+      type: object
+      required:
+      - message
+      - permission
+      - resourceName
+      properties:
+        message:
+          type: string
+        permission:
+          type: string
+        resourceName:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
     CreateJiraIssuePayload:
       type: object
       required:
@@ -485,6 +588,10 @@ components:
           type: string
         isAdf:
           type: boolean
+    EmptyBody:
+      type:
+      - object
+      - 'null'
     ULID:
       type: string
       format: ulid
@@ -494,39 +601,6 @@ components:
       x-go-type: ulid.ULID
       x-go-type-import:
         path: github.com/oklog/ulid/v2
-    Providers:
-      type: object
-      required:
-      - providers
-      properties:
-        providers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Provider'
-    UUID:
-      type: string
-      format: uuid
-    ErrorResponse:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          x-go-type-skip-optional-pointer: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    JiraAttachment:
-      type: object
-      required:
-      - file
-      properties:
-        file:
-          type: string
-          format: binary
     IntegrationSession:
       type: object
       required:
@@ -537,102 +611,30 @@ components:
         redirectUrl:
           type: string
           format: url
-    JiraBasicIssues:
+    Provider:
       type: object
       required:
-      - issues
-      properties:
-        issues:
-          type: array
-          items:
-            $ref: '#/components/schemas/JiraBasicIssue'
-    ErrorDetail:
-      type: object
-      required:
-      - error
-      properties:
-        reason:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
-    ForbiddenErrorResponse:
-      type: object
-      required:
-      - message
-      - permission
-      - resourceName
-      properties:
-        message:
-          type: string
-        permission:
-          type: string
-        resourceName:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-    JiraProjects:
-      type: object
-      required:
-      - projects
-      properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/JiraProject'
-    Integration:
-      type: object
-      required:
-      - integrationId
+      - providerId
+      - slug
       - type
-      - ready
-      - callbackUrl
-      - serverUrl
+      - name
+      - description
+      - integrations
       properties:
-        integrationId:
+        providerId:
           $ref: '#/components/schemas/UUID'
+        slug:
+          type: string
         type:
           type: string
-        ready:
-          type: boolean
-        callbackUrl:
-          type: string
-          format: url
-        webhookUrl:
-          type: string
-          format: url
-        serverUrl:
-          type: string
-          format: url
-        redirectUrl:
-          type: string
-          format: url
-        consumerKey:
-          $ref: '#/components/schemas/UUID'
-        publicKey:
-          type: string
-    JiraIssueType:
-      type: object
-      required:
-      - name
-      - id
-      - description
-      - subtask
-      properties:
         name:
-          type: string
-        id:
           type: string
         description:
           type: string
-        subtask:
-          type: boolean
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
     JiraIssue:
       type: object
       required:
@@ -676,63 +678,55 @@ components:
           type: string
         updated:
           type: string
-    Provider:
+    Providers:
       type: object
       required:
-      - providerId
-      - slug
-      - type
-      - name
-      - description
-      - integrations
+      - providers
       properties:
-        providerId:
+        providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Provider'
+    Integration:
+      type: object
+      required:
+      - integrationId
+      - type
+      - ready
+      - callbackUrl
+      - serverUrl
+      properties:
+        integrationId:
           $ref: '#/components/schemas/UUID'
-        slug:
-          type: string
         type:
           type: string
-        name:
+        ready:
+          type: boolean
+        callbackUrl:
           type: string
-        description:
+          format: url
+        webhookUrl:
           type: string
-        integrations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Integration'
-    JiraProject:
-      type: object
-      required:
-      - name
-      - id
-      - description
-      - issueTypes
-      properties:
-        name:
+          format: url
+        serverUrl:
           type: string
-        id:
+          format: url
+        redirectUrl:
           type: string
-        description:
+          format: url
+        consumerKey:
+          $ref: '#/components/schemas/UUID'
+        publicKey:
           type: string
-        issueTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/JiraIssueType'
   responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
-    Conflict:
-      description: Conflict
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadGateway:
-      description: Bad Gateway
+    Conflict:
+      description: Conflict
       content:
         application/json:
           schema:
@@ -743,20 +737,26 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
     InternalServerError:
       description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
+    NotFound:
+      description: Not Found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not Found
+    BadGateway:
+      description: Bad Gateway
       content:
         application/json:
           schema:

@@ -58,6 +58,13 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    WithEmailInterval:
+      type: object
+      required:
+      - emailInterval
+      properties:
+        emailInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
     ErrorResponse:
       required:
       - message
@@ -78,26 +85,11 @@ components:
       properties:
         emailEnabled:
           type: boolean
-    NotificationIntervalEnum:
-      type: string
-      enum:
-      - immediate
-      - daily
-      - weekly
-    WithEmailInterval:
+    WithOptionalSlackWebhookURL:
       type: object
-      required:
-      - emailInterval
       properties:
-        emailInterval:
-          $ref: '#/components/schemas/NotificationIntervalEnum'
-    WithSlackEnabled:
-      type: object
-      required:
-      - slackEnabled
-      properties:
-        slackEnabled:
-          type: boolean
+        slackWebhookURL:
+          type: string
     ErrorDetail:
       type: object
       required:
@@ -112,11 +104,20 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
-    WithOptionalSlackWebhookURL:
+    WithSlackEnabled:
       type: object
+      required:
+      - slackEnabled
       properties:
-        slackWebhookURL:
-          type: string
+        slackEnabled:
+          type: boolean
+    WithSlackInterval:
+      type: object
+      required:
+      - slackInterval
+      properties:
+        slackInterval:
+          $ref: '#/components/schemas/NotificationIntervalEnum'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -134,13 +135,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    WithSlackInterval:
-      type: object
-      required:
-      - slackInterval
-      properties:
-        slackInterval:
-          $ref: '#/components/schemas/NotificationIntervalEnum'
     NotificationSettings:
       allOf:
       - $ref: '#/components/schemas/WithEmailInterval'
@@ -148,15 +142,15 @@ components:
       - $ref: '#/components/schemas/WithEmailEnabled'
       - $ref: '#/components/schemas/WithSlackEnabled'
       - $ref: '#/components/schemas/WithOptionalSlackWebhookURL'
+    NotificationIntervalEnum:
+      type: string
+      enum:
+      - immediate
+      - daily
+      - weekly
   responses:
     Unauthorized:
       description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
       content:
         application/json:
           schema:
@@ -167,14 +161,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Not Found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:

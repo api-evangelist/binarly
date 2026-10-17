@@ -34,6 +34,37 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       required:
@@ -57,16 +88,6 @@ components:
       x-go-type: ulid.ULID
       x-go-type-import:
         path: github.com/oklog/ulid/v2
-    TempFile:
-      type: object
-      required:
-      - uploadUrl
-      - id
-      properties:
-        uploadUrl:
-          type: string
-        id:
-          $ref: '#/components/schemas/ULID'
     ErrorDetail:
       type: object
       required:
@@ -81,6 +102,16 @@ components:
         service:
           type: string
           x-go-type-skip-optional-pointer: true
+    TempFile:
+      type: object
+      required:
+      - uploadUrl
+      - id
+      properties:
+        uploadUrl:
+          type: string
+        id:
+          $ref: '#/components/schemas/ULID'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -98,37 +129,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenErrorResponse'
-    BadGateway:
-      description: Bad Gateway
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     PathProductId:
       name: productId

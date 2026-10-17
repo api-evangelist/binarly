@@ -92,9 +92,22 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    Subscriptions:
-      allOf:
-      - $ref: '#/components/schemas/WithSubscriptions'
+    WithResourceName:
+      type: object
+      required:
+      - resourceName
+      properties:
+        resourceName:
+          type: string
+    ULID:
+      type: string
+      format: ulid
+      minLength: 26
+      maxLength: 26
+      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+      x-go-type: ulid.ULID
+      x-go-type-import:
+        path: github.com/oklog/ulid/v2
     ErrorResponse:
       required:
       - message
@@ -108,15 +121,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    ULID:
-      type: string
-      format: ulid
-      minLength: 26
-      maxLength: 26
-      example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
-      x-go-type: ulid.ULID
-      x-go-type-import:
-        path: github.com/oklog/ulid/v2
+    ErrorDetail:
+      type: object
+      required:
+      - error
+      properties:
+        reason:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        field:
+          type: string
+          x-go-type-skip-optional-pointer: true
+        service:
+          type: string
+          x-go-type-skip-optional-pointer: true
+    SubscriptionPayload:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/WithResourceName'
     WithSubscriptions:
       type: object
       required:
@@ -140,20 +162,6 @@ components:
       - $ref: '#/components/schemas/WithId'
       - $ref: '#/components/schemas/WithResourceName'
       - $ref: '#/components/schemas/WithCreateTime'
-    ErrorDetail:
-      type: object
-      required:
-      - error
-      properties:
-        reason:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        field:
-          type: string
-          x-go-type-skip-optional-pointer: true
-        service:
-          type: string
-          x-go-type-skip-optional-pointer: true
     WithId:
       type: object
       required:
@@ -163,13 +171,9 @@ components:
           readOnly: true
           allOf:
           - $ref: '#/components/schemas/ULID'
-    WithResourceName:
-      type: object
-      required:
-      - resourceName
-      properties:
-        resourceName:
-          type: string
+    Subscriptions:
+      allOf:
+      - $ref: '#/components/schemas/WithSubscriptions'
     ForbiddenErrorResponse:
       type: object
       required:
@@ -187,31 +191,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorDetail'
-    SubscriptionPayload:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/WithResourceName'
   responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
